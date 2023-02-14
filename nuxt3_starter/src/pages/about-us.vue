@@ -1,0 +1,3 @@
+<template>
+  About Us
+</template>
