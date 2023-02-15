@@ -7,6 +7,8 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -38,11 +40,26 @@ class UserController extends Controller
         return (new UserResource(auth('sanctum')->user()))->response();
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function update(UserUpdateRequest $request)
     {
-        $user = auth()->user();
-        if ($user !== null) {
-            $user->update($request->validated());
+        $userId = auth()->id();
+        $data = $request->validated();
+        if ($userId) {
+            $user = User::findOrFail($userId);
+            $currentPassword = $data['current_password'];
+            if ($currentPassword && !Hash::check($currentPassword, $user->password)) {
+                $user->password = Hash::make($data['password']);
+            } else {
+                throw ValidationException::withMessages([
+                    'current_password' => ['Incorrect credentials.'],
+                ]);
+            }
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->save();
             return (new UserResource($user))->response();
         }
     }
