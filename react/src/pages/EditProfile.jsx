@@ -7,7 +7,8 @@ import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, ErrorMessage} from "formik";
+import * as Yup from 'yup';
 
 function Profile() {
   const navigate = useNavigate()
@@ -16,13 +17,16 @@ function Profile() {
   const auth = useSelector((state) => state.auth)
   const user = auth.user
 
-
-  const [errors, setErrors] = useState([]);
-  const [name, setName] = useState(user.name || '');
-  const [email, setEmail] = useState(user.email || '');
-  const [currentPassword, setCurrentPassword] = useState('nizaf@mailinator.com');
-  const [password, setPassword] = useState('nizaf@mailinator.com');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('nizaf@mailinator.com');
+  const ValidationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Required')
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!'),
+    // password: Yup.string()
+    //   .min(6, 'Too Short!')
+    //   .max(60, 'Too Long!'),
+    email: Yup.string().email('Invalid email').required('Required'),
+  });
 
   const initialValues = {
     name: user.name,
@@ -37,7 +41,7 @@ function Profile() {
     const formData = new FormData();
     formData.append('_method', 'PUT')
     for (let key in values) {
-      formData.append(key, values[key])
+      formData.append(key, values[key].trim())
     }
 
     const request = await $api.post('user', formData)
@@ -46,17 +50,11 @@ function Profile() {
       clearForm()
       navigate('/profile')
     } else {
-      setErrors(request?.data?.errors)
-      console.log(errors)
+      props.setErrors(request?.data?.errors)
     }
   }
 
   const clearForm = () => {
-    setName('')
-    setEmail('')
-    setCurrentPassword('')
-    setPassword('')
-    setPasswordConfirmation('')
   }
 
   return (
@@ -73,7 +71,11 @@ function Profile() {
         <Typography component="h1" variant="h5">
           Update Profile
         </Typography>
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={ValidationSchema}
+          onSubmit={handleSubmit}
+        >
           {({
               values,
               errors,
@@ -88,24 +90,24 @@ function Profile() {
               <Field
                 as={TextField}
                 margin="normal"
-                required
                 fullWidth
                 id="name"
                 label="Name"
                 name="name"
                 autoComplete=""
                 autoFocus
+                helperText={<ErrorMessage name='name'/>}
               />
               <Field
                 as={TextField}
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 type="email"
+                helperText={<ErrorMessage name='email'/>}
               />
 
               <Divider>
@@ -115,41 +117,42 @@ function Profile() {
               <Field
                 as={TextField}
                 margin="normal"
-                required
                 fullWidth
                 name="current_password"
                 label="Current Password"
                 type="password"
                 id="currentPassword"
                 autoComplete="current-password"
+                helperText={<ErrorMessage name='current_password'/>}
               />
               <Field
                 as={TextField}
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                helperText={<ErrorMessage name='password'/>}
               />
               <Field
                 as={TextField}
                 margin="normal"
-                required
                 fullWidth
                 name="password_confirmation"
                 label="Password Confirmation"
                 type="password"
                 id="passwordConfirmation"
                 autoComplete=""
+                helperText={<ErrorMessage name='password_confirmation'/>}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{mt: 3, mb: 2}}
+                disabled={isSubmitting}
               >
                 Update Account
               </Button>
