@@ -93,6 +93,7 @@ function Profile() {
             <Form>
               <Field
                 as={TextField}
+                error={!!errors.name}
                 margin="normal"
                 fullWidth
                 id="name"
@@ -104,6 +105,7 @@ function Profile() {
               />
               <Field
                 as={TextField}
+                error={!!errors.email}
                 margin="normal"
                 fullWidth
                 id="email"
@@ -120,6 +122,7 @@ function Profile() {
 
               <Field
                 as={TextField}
+                error={!!errors.current_password}
                 margin="normal"
                 fullWidth
                 name="current_password"
@@ -131,6 +134,7 @@ function Profile() {
               />
               <Field
                 as={TextField}
+                error={!!errors.password}
                 margin="normal"
                 fullWidth
                 name="password"
@@ -143,6 +147,7 @@ function Profile() {
               />
               <Field
                 as={TextField}
+                error={!!errors.password_confirmation}
                 margin="normal"
                 fullWidth
                 name="password_confirmation"
