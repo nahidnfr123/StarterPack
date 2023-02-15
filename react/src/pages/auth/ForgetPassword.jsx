@@ -37,12 +37,13 @@ function ForgetPassword() {
       if (values[key].trim()) formData.append(key, values[key].trim())
     }
 
-    const request = await $api.post('user', formData)
+    const request = await $api.post('reset-password', formData)
     if (request.message === 'success') {
       dispatch(setUser(request.data))
       navigate('/auth/login')
     } else {
-      props.setErrors(request?.data?.errors)
+      console.log(request.data)
+      if (request.data.errors) props.setErrors(request?.data?.errors)
     }
   }
 

@@ -47,7 +47,7 @@ function Profile() {
       dispatch(setUser(request.data))
       navigate('/profile')
     } else {
-      props.setErrors(request?.data?.errors)
+      if (request.data.errors) props.setErrors(request?.data?.errors)
     }
   }
 

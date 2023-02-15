@@ -61,11 +61,11 @@ class AuthenticationController extends Controller
         if ($user) {
             $token = $user->createToken($user->name)->plainTextToken;
 //            return response(['token' => $token, 'user' => $user]);
-            return $this->success(['token' => $token, 'user' => $user]);
+            return response(['token' => $token, 'user' => $user]);
         }
 
 //        return response()->json(['message' => 'success']);
-        return $this->error('Something went wrong!', 401);
+        return response()->json(['error' => 'Something went wrong!'], 401);
     }
 
 

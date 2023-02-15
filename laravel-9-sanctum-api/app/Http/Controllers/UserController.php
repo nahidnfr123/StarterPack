@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -62,6 +63,32 @@ class UserController extends Controller
             }
             $user->name = $data['name'];
             $user->email = $data['email'];
+            $user->save();
+            return (new UserResource($user))->response();
+        }
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function resetPassword(ForgetPasswordRequest $request)
+    {
+        $data = $request->validated();
+        $userEmail = $data['email'];
+        if ($userEmail) {
+            $user = User::where('email', $userEmail)->first();
+            if (!$user) {
+                throw ValidationException::withMessages([
+                    'email' => ['User not found with this email.'],
+                ]);
+            }
+            $currentPassword = $data['current_password'] ?? null;
+            if (!$currentPassword || !Hash::check($currentPassword, $user->password)) {
+                throw ValidationException::withMessages([
+                    'current_password' => ['Incorrect credentials.'],
+                ]);
+            }
+            $user->password = Hash::make($data['password']);
             $user->save();
             return (new UserResource($user))->response();
         }

@@ -32,7 +32,6 @@ export default function Login() {
     // console.log(props)
     // event.preventDefault();
     const formData = new FormData();
-    formData.append('_method', 'PUT')
     for (let key in values) {
       if (values[key].trim()) formData.append(key, values[key].trim())
     }
@@ -43,7 +42,7 @@ export default function Login() {
       navigate('/dashboard')
     } else {
       removeUser()
-      props.setErrors(request?.data?.errors)
+      if (request.data.errors) props.setErrors(request?.data?.errors)
     }
   }
 
