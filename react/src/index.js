@@ -14,6 +14,7 @@ import {Provider} from 'react-redux'
 import {store} from './store'
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import ForgetPassword from "./pages/auth/ForgetPassword";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="/auth" element={<AuthLayout/>}>
               <Route path="login" element={<Login/>}/>
               <Route path="register" element={<Register/>}/>
+              <Route path="forget-password" element={<ForgetPassword/>}/>
             </Route>
           </Routes>
         </BrowserRouter>
