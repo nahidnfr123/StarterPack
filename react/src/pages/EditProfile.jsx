@@ -47,14 +47,10 @@ function Profile() {
     const request = await $api.post('user', formData)
     if (request.message === 'success') {
       dispatch(setUser(request.data))
-      clearForm()
       navigate('/profile')
     } else {
       props.setErrors(request?.data?.errors)
     }
-  }
-
-  const clearForm = () => {
   }
 
   return (
