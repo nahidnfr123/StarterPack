@@ -7,6 +7,7 @@ import {getTokenFromLocalStorage} from "./auth";
 const http = axios.create({
   baseURL: process.env.API_URL || `http://127.0.0.1:8000/api/`,
   headers: {
+    'Content-type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
     'Authorization': `Bearer ${getTokenFromLocalStorage()}`,
@@ -17,6 +18,7 @@ const http = axios.create({
 const $api = {
   setAuthorization() {
     http.defaults.headers = {
+      'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
       'Authorization': `Bearer ${getTokenFromLocalStorage()}`,

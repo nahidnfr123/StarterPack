@@ -38,7 +38,8 @@ export function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (link) => {
+    if (link) navigate(link)
     setAnchorElNav(null);
   };
 
@@ -104,7 +105,7 @@ export function ResponsiveAppBar() {
               }}
             >
               {pages.map((page, i) => (
-                <MenuItem key={i} onClick={handleCloseNavMenu}>
+                <MenuItem key={i} onClick={() => handleCloseNavMenu(page.link)}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -133,7 +134,7 @@ export function ResponsiveAppBar() {
             {pages.map((page, i) => (
               <Button
                 key={i}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page.link)}
                 sx={{my: 2, color: 'white', display: 'block'}}
               >
                 {page.title}
