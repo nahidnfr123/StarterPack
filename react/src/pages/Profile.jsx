@@ -1,5 +1,7 @@
 import {useSelector} from "react-redux";
 import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
+import React from "react";
 
 function Profile() {
   const auth = useSelector((state) => state.auth)
@@ -11,7 +13,9 @@ function Profile() {
       <div>Name: <strong>{user.name}</strong></div>
       <div>Email: <strong>{user.email}</strong></div>
       <div>
-        <Button variant="contained" href='/edit-profile'>Edit Profile</Button>
+        <Link to="/edit-profile" variant="body2">
+          <Button variant="contained">Edit Profile</Button>
+        </Link>
       </div>
     </>
   );
