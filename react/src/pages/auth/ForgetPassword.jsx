@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 import {Button, Divider} from "@mui/material";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -9,6 +9,7 @@ import {Field, Form, Formik, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 import {setUser} from "../../store/authSlice";
 import $api from "../../api";
+import Grid from "@mui/material/Grid";
 
 function ForgetPassword() {
   const navigate = useNavigate()
@@ -141,6 +142,15 @@ function ForgetPassword() {
             </Form>
           )}
         </Formik>
+        <Grid container>
+          <Grid item xs>
+          </Grid>
+          <Grid item>
+            <Link to="/auth/login" variant="body2">
+              {"Back to Login"}
+            </Link>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );

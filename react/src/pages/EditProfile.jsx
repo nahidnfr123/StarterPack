@@ -88,7 +88,6 @@ function Profile() {
                 label="Name"
                 name="name"
                 autoComplete=""
-                autoFocus
                 helperText={<ErrorMessage name='name'/>}
               />
               <Field

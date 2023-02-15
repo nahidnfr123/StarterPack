@@ -88,8 +88,7 @@ export default function SignIn() {
                 id="name"
                 label="Name"
                 name="name"
-                autoComplete=""
-                autoFocus
+                autoComplete="name"
                 helperText={<ErrorMessage name='name'/>}
               />
               <Field
