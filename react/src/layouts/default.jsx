@@ -1,6 +1,6 @@
 import {Outlet, useNavigate} from "react-router-dom";
 import AppBar from "../components/global/AppBar";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {getUser} from "../api/auth";
 import {removeUser, user} from "../store/authSlice";
 import {useDispatch} from "react-redux";
@@ -12,17 +12,22 @@ const theme = createTheme();
 const DefaultLayout = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isMounted = useRef(false)
 
   useEffect(() => {
-    getUser().then(response => {
-      console.log(response)
-      if (response.message === 'success') dispatch(user(response.data))
-      else {
-        dispatch(removeUser())
-        navigate('/auth/login')
-      }
-    })
-  }, []); // [] calls only in first render ...
+    if (!isMounted.current) {
+      getUser().then(response => {
+        if (response.message === 'success') dispatch(user(response.data))
+        else {
+          dispatch(removeUser())
+          navigate('/auth/login')
+        }
+      })
+    }
+    return () => {
+      isMounted.current = true;
+    };
+  }, [dispatch, navigate]); // [] calls only in first render ...
   return (
     <>
       <ThemeProvider theme={theme}>
