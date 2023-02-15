@@ -16,8 +16,3 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
-
-
-Route::apiResource('accounts', AccountController::class);
-Route::apiResource('transaction-categories', TransactionCategoryController::class);
-Route::apiResource('transactions', TransactionController::class);
