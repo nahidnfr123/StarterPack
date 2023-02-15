@@ -10,33 +10,34 @@ import Container from '@mui/material/Container';
 const theme = createTheme();
 
 const DefaultLayout = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        getUser().then(response => {
-            if (response.message === 'success') dispatch(user(response.data))
-            else {
-                dispatch(removeUser())
-                navigate('/auth/login')
-            }
-        })
-    }); // [] calls only in first render ...
-    return (
-        <>
-            <ThemeProvider theme={theme}>
-                <AppBar/>
-                <Container component="main" maxWidth="xs">
-                    {/*{Object.entries(auth).map(([key, value], i) => (
+  useEffect(() => {
+    getUser().then(response => {
+      console.log(response)
+      if (response.message === 'success') dispatch(user(response.data))
+      else {
+        dispatch(removeUser())
+        navigate('/auth/login')
+      }
+    })
+  }, []); // [] calls only in first render ...
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <AppBar/>
+        <Container component="main" maxWidth="xs">
+          {/*{Object.entries(auth).map(([key, value], i) => (
             <div className="item" key={key}>
               {key}: {value}
             </div>
         ))}*/}
-                    <Outlet/>
-                </Container>
-            </ThemeProvider>
-        </>
-    )
+          <Outlet/>
+        </Container>
+      </ThemeProvider>
+    </>
+  )
 }
 
 export default DefaultLayout;
