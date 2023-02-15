@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,132 +11,153 @@ import {useNavigate} from "react-router-dom";
 import {removeUser, setTokenUser} from "../../store/authSlice";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
+import * as Yup from "yup";
+import {ErrorMessage, Field, Formik, Form} from "formik";
 
 export default function SignIn() {
-  /*const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    await auth.register(data)
-  };*/
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const ValidationSchema = Yup.object().shape({
+    name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
+    password_confirmation: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
+  });
+
+  const handleSubmit = async (values, props) => {
+    // console.log(props)
+    // event.preventDefault();
     const formData = new FormData();
-    formData.append('name', name)
-    formData.append('email', email)
-    formData.append('password', password)
-    formData.append('password_confirmation', passwordConfirmation)
+    formData.append('_method', 'PUT')
+    for (let key in values) {
+      if (values[key].trim()) formData.append(key, values[key].trim())
+    }
 
     const request = await auth.register(formData)
     if (request.message === 'success') {
       dispatch(setTokenUser(request.data))
-      clearForm()
       navigate('/dashboard')
     } else {
       removeUser()
+      props.setErrors(request?.data?.errors)
     }
   }
 
-  const clearForm = () => {
-    setName('')
-    setEmail('')
-    setPassword('')
-    setPasswordConfirmation('')
-  }
-
   return (
-      <>
-        <Box
-            sx={{
-              marginTop: 8,
-              marginBottom: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-        >
-          <Avatar sx={{m: 2, bgcolor: 'secondary.main'}}>
-            <LockOutlinedIcon/>
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Register
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                autoComplete=""
-                autoFocus
-                onChange={event => setName(event.target.value)}
-                value={name}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                type="email"
-                onChange={event => setEmail(event.target.value)}
-                value={email}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={event => setPassword(event.target.value)}
-                value={password}
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password_confirmation"
-                label="Password Confirmation"
-                type="password"
-                id="password_confirmation"
-                autoComplete=""
-                onChange={event => setPasswordConfirmation(event.target.value)}
-                value={passwordConfirmation}
-            />
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{mt: 3, mb: 2}}
-            >
-              Register
-            </Button>
-            <Grid container>
-              <Grid item xs>
-              </Grid>
-              <Grid item>
-                <Link to="/auth/login" variant="body2">
-                  {"Already have an account? Login"}
-                </Link>
-              </Grid>
+    <>
+      <Box
+        sx={{
+          marginTop: 8,
+          marginBottom: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{m: 2, bgcolor: 'secondary.main'}}>
+          <LockOutlinedIcon/>
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Register
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={ValidationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+              }) => (
+              <Form>
+                <Field
+                  as={TextField}
+                  error={!!errors.name}
+                  margin="normal"
+                  fullWidth
+                  id="name"
+                  label="Name"
+                  name="name"
+                  autoComplete=""
+                  autoFocus
+                  helperText={<ErrorMessage name='name'/>}
+                />
+                <Field
+                  as={TextField}
+                  error={!!errors.email}
+                  margin="normal"
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  type="email"
+                  helperText={<ErrorMessage name='email'/>}
+                />
+                <Field
+                  as={TextField}
+                  error={!!errors.password}
+                  margin="normal"
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="password"
+                  // validate={validatePassword}
+                  helperText={<ErrorMessage name='password'/>}
+                />
+                <Field
+                  as={TextField}
+                  error={!!errors.password_confirmation}
+                  margin="normal"
+                  fullWidth
+                  name="password_confirmation"
+                  label="Password Confirmation"
+                  type="password"
+                  id="passwordConfirmation"
+                  autoComplete=""
+                  helperText={<ErrorMessage name='password_confirmation'/>}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{mt: 3, mb: 2}}
+                  disabled={isSubmitting}
+                >
+                  Register
+                </Button>
+              </Form>
+            )}
+          </Formik>
+          <Grid container>
+            <Grid item xs>
             </Grid>
-          </Box>
+            <Grid item>
+              <Link to="/auth/login" variant="body2">
+                {"Already have an account? Login"}
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
-        {/*<Copyright sx={{mt: 8, mb: 4}}/>*/}
-      </>
+      </Box>
+      {/*<Copyright sx={{mt: 8, mb: 4}}/>*/}
+    </>
   );
 }
