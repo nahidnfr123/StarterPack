@@ -12,27 +12,31 @@ import AuthLayout from "./layouts/authLayout";
 import Dashboard from "./pages/Dashboard";
 import {Provider} from 'react-redux'
 import {store} from './store'
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 export default function App() {
   return (
-      <Provider store={store}>
-        <div className="App">
-          <CssBaseline/>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<DefaultLayout/>}>
-                <Route index element={<Home/>}/>
-                <Route path="dashboard" element={<Dashboard/>}/>
-                <Route path="*" element={<NoPage/>}/>
-              </Route>
-              <Route path="/auth" element={<AuthLayout/>}>
-                <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </div>
-      </Provider>
+    <Provider store={store}>
+      <div className="App">
+        <CssBaseline/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<DefaultLayout/>}>
+              <Route index element={<Home/>}/>
+              <Route path="dashboard" element={<Dashboard/>}/>
+              <Route path="profile" element={<Profile/>}/>
+              <Route path="edit-profile" element={<EditProfile/>}/>
+              <Route path="*" element={<NoPage/>}/>
+            </Route>
+            <Route path="/auth" element={<AuthLayout/>}>
+              <Route path="login" element={<Login/>}/>
+              <Route path="register" element={<Register/>}/>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Provider>
   )
 }
 

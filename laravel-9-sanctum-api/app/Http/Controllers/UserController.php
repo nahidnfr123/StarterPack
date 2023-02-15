@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -35,5 +36,14 @@ class UserController extends Controller
     public function authUser(User $user): JsonResponse
     {
         return (new UserResource(auth('sanctum')->user()))->response();
+    }
+
+    public function update(UserUpdateRequest $request)
+    {
+        $user = auth()->user();
+        if ($user !== null) {
+            $user->update($request->validated());
+            return (new UserResource($user))->response();
+        }
     }
 }

@@ -2,11 +2,11 @@ import * as React from "react";
 
 function Home() {
   return (
-      <>
-        <h4>
-          Dashboard
-        </h4>
-      </>
+    <>
+      <h1>
+        Dashboard
+      </h1>
+    </>
   );
 }
 

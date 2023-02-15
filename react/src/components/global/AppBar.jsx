@@ -20,13 +20,13 @@ import {removeUser} from "../../store/authSlice";
 
 
 const pages = [{title: 'Home', link: '/'}, {title: 'Dashboard', link: '/dashboard'}];
-const settings = ['User Name',];
+const settings = [{title: 'User Name', link: '/profile'}, {title: 'Profile', link: '/profile'}];
 
 export function ResponsiveAppBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const auth = useSelector((state) => state.auth)
-  if (auth.isLoggedIn) settings[0] = auth?.user?.name || ''
+  if (auth.isLoggedIn) settings[0].title = auth?.user?.name || ''
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -43,7 +43,8 @@ export function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (link) => {
+    if (link) navigate(link)
     setAnchorElUser(null);
   };
 
@@ -165,9 +166,11 @@ export function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting, index) => (
+                <MenuItem key={index} onClick={() => {
+                  handleCloseUserMenu(setting.link)
+                }}>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
 

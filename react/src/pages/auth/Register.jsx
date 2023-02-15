@@ -19,12 +19,12 @@ export default function SignIn() {
     await auth.register(data)
   };*/
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-  const dispatch = useDispatch()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
