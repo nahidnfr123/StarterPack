@@ -8,7 +8,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import * as auth from "../../api/auth";
 import {useNavigate} from "react-router-dom";
-import {removeUser, setUser} from "../../store/authSlice";
+import {removeUser, setTokenUser} from "../../store/authSlice";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -36,7 +36,7 @@ export default function SignIn() {
 
     const request = await auth.register(formData)
     if (request.message === 'success') {
-      dispatch(setUser(request.data))
+      dispatch(setTokenUser(request.data))
       clearForm()
       navigate('/dashboard')
     } else {

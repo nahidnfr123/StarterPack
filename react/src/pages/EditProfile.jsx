@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Divider} from "@mui/material";
-import React, {useState} from "react";
+import React from "react";
 import {setUser} from "../store/authSlice";
 import $api from "../api";
 import {useNavigate} from "react-router-dom";
@@ -22,10 +22,19 @@ function Profile() {
       .required('Required')
       .min(2, 'Too Short!')
       .max(50, 'Too Long!'),
-    // password: Yup.string()
-    //   .min(6, 'Too Short!')
-    //   .max(60, 'Too Long!'),
     email: Yup.string().email('Invalid email').required('Required'),
+    current_password: Yup.string()
+      .notRequired()
+      .min(6, 'Too Short!')
+      .max(60, 'Too Long!'),
+    password: Yup.string()
+      .notRequired()
+      .min(6, 'Too Short!')
+      .max(60, 'Too Long!'),
+    password_confirmation: Yup.string()
+      .notRequired()
+      .min(6, 'Too Short!')
+      .max(60, 'Too Long!'),
   });
 
   const initialValues = {
@@ -37,11 +46,12 @@ function Profile() {
   }
 
   const handleSubmit = async (values, props) => {
+    // console.log(props)
     // event.preventDefault();
     const formData = new FormData();
     formData.append('_method', 'PUT')
     for (let key in values) {
-      formData.append(key, values[key].trim())
+      if (values[key].trim()) formData.append(key, values[key].trim())
     }
 
     const request = await $api.post('user', formData)
@@ -64,9 +74,7 @@ function Profile() {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
-          Update Profile
-        </Typography>
+        <Typography component="h1" variant="h5">Update Profile</Typography>
         <Formik
           initialValues={initialValues}
           validationSchema={ValidationSchema}
@@ -129,7 +137,8 @@ function Profile() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="password"
+                // validate={validatePassword}
                 helperText={<ErrorMessage name='password'/>}
               />
               <Field

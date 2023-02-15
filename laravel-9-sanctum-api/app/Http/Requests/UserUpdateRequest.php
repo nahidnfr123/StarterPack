@@ -27,8 +27,8 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|' . Rule::unique('users')->ignore(auth()->id()),
-            'current_password' => 'required_with:password|string|min:6',
-            'password' => 'required_with:old_password|string|min:6|confirmed'
+            'current_password' => 'required_with:password|nullable|min:6',
+            'password' => 'required_with:old_password|nullable|min:6|confirmed'
         ];
     }
 }

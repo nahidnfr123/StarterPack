@@ -9,13 +9,13 @@ export const authSlice = createSlice({
     user: getUserFromLocalStorage(),
   },
   reducers: {
-    setUser(state, data) {
+    setTokenUser(state, data) {
       const payload = data.payload
       state.token = payload.token || getTokenFromLocalStorage() || null
       state.user = payload.user || null
       state.isLoggedIn = !(!state.token || !state.user)
     },
-    user(state, data) {
+    setUser(state, data) {
       const payload = data.payload
       state.token = getTokenFromLocalStorage() || null
       state.user = payload || null
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
   },
 })
 
-export const {setUser, removeUser, user} = authSlice.actions
+export const {setTokenUser, setUser, removeUser} = authSlice.actions
 
 /*export const incrementAsync = (amount) => (dispatch) => {
   setTimeout(() => {

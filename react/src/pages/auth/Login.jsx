@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import * as auth from "../../api/auth";
 import {useNavigate} from "react-router-dom";
-import {setUser} from "../../store/authSlice";
+import {setTokenUser} from "../../store/authSlice";
 import {Link} from "react-router-dom";
 
 
@@ -27,7 +27,7 @@ export default function Login() {
 
     const request = await auth.login(formData)
     if (request.message === 'success') {
-      setUser(request.data)
+      setTokenUser(request.data)
       clearForm()
       navigate('/dashboard')
     } else {

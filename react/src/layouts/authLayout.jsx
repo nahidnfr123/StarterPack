@@ -4,7 +4,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useRef} from "react";
 import {getUser} from "../api/auth";
-import {user} from "../store/authSlice";
+import {setUser} from "../store/authSlice";
 
 const theme = createTheme();
 
@@ -18,7 +18,7 @@ const AuthLayout = () => {
     if (auth.token && !isMounted.current) {
       getUser().then(response => {
         if (response.message === 'success') {
-          dispatch(user(response.data))
+          dispatch(setUser(response.data))
           if (auth.isLoggedIn) navigate('/dashboard')
         }
       })
