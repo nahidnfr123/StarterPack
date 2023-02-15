@@ -71,8 +71,8 @@ class AuthenticationController extends Controller
 
     public function logout(): \Illuminate\Http\JsonResponse
     {
-        auth()->logout();
         auth()->user()->tokens()->delete();
+//        auth('sanctum')->logout();
 
         return response()->json(['message' => 'success']);
     }

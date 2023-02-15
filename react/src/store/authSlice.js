@@ -23,11 +23,13 @@ export const authSlice = createSlice({
     },
     removeUser: (state) => {
       logout().then(response => {
-        removeUserFromLocalStorage()
+        if (response.message === 'success') {
+          removeUserFromLocalStorage()
+          state.token = null
+          state.user = null
+          state.isLoggedIn = false
+        }
       })
-      state.token = null
-      state.user = null
-      state.isLoggedIn = false
     },
   },
 })

@@ -21,7 +21,7 @@ const DefaultLayout = () => {
                 navigate('/auth/login')
             }
         })
-    }); // [] calls only in first render ...
+    }, [dispatch, navigate]); // [] calls only in first render ...
     return (
         <>
             <ThemeProvider theme={theme}>

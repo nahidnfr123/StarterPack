@@ -14,21 +14,23 @@ const AuthLayout = () => {
   const auth = useSelector((state) => state.auth)
 
   useEffect(() => {
-    getUser().then(response => {
-      if (response.message === 'success') {
-        dispatch(user(response.data))
-        if (auth.isLoggedIn) navigate('/dashboard')
-      }
-    })
+    if (auth.token) {
+      getUser().then(response => {
+        if (response.message === 'success') {
+          dispatch(user(response.data))
+          if (auth.isLoggedIn) navigate('/dashboard')
+        }
+      })
+    }
   }); // [] calls only in first render ...
   return (
-      <>
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <Outlet/>
-          </Container>
-        </ThemeProvider>
-      </>
+    <>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <Outlet/>
+        </Container>
+      </ThemeProvider>
+    </>
   )
 }
 export default AuthLayout
