@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {getTokenFromLocalStorage} from "./auth";
+import {toast} from "react-toastify";
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
@@ -46,6 +47,7 @@ const $api = {
       else if (res?.data) data = res?.data
       else data = res
 
+      this.dispatchSuccess('Success!')
       return {message: 'success', data: data}
     }).catch((err) => {
       if (!err) return
@@ -61,6 +63,7 @@ const $api = {
       else if (res?.data) data = res?.data
       else data = res
 
+      this.dispatchSuccess('Success!')
       return {message: 'success', data: data}
     }).catch((err) => {
       if (!err) return
@@ -68,6 +71,18 @@ const $api = {
       this.dispatchError(err)
       return {message: 'error', data: err?.response?.data}
     })
+  },
+  dispatchSuccess(message) {
+    toast.success(message, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   },
   dispatchError(err) {
     let error = err.response
@@ -79,8 +94,16 @@ const $api = {
       message = 'CORES Error! ' + error.data.message
     else message = 'Some Error Occurred!'
 
-    console.log(error)
-    console.log(message)
+    toast.error(message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
 }
 

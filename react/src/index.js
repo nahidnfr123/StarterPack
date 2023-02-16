@@ -16,6 +16,10 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function App() {
   return (
     <Provider store={store}>
@@ -37,6 +41,7 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <ToastContainer />
       </div>
     </Provider>
   )
