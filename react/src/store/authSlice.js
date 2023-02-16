@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {getTokenFromLocalStorage, getUserFromLocalStorage, logout, removeUserFromLocalStorage} from "../api/auth";
+import {getTokenFromLocalStorage, getUserFromLocalStorage, logout, removeUserFromLocalStorage, setUserToLocalStorage} from "../api/auth";
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -19,6 +19,7 @@ export const authSlice = createSlice({
       const payload = data.payload
       state.token = getTokenFromLocalStorage() || null
       state.user = payload || null
+      setUserToLocalStorage({token: state.token, user: state.user})
       state.isLoggedIn = !(!state.token || !state.user)
     },
     removeUser: (state) => {

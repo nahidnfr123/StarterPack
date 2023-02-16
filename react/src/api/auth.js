@@ -29,7 +29,7 @@ export async function login(data) {
 }
 
 export async function logout() {
-  const response = await $api.post('/logout');
+  const response = await $api.post('/logout', {});
 
   if (response.message === 'success') removeUserFromLocalStorage()
   return response
@@ -64,5 +64,5 @@ export function getTokenFromLocalStorage() {
 }
 
 export function getUserFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('user')) || null
+  return JSON.parse(localStorage.getItem('user')) || {}
 }
