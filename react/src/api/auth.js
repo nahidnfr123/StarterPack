@@ -36,7 +36,14 @@ export async function logout() {
 }
 
 export async function getUser() {
-  const response = await $api.get('/user');
+  const notifyPayload = {
+    showSuccess: false,
+    showError: false,
+    successMessage: 'Success!',
+    errorMessage: 'Some Error Occurred!'
+  }
+
+  const response = await $api.get('/user', notifyPayload);
 
   if (response.message === 'success') setUserToLocalStorage({token: getTokenFromLocalStorage(), user: response.data})
   return response

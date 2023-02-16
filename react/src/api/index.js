@@ -16,6 +16,13 @@ const http = axios.create({
   withCredentials: true
 })
 
+const notifyPayload = {
+  showSuccess: true,
+  showError: true,
+  successMessage: 'Success!',
+  errorMessage: 'Some Error Occurred!'
+}
+
 const $api = {
   setAuthorization() {
     http.defaults.headers = {
@@ -25,50 +32,50 @@ const $api = {
       'Authorization': `Bearer ${getTokenFromLocalStorage()}`,
     }
   },
-  async get(url) {
+  async get(url, notify = notifyPayload) {
     return await http.get(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
       else data = res
 
+      if (notify.showSuccess) this.dispatchSuccess(notify.successMessage)
       return {message: 'success', data: data}
     }).catch((err) => {
       if (!err) return
-
-      this.dispatchError(err)
+      if (notify.showError) this.dispatchError(err)
       return {message: 'error', data: err?.response?.data}
     })
   },
-  async post(url, data) {
+  async post(url, data, notify = notifyPayload) {
     return await http.post(url, data).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
       else data = res
 
-      this.dispatchSuccess('Success!')
+      if (notify.showSuccess) this.dispatchSuccess(notify.successMessage)
       return {message: 'success', data: data}
     }).catch((err) => {
       if (!err) return
 
-      this.dispatchError(err)
+      if (notify.showError) this.dispatchError(err)
       return {message: 'error', data: err?.response?.data}
     })
   },
-  async delete(url) {
+  async delete(url, notify = notifyPayload) {
     return await http.delete(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
       else data = res
 
-      this.dispatchSuccess('Success!')
+      if (notify.showSuccess) this.dispatchSuccess(notify.successMessage)
       return {message: 'success', data: data}
     }).catch((err) => {
       if (!err) return
 
-      this.dispatchError(err)
+      if (notify.showError) this.dispatchError(err)
       return {message: 'error', data: err?.response?.data}
     })
   },
