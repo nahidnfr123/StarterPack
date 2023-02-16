@@ -70,7 +70,17 @@ const $api = {
     })
   },
   dispatchError(err) {
+    let error = err.response
+    let message = ''
 
+    if (error.status === 401 || error.status === 403 || error.status === 422 || error.status === 500)
+      message = error.statusText + '! ' + error.data.message
+    else if (error.status === 419)
+      message = 'CORES Error! ' + error.data.message
+    else message = 'Some Error Occurred!'
+
+    console.log(error)
+    console.log(message)
   }
 }
 

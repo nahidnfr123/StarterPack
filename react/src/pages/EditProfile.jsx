@@ -26,8 +26,8 @@ function Profile() {
   });
 
   const initialValues = {
-    name: user.name,
-    email: user.email,
+    name: user?.name,
+    email: user?.email,
     current_password: '',
     password: '',
     password_confirmation: '',

@@ -43,7 +43,6 @@ function ForgetPassword() {
       dispatch(setUser(request.data))
       navigate('/auth/login')
     } else {
-      console.log(request.data)
       if (request.data.errors) props.setErrors(request?.data?.errors)
     }
   }
