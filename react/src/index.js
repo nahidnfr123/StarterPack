@@ -18,6 +18,7 @@ import ForgetPassword from "./pages/auth/ForgetPassword";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import VerifyEmail from "./pages/auth/VerifyEmail";
 
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/auth" element={<AuthLayout/>}>
               <Route path="login" element={<Login/>}/>
               <Route path="register" element={<Register/>}/>
+              <Route path="verify-email" element={<VerifyEmail/>}/>
               <Route path="forget-password" element={<ForgetPassword/>}/>
             </Route>
           </Routes>

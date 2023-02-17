@@ -25,8 +25,8 @@ class ForgetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email|',
-            'current_password' => 'required|nullable|min:6',
+            'email' => 'required|email|exists:users,email',
+            'token' => 'required|string|',
             'password' => 'required|nullable|min:6|confirmed'
         ];
     }

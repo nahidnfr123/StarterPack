@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
-import {Button, Divider} from "@mui/material";
-import React from "react";
+import {Alert, Button, Divider} from "@mui/material";
+import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,39 +10,31 @@ import * as Yup from 'yup';
 import {setUser} from "../../store/authSlice";
 import $api from "../../api";
 import Grid from "@mui/material/Grid";
-import {useLocation} from "react-router-dom";
 
 function ForgetPassword() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const myParam = useLocation().search;
+  const [successMessage, setSuccessMessage] = useState('')
 
   const ValidationSchema = Yup.object().shape({
-    password: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
-    password_confirmation: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
+    email: Yup.string().email().required('Required'),
   });
 
   const initialValues = {
-    email: new URLSearchParams(myParam).get("email"),
-    token: new URLSearchParams(myParam).get("token"),
-    password: '',
-    password_confirmation: '',
+    email: '',
+    password_reset_link: window.location.host + '/auth/forget-password'
   }
 
   const handleSubmit = async (values, props) => {
-    // console.log(props)
-    // event.preventDefault();
     const formData = new FormData();
-    formData.append('_method', 'PUT')
     for (let key in values) {
       if (values[key].trim()) formData.append(key, values[key].trim())
     }
 
-    const request = await $api.post('reset-password', formData)
+    const request = await $api.post('send-otp', formData)
     if (request.message === 'success') {
-      dispatch(setUser(request.data))
-      navigate('/auth/login')
+      console.log(request.data)
+      setSuccessMessage(request.data.status)
     } else {
       if (request.data.errors) props.setErrors(request?.data?.errors)
     }
@@ -59,7 +51,7 @@ function ForgetPassword() {
               alignItems: 'center',
             }}
         >
-          <Typography component="h1" variant="h5">Reset Password</Typography>
+          <Typography component="h1" variant="h5">Verify Email</Typography>
           <Formik
               initialValues={initialValues}
               validationSchema={ValidationSchema}
@@ -78,29 +70,19 @@ function ForgetPassword() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.password}
+                      error={!!errors.email}
                       margin="normal"
                       fullWidth
-                      name="password"
-                      label="New Password"
-                      type="password"
-                      id="password"
-                      autoComplete="password"
-                      // validate={validatePassword}
-                      helperText={<ErrorMessage name='password'/>}
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                      type="email"
+                      helperText={<ErrorMessage name='email'/>}
                   />
-                  <Field
-                      as={TextField}
-                      error={!!errors.password_confirmation}
-                      margin="normal"
-                      fullWidth
-                      name="password_confirmation"
-                      label="New Password Confirmation"
-                      type="password"
-                      id="password_confirmation"
-                      autoComplete=""
-                      helperText={<ErrorMessage name='password_confirmation'/>}
-                  />
+                  {successMessage &&
+                      <Alert severity="success">{successMessage}</Alert>
+                  }
                   <Button
                       type="submit"
                       fullWidth
@@ -108,7 +90,7 @@ function ForgetPassword() {
                       sx={{mt: 3, mb: 2}}
                       disabled={isSubmitting}
                   >
-                    Change Password
+                    Send Password Reset Link
                   </Button>
                 </Form>
             )}

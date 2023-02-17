@@ -5,9 +5,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['throttle:5,1']], function () {
+Route::group(['middleware' => ['throttle:5,1', 'guest']], function () {
     Route::post('/register', [AuthenticationController::class, 'register']);
     Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::post('/send-otp', [UserController::class, 'sendOtp']);
     Route::put('/reset-password', [UserController::class, 'resetPassword']);
 });
 

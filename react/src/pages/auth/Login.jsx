@@ -118,7 +118,7 @@ export default function Login() {
         </Formik>
         <Grid container>
           <Grid item xs>
-            <Link to="/auth/forget-password" variant="body2">
+            <Link to="/auth/verify-email" variant="body2">
               Forgot password?
             </Link>
           </Grid>

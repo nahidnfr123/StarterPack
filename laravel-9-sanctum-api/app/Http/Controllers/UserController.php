@@ -6,10 +6,13 @@ use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -74,23 +77,35 @@ class UserController extends Controller
     public function resetPassword(ForgetPasswordRequest $request)
     {
         $data = $request->validated();
-        $userEmail = $data['email'];
-        if ($userEmail) {
-            $user = User::where('email', $userEmail)->first();
-            if (!$user) {
-                throw ValidationException::withMessages([
-                    'email' => ['User not found with this email.'],
-                ]);
-            }
-            $currentPassword = $data['current_password'] ?? null;
-            if (!$currentPassword || !Hash::check($currentPassword, $user->password)) {
-                throw ValidationException::withMessages([
-                    'current_password' => ['Incorrect credentials.'],
-                ]);
-            }
-            $user->password = Hash::make($data['password']);
+        $reset_password_status = Password::reset($data, function ($user, $password) {
+            $user->password = Hash::make($password);
             $user->save();
-            return (new UserResource($user))->response();
+        });
+
+        if ($reset_password_status == Password::INVALID_TOKEN) {
+            return response()->json(["msg" => "Invalid token provided"], 400);
         }
+
+        return response()->json(["msg" => "Password has been successfully changed"]);
+
     }
+
+    public function sendOtp(Request $request)
+    {
+        $request->validate(
+            ['email' => 'required|email|exists:users,email'],
+            ['password_reset_link' => 'required|string']
+        );
+
+        $status = Password::sendResetLink($request->only('email'), function ($user, $token) use ($request) {
+            $data['password_reset_link'] = $request->password_reset_link . '?token=' . $token . '&email=' . $request['email'];
+            $data['token'] = $token;
+            $user->sendPasswordResetNotification($data);
+        });
+
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['status' => __($status)])
+            : response()->json(['email' => __($status)]);
+    }
+
 }
