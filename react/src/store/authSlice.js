@@ -13,14 +13,14 @@ export const authSlice = createSlice({
       const payload = data.payload
       state.token = payload.token || getTokenFromLocalStorage() || null
       state.user = payload.user || null
-      state.isLoggedIn = !(!state.token || !state.user)
+      state.isLoggedIn = !!(state.token && state.user && Object.keys(state.user).length)
     },
     setUser(state, data) {
       const payload = data.payload
       state.token = getTokenFromLocalStorage() || null
       state.user = payload || null
       setUserToLocalStorage({token: state.token, user: state.user})
-      state.isLoggedIn = !(!state.token || !state.user)
+      state.isLoggedIn = !!(state.token && state.user && Object.keys(state.user).length)
     },
     removeUser: (state) => {
       logout().then(response => {

@@ -17,25 +17,23 @@ const AuthLayout = () => {
   useEffect(() => {
     if (auth.token && !isMounted.current) {
       getUser().then(response => {
-        if (response.message === 'success') {
-          dispatch(setUser(response.data))
-          if (auth.isLoggedIn) navigate('/dashboard')
-        }
+        if (response.message === 'success') dispatch(setUser(response.data))
+        if (auth.isLoggedIn) navigate('/dashboard')
       })
     }
     return () => {
       isMounted.current = true;
     };
-  }); // [] calls only in first render ...
+  }, [auth]); // [] calls only in first render ...
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <Outlet/>
-        </Container>
-      </ThemeProvider>
-    </>
+      <>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <Outlet/>
+          </Container>
+        </ThemeProvider>
+      </>
   )
 }
 export default AuthLayout
