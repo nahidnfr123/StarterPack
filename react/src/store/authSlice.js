@@ -26,16 +26,19 @@ export const authSlice = createSlice({
       logout().then(response => {
         if (response.message === 'success') {
           removeUserFromLocalStorage()
-          state.token = null
-          state.user = null
-          state.isLoggedIn = false
+          this.unsetUser()
         }
       })
     },
+    unsetUser: (state) => {
+      state.token = null
+      state.user = null
+      state.isLoggedIn = false
+    }
   },
 })
 
-export const {setTokenUser, setUser, removeUser} = authSlice.actions
+export const {setTokenUser, setUser, removeUser, unsetUser} = authSlice.actions
 
 /*export const incrementAsync = (amount) => (dispatch) => {
   setTimeout(() => {
