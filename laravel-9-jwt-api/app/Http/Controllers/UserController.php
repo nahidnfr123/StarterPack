@@ -9,9 +9,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -41,7 +39,7 @@ class UserController extends Controller
 
     public function authUser(User $user): JsonResponse
     {
-        return (new UserResource(auth('sanctum')->user()))->response();
+        return (new UserResource(auth('api')->user()))->response();
     }
 
     /**
