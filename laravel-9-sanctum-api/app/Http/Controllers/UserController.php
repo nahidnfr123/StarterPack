@@ -55,7 +55,7 @@ class UserController extends Controller
             $user = User::findOrFail($userId);
             $currentPassword = $data['current_password'] ?? null;
             if ($currentPassword) {
-                if (!Hash::check($currentPassword, $user->password)) {
+                if ((bool)Hash::check($currentPassword, $user->password)) {
                     $user->password = Hash::make($data['password']);
                 } else {
                     throw ValidationException::withMessages([

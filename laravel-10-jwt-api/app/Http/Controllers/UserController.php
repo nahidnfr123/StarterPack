@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -53,7 +54,7 @@ class UserController extends Controller
             $user = User::findOrFail($userId);
             $currentPassword = $data['current_password'] ?? null;
             if ($currentPassword) {
-                if (!Hash::check($currentPassword, $user->password)) {
+                if ((bool)Hash::check($currentPassword, $user->password)) {
                     $user->password = Hash::make($data['password']);
                 } else {
                     throw ValidationException::withMessages([
