@@ -1,19 +1,19 @@
-import {useDispatch} from "react-redux";
-import {Alert, Button, Divider} from "@mui/material";
+// import {useDispatch} from "react-redux";
+import {Alert, Button} from "@mui/material";
 import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import {Field, Form, Formik, ErrorMessage} from "formik";
 import * as Yup from 'yup';
-import {setUser} from "../../store/authSlice";
+// import {setUser} from "../../store/authSlice";
 import $api from "../../api";
 import Grid from "@mui/material/Grid";
 
 function ForgetPassword() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  // const navigate = useNavigate()
+  // const dispatch = useDispatch()
   const [successMessage, setSuccessMessage] = useState('')
 
   const ValidationSchema = Yup.object().shape({
