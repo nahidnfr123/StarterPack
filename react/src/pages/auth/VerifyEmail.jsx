@@ -17,7 +17,9 @@ function ForgetPassword() {
   const [successMessage, setSuccessMessage] = useState('')
 
   const ValidationSchema = Yup.object().shape({
-    email: Yup.string().email().required('Required'),
+    email: Yup.string()
+        .required('Email field is required.')
+        .email('Invalid email'),
   });
 
   const initialValues = {
@@ -33,7 +35,6 @@ function ForgetPassword() {
 
     const request = await $api.post('send-otp', formData)
     if (request.message === 'success') {
-      console.log(request.data)
       setSuccessMessage(request.data.status)
     } else {
       if (request.data.errors) props.setErrors(request?.data?.errors)

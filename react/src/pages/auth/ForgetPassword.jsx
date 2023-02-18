@@ -19,8 +19,14 @@ function ForgetPassword() {
   const myParam = useLocation().search;
 
   const ValidationSchema = Yup.object().shape({
-    password: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
-    password_confirmation: Yup.string().notRequired().min(6, 'Too Short!').max(60, 'Too Long!'),
+    password: Yup.string()
+        .required('Password field is required.')
+        .min(6, 'Minimum 6 characters!')
+        .max(60, 'Maximum 60 characters'),
+    password_confirmation: Yup.string()
+        .required('Confirm Password field is required.')
+        .min(6, 'Minimum 6 characters!')
+        .max(60, 'Maximum 60 characters'),
   });
 
   const initialValues = {
