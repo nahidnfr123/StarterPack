@@ -16,36 +16,46 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 
-import { ToastContainer } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import VerifyEmail from "./pages/auth/VerifyEmail";
+import PrivateRoutes from "./utils/PrivateRoutes";
+import GuestOnlyRoutes from "./utils/GuestOnlyRoutes";
 
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <CssBaseline/>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<DefaultLayout/>}>
-              <Route index element={<Home/>}/>
-              <Route path="dashboard" element={<Dashboard/>}/>
-              <Route path="profile" element={<Profile/>}/>
-              <Route path="edit-profile" element={<EditProfile/>}/>
-              <Route path="*" element={<NoPage/>}/>
-            </Route>
-            <Route path="/auth" element={<AuthLayout/>}>
-              <Route path="login" element={<Login/>}/>
-              <Route path="register" element={<Register/>}/>
-              <Route path="verify-email" element={<VerifyEmail/>}/>
-              <Route path="forget-password" element={<ForgetPassword/>}/>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        <ToastContainer />
-      </div>
-    </Provider>
+      <Provider store={store}>
+        <div className="App">
+          <CssBaseline/>
+          <BrowserRouter>
+            <Routes>
+              {/* Default Layout */}
+              <Route path="/" element={<DefaultLayout/>}>
+                {/* protected Routes */}
+                <Route element={<PrivateRoutes/>} exact>
+                  <Route index element={<Home/>} exact/>
+                  <Route path="dashboard" element={<Dashboard/>} exact/>
+                  <Route path="profile" element={<Profile/>}/>
+                  <Route path="edit-profile" element={<EditProfile/>}/>
+                </Route>
+              </Route>
+              {/* Auth Layout */}
+              <Route path="/auth" element={<AuthLayout/>}>
+                {/* Only Guest Routes */}
+                <Route element={<GuestOnlyRoutes/>}>
+                  <Route path="login" element={<Login/>} exact/>
+                  <Route path="register" element={<Register/>} exact/>
+                  <Route path="verify-email" element={<VerifyEmail/>} exact/>
+                  <Route path="forget-password" element={<ForgetPassword/>} exact/>
+                </Route>
+              </Route>
+              <Route path="*" element={<NoPage/>} exact/>
+            </Routes>
+          </BrowserRouter>
+          <ToastContainer/>
+        </div>
+      </Provider>
   )
 }
 

@@ -18,9 +18,9 @@ const AuthLayout = () => {
     if (auth.token && !isMounted.current) {
       getUser().then(response => {
         if (response.message === 'success') dispatch(setUser(response.data))
-        if (auth.isLoggedIn) navigate('/dashboard')
       })
     }
+    // if (auth.isLoggedIn) navigate('/dashboard')
     return () => {
       isMounted.current = true;
     };

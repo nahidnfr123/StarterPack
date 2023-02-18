@@ -1,4 +1,4 @@
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import AppBar from "../components/global/AppBar";
 import {useEffect, useRef} from "react";
 import {getUser} from "../api/auth";
@@ -11,7 +11,7 @@ const theme = createTheme();
 
 const DefaultLayout = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const isMounted = useRef(false)
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const DefaultLayout = () => {
         if (response.message === 'success') dispatch(setUser(response.data))
         else {
           dispatch(unsetUser())
-          navigate('/auth/login')
+          // navigate('/auth/login')
         }
       })
     }
     return () => {
       isMounted.current = true;
     };
-  }, [dispatch, navigate]); // [] calls only in first render ...
+  }, [dispatch]); // [] calls only in first render ...
   return (
       <>
         <ThemeProvider theme={theme}>

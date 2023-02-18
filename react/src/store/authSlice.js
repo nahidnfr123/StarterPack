@@ -26,7 +26,7 @@ export const authSlice = createSlice({
       logout().then(response => {
         if (response.message === 'success') {
           removeUserFromLocalStorage()
-          this.unsetUser()
+          unsetUser()
         }
       })
     },
