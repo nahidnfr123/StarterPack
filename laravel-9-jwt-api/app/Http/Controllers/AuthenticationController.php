@@ -13,7 +13,7 @@ class AuthenticationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
 
@@ -33,10 +33,11 @@ class AuthenticationController extends Controller
             'email' => $attr['email'],
             'password' => Hash::make($attr['password']),
         ]);
-        Auth::login($user);
+        if (!$token = auth()->login($user)) {
+            return response()->json(['error', 'Some error occurred!'], 500);
+        }
 
-        $token = $user->createToken($user->name)->plainTextToken;
-        return response(['token' => $token, 'user' => $user]);
+        return $this->respondWithToken($token);
     }
 
     /**
