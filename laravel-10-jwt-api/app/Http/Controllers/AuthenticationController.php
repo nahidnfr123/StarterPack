@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
     /**
      * @throws ValidationException
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         $attr = $request->validate([
             'name' => 'required|string|max:255',
@@ -87,7 +87,7 @@ class AuthenticationController extends Controller
      *
      * @return JsonResponse
      */
-    protected function respondWithToken($token): JsonResponse
+    protected function respondWithToken(string $token): JsonResponse
     {
         return response()->json([
             'token' => $token,

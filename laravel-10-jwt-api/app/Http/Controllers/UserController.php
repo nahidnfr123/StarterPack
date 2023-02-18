@@ -72,7 +72,7 @@ class UserController extends Controller
     /**
      * @throws ValidationException
      */
-    public function resetPassword(ForgetPasswordRequest $request)
+    public function resetPassword(ForgetPasswordRequest $request): JsonResponse
     {
         $data = $request->validated();
         $reset_password_status = Password::reset($data, function ($user, $password) {
@@ -88,7 +88,7 @@ class UserController extends Controller
 
     }
 
-    public function sendOtp(Request $request)
+    public function sendOtp(Request $request): JsonResponse
     {
         $request->validate(
             ['email' => 'required|email|exists:users,email'],
