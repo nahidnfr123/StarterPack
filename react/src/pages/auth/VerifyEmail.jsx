@@ -35,7 +35,7 @@ function ForgetPassword() {
 
     const request = await $api.post('send-otp', formData)
     if (request.message === 'success') {
-      setSuccessMessage(request.data.status)
+      setSuccessMessage(request.data.status || request.data.email)
     } else {
       if (request.data.errors) props.setErrors(request?.data?.errors)
     }
@@ -81,9 +81,7 @@ function ForgetPassword() {
                       type="email"
                       helperText={<ErrorMessage name='email'/>}
                   />
-                  {successMessage &&
-                      <Alert severity="success">{successMessage}</Alert>
-                  }
+
                   <Button
                       type="submit"
                       fullWidth
@@ -105,6 +103,15 @@ function ForgetPassword() {
               </Link>
             </Grid>
           </Grid>
+
+          <Box
+              sx={{
+                marginTop: 4,
+              }}>
+            {successMessage &&
+                <Alert severity="success">{successMessage}</Alert>
+            }
+          </Box>
         </Box>
       </>
   );
