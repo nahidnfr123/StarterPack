@@ -93,7 +93,7 @@ export default function SignIn() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.name}
+                      error={!!errors.name && touched.name}
                       margin="normal"
                       fullWidth
                       id="name"
@@ -104,7 +104,7 @@ export default function SignIn() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.email}
+                      error={!!errors.email && touched.email}
                       margin="normal"
                       fullWidth
                       id="email"
@@ -116,7 +116,7 @@ export default function SignIn() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password}
+                      error={!!errors.password && touched.password}
                       margin="normal"
                       fullWidth
                       name="password"
@@ -129,7 +129,7 @@ export default function SignIn() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password_confirmation}
+                      error={!!errors.password_confirmation && touched.password_confirmation}
                       margin="normal"
                       fullWidth
                       name="password_confirmation"

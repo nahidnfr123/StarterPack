@@ -87,7 +87,7 @@ export default function Login() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.email}
+                      error={!!errors.email && touched.email}
                       margin="normal"
                       fullWidth
                       id="email"
@@ -99,7 +99,7 @@ export default function Login() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password}
+                      error={!!errors.password && touched.password}
                       margin="normal"
                       fullWidth
                       name="password"

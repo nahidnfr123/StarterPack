@@ -84,7 +84,7 @@ function ForgetPassword() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.password}
+                      error={!!errors.password && touched.password}
                       margin="normal"
                       fullWidth
                       name="password"
@@ -97,7 +97,7 @@ function ForgetPassword() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password_confirmation}
+                      error={!!errors.password_confirmation && touched.password_confirmation}
                       margin="normal"
                       fullWidth
                       name="password_confirmation"

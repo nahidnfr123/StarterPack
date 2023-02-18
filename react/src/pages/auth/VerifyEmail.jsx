@@ -71,7 +71,7 @@ function ForgetPassword() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.email}
+                      error={!!errors.email && touched.email}
                       margin="normal"
                       fullWidth
                       id="email"

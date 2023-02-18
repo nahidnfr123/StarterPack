@@ -95,7 +95,7 @@ function Profile() {
                 <Form>
                   <Field
                       as={TextField}
-                      error={!!errors.name}
+                      error={!!errors.name && touched.name}
                       margin="normal"
                       fullWidth
                       id="name"
@@ -106,7 +106,7 @@ function Profile() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.email}
+                      error={!!errors.email && touched.email}
                       margin="normal"
                       fullWidth
                       id="email"
@@ -123,7 +123,7 @@ function Profile() {
 
                   <Field
                       as={TextField}
-                      error={!!errors.current_password}
+                      error={!!errors.current_password && touched.current_password}
                       margin="normal"
                       fullWidth
                       name="current_password"
@@ -135,7 +135,7 @@ function Profile() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password}
+                      error={!!errors.password && touched.password}
                       margin="normal"
                       fullWidth
                       name="password"
@@ -148,7 +148,7 @@ function Profile() {
                   />
                   <Field
                       as={TextField}
-                      error={!!errors.password_confirmation}
+                      error={!!errors.password_confirmation && touched.password_confirmation}
                       margin="normal"
                       fullWidth
                       name="password_confirmation"
