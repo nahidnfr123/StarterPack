@@ -24,7 +24,8 @@ const AuthLayout = () => {
     return () => {
       isMounted.current = true;
     };
-  }, [auth]); // [] calls only in first render ...
+  }); // [] calls only in first render ...
+  // }, [auth]); // [] calls only in first render ...
 
   return (
       <>
