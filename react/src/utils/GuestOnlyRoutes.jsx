@@ -6,7 +6,7 @@ const GuestOnlyRoutes = () => {
   const location = useLocation()
 
   return (
-      auth.isLoggedIn ? <Navigate to='/' state={{from: location}} replace/> : <Outlet/>
+      auth?.isLoggedIn ? <Navigate to='/' state={{from: location}} replace/> : <Outlet/>
   )
 }
 
