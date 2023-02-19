@@ -143,43 +143,54 @@ export function ResponsiveAppBar() {
               ))}
             </Box>
 
-            {auth.isLoggedIn &&
-                <Box sx={{flexGrow: 0}}>
-                  <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                      <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
-                    </IconButton>
-                  </Tooltip>
-                  <Menu
-                      sx={{mt: '45px'}}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}
-                  >
-                    {settings.map((setting, index) => (
-                        <MenuItem key={index} onClick={() => {
-                          handleCloseUserMenu(setting.link)
-                        }}>
-                          <Typography textAlign="center">{setting.title}</Typography>
-                        </MenuItem>
-                    ))}
+            <Box sx={{flexGrow: 0}}>
+              {auth.isLoggedIn ?
+                  <>
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                        sx={{mt: '45px'}}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'right',
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                    >
+                      {settings.map((setting, index) => (
+                          <MenuItem key={index} onClick={() => {
+                            handleCloseUserMenu(setting.link)
+                          }}>
+                            <Typography textAlign="center">{setting.title}</Typography>
+                          </MenuItem>
+                      ))}
 
-                    <MenuItem onClick={LogOut}>
-                      <Typography textAlign="center">Logout</Typography>
-                    </MenuItem>
-                  </Menu>
-                </Box>
-            }
+                      <MenuItem onClick={LogOut}>
+                        <Typography textAlign="center">Logout</Typography>
+                      </MenuItem>
+                    </Menu>
+                  </>
+
+                  : <>
+                    <Button
+                        onClick={() => navigate('/auth/login')}
+                        sx={{my: 2, color: 'white', display: 'block'}}
+                    >
+                      Login
+                    </Button>
+                  </>
+              }
+            </Box>
 
           </Toolbar>
         </Container>
