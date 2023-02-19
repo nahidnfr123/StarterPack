@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/p2a.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home/Banner.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Logo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Logo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/DashboardView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/EditProfileView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/NoPageView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/ProfileView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/auth/ForgetPasswordView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/auth/LoginView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/auth/RegisterView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/auth/VerifyEmailView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vue3/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../vue3/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,15 +36,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "yarn",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676742884985</updated>
       <workItem from="1676742888035" duration="27000" />
+      <workItem from="1676823166237" duration="142000" />
     </task>
     <servers />
   </component>
