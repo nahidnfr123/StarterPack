@@ -28,7 +28,7 @@ class AuthenticationController extends Controller
         ]);
         Auth::login($user);
 
-        $token = $user->createToken($user->name)->plainTextToken;
+        $token = $user->createToken($user->name)->accessToken;
         return response(['token' => $token, 'user' => $user]);
     }
 
@@ -44,27 +44,18 @@ class AuthenticationController extends Controller
 
         $user = User::where('email', $attr['email'])->first();
 
-        if (!$user || !Hash::check($attr['password'], $user->password)) {
+        if (!$user || !Hash::check($attr['password'], $user->password) || !Auth::attempt($attr)) {
             throw ValidationException::withMessages([
                 'email' => ['Incorrect credentials.'],
             ]);
         }
 
-        if (!Auth::attempt($attr)) {
-//            return $this->error('Credentials not match!', 401);
-            throw ValidationException::withMessages([
-                'email' => ['Incorrect credentials.'],
-            ]);
-        }
-
-        $user = auth('sanctum')->user();
+        $user = auth('api')->user();
         if ($user) {
-            $token = $user->createToken($user->name)->plainTextToken;
-//            return response(['token' => $token, 'user' => $user]);
+            $token = $user->createToken($user->name)->accessToken;
             return response(['token' => $token, 'user' => $user]);
         }
 
-//        return response()->json(['message' => 'success']);
         return response()->json(['error' => 'Something went wrong!'], 401);
     }
 
@@ -72,8 +63,6 @@ class AuthenticationController extends Controller
     public function logout(): \Illuminate\Http\JsonResponse
     {
         auth()->user()->tokens()->delete();
-//        auth('sanctum')->logout();
-
         return response()->json(['message' => 'Success!']);
     }
 }

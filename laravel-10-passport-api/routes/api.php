@@ -12,7 +12,7 @@ Route::group(['middleware' => ['throttle:5,1', 'guest']], function () {
     Route::put('/reset-password', [UserController::class, 'resetPassword']);
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });

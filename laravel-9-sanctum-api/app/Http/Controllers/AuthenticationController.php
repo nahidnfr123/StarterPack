@@ -44,14 +44,7 @@ class AuthenticationController extends Controller
 
         $user = User::where('email', $attr['email'])->first();
 
-        if (!$user || !Hash::check($attr['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Incorrect credentials.'],
-            ]);
-        }
-
-        if (!Auth::attempt($attr)) {
-//            return $this->error('Credentials not match!', 401);
+        if (!$user || !Hash::check($attr['password'], $user->password) || !Auth::attempt($attr)) {
             throw ValidationException::withMessages([
                 'email' => ['Incorrect credentials.'],
             ]);
