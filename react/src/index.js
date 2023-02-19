@@ -32,9 +32,9 @@ export default function App() {
             <Routes>
               {/* Default Layout */}
               <Route path="/" element={<DefaultLayout/>}>
+                <Route index element={<Home/>} exact/>
                 {/* protected Routes */}
                 <Route element={<PrivateRoutes/>} exact>
-                  <Route index element={<Home/>} exact/>
                   <Route path="dashboard" element={<Dashboard/>} exact/>
                   <Route path="profile" element={<Profile/>}/>
                   <Route path="edit-profile" element={<EditProfile/>}/>
