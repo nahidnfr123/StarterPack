@@ -24,7 +24,7 @@ function ForgetPassword() {
 
   const initialValues = {
     email: '',
-    password_reset_link: window.location.host + '/auth/forget-password'
+    password_reset_link: window.location.host + '/auth/reset-password'
   }
 
   const handleSubmit = async (values, props) => {

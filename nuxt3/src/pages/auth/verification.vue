@@ -1,6 +1,9 @@
 <template>
-  forget-password
+  <div>
+
+  </div>
 </template>
+
 
 <script setup>
 definePageMeta({

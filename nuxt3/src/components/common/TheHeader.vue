@@ -89,6 +89,6 @@ import PrimaryButton from "~/components/common/Buttons/PrimaryButton.vue";
 
 const navigationLinks = [
   {title: 'Home', link: '/', icon: "fa6-solid:house-chimney"},
-  {title: 'About Us', link: '/about-us'},
+  {title: 'Dashboard', link: '/dashboard'},
 ]
 </script>

@@ -4,75 +4,76 @@
     <h2 class="text-gray-900 text-xl mb-1 font-medium title-font">Sign Up</h2>
     <p class="leading-relaxed mb-5 text-base text-gray-600">Create a new account to get started with us.</p>
     <!--        :form-class="isLoading.value ? 'hide' : 'show'"-->
-    <FormKit
-        type="form"
-        id="registrationForm"
-        submit-label="Register"
-        @submit="submitHandler"
-        :actions="false"
-        #default="{ value, state: { valid } }"
-        #error="{error}"
-        incomplete-message="Please fill in the form correctly."
-    >
+    <ClientOnly>
       <FormKit
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          help=""
-          validation="required|matches:/[a-zA-Z]/"
-          :validation-messages="{ matches: 'Name must not include a number.' }"
-      />
-      <FormKit
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          help=""
-          validation="required|email"
-      />
-      <FormKit
-          type="password"
-          name="password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
-          :validation-messages="{matches: 'Please include at least one symbol'}"
-          placeholder="Your password"
-          help=""
-      />
-      <FormKit
-          type="password"
-          name="password_confirm"
-          placeholder="Confirm password"
-          validation="required|confirm"
-          help=""
-      />
-      <!--      <FormKit-->
-      <!--          type="file"-->
-      <!--          label="Drivers license"-->
-      <!--          name="license"-->
-      <!--          help="Please add a scan of your driver’s license"-->
-      <!--          accept=".jpg,.png,.pdf"-->
-      <!--          validation="required"-->
-      <!--      />-->
-
-      <div
-          class="mt-6"
+          type="form"
+          id="registrationForm"
+          submit-label="Register"
+          @submit="submitHandler"
+          :actions="false"
+          #default="{ value, state: { valid } }"
+          #error="{error}"
+          incomplete-message="Please fill in the form correctly."
       >
         <FormKit
-            type="submit"
-            input-class="$reset w-full"
-            :disabled="!valid || isLoading"
-        >
-          <!-- Custom Auth Button -->
-          <AuthButton
-              class-name="w-full py-4 rounded-lg"
-              :disabled="!valid || isLoading"
-              :isLoading="!!isLoading"
-              text="Next"
-          />
-        </FormKit>
-      </div>
-      <!--      <pre wrap>{{ value }}</pre>-->
-    </FormKit>
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            help=""
+            validation="required|matches:/[a-zA-Z]/"
+            :validation-messages="{ matches: 'Name must not include a number.' }"
+        />
+        <FormKit
+            type="text"
+            name="email"
+            placeholder="Email Address"
+            help=""
+            validation="required|email"
+        />
+        <FormKit
+            type="password"
+            name="password"
+            validation="required|length:6|matches:/[^a-zA-Z]/"
+            :validation-messages="{matches: 'Please include at least one symbol'}"
+            placeholder="Your password"
+            help=""
+        />
+        <FormKit
+            type="password"
+            name="password_confirm"
+            placeholder="Confirm password"
+            validation="required|confirm"
+            help=""
+        />
+        <!--      <FormKit-->
+        <!--          type="file"-->
+        <!--          label="Drivers license"-->
+        <!--          name="license"-->
+        <!--          help="Please add a scan of your driver’s license"-->
+        <!--          accept=".jpg,.png,.pdf"-->
+        <!--          validation="required"-->
+        <!--      />-->
 
+        <div
+            class="mt-6"
+        >
+          <FormKit
+              type="submit"
+              input-class="$reset w-full"
+              :disabled="!valid || isLoading"
+          >
+            <!-- Custom Auth Button -->
+            <AuthButton
+                class-name="w-full py-4 rounded-lg"
+                :disabled="!valid || isLoading"
+                :isLoading="!!isLoading"
+                text="Next"
+            />
+          </FormKit>
+        </div>
+        <!--      <pre wrap>{{ value }}</pre>-->
+      </FormKit>
+    </ClientOnly>
     <p class="mt-4 text-center">Already have a account?</p>
     <div class="mx-auto">
       <NuxtLink to="/auth/login" class="text-center text-primary-color">Login</NuxtLink>

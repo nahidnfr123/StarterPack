@@ -14,7 +14,7 @@ import {Provider} from 'react-redux'
 import {store} from './store'
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
-import ForgetPassword from "./pages/auth/ForgetPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,7 +47,7 @@ export default function App() {
                   <Route path="login" element={<Login/>} exact/>
                   <Route path="register" element={<Register/>} exact/>
                   <Route path="verify-email" element={<VerifyEmail/>} exact/>
-                  <Route path="forget-password" element={<ForgetPassword/>} exact/>
+                  <Route path="reset-password" element={<ResetPassword/>} exact/>
                 </Route>
               </Route>
               <Route path="*" element={<NoPage/>} exact/>

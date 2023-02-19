@@ -5,47 +5,48 @@
     <Logo class-name="h-14 mb-6 w-auto mx-auto"/>
     <h2 class="text-gray-900 text-xl mb-1 font-medium title-font">Sign Up</h2>
     <p class="leading-relaxed mb-5 text-base text-gray-600">Create a new account to get started with us.</p>
-    <FormKit
-        type="form"
-        id="registration-example"
-        :form-class="submitted ? 'hide' : 'show'"
-        submit-label="Register"
-        @submit="submitHandler"
-        :actions="false"
-        #default="{ value, state: { valid } }"
-        #error="{error}"
-    >
+    <ClientOnly>
       <FormKit
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          help=""
-          validation="required|email"
-      />
-      <FormKit
-          type="password"
-          name="password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
-          :validation-messages="{matches: 'Please include at least one symbol'}"
-          placeholder="Your password"
-          help=""
-      />
-      <FormKit
-          type="submit"
-          input-class="$reset w-full"
-          :disabled="!valid || loading.value"
+          type="form"
+          id="registration-example"
+          :form-class="submitted ? 'hide' : 'show'"
+          submit-label="Register"
+          @submit="submitHandler"
+          :actions="false"
+          #default="{ value, state: { valid } }"
+          #error="{error}"
       >
-        <AuthButton
-            class-name="w-full py-4 rounded-lg"
-            :disabled="!valid || loading.value"
-            :loading="loading.value"
-            text="Next"
+        <FormKit
+            type="text"
+            name="email"
+            placeholder="Email Address"
+            help=""
+            validation="required|email"
         />
+        <FormKit
+            type="password"
+            name="password"
+            validation="required|length:6|matches:/[^a-zA-Z]/"
+            :validation-messages="{matches: 'Please include at least one symbol'}"
+            placeholder="Your password"
+            help=""
+        />
+        <FormKit
+            type="submit"
+            input-class="$reset w-full"
+            :disabled="!valid || loading.value"
+        >
+          <AuthButton
+              class-name="w-full py-4 rounded-lg"
+              :disabled="!valid || loading.value"
+              :loading="loading.value"
+              text="Next"
+          />
+        </FormKit>
+        <!--      <pre wrap>{{ value }}</pre>-->
       </FormKit>
-      <!--      <pre wrap>{{ value }}</pre>-->
-    </FormKit>
-
-    <NuxtLink to="auth/forget-password" class="my-4 text-right text-primary-color">Forgot password?</NuxtLink>
+    </ClientOnly>
+    <NuxtLink to="/auth/forget-password" class="my-4 text-right text-primary-color">Forgot password?</NuxtLink>
 
     <p class="mt-4 text-center">Don’t have an account?</p>
     <div class="mx-auto">

@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
 import {Button} from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,8 +11,9 @@ import {setUser} from "../../store/authSlice";
 import $api from "../../api";
 import Grid from "@mui/material/Grid";
 import {useLocation} from "react-router-dom";
+import {toast} from "react-toastify";
 
-function ForgetPassword() {
+function ResetPassword() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -29,9 +30,29 @@ function ForgetPassword() {
         .max(60, 'Maximum 60 characters'),
   });
 
+  const _token = new URLSearchParams(myParam).get("token")
+  const _email = new URLSearchParams(myParam).get("email")
+
+  useEffect(() => {
+    if (!_token || !_email) {
+      toast.error('Invalid Url! Verify your email and Please use the link in your email.', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      // navigate(-1)
+      navigate('/auth/verify-email')
+    }
+  })
+
   const initialValues = {
-    email: new URLSearchParams(myParam).get("email"),
-    token: new URLSearchParams(myParam).get("token"),
+    email: _email,
+    token: _token,
     password: '',
     password_confirmation: '',
   }
@@ -133,4 +154,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default ResetPassword;
