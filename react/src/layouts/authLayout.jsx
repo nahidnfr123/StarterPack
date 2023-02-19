@@ -1,4 +1,4 @@
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useDispatch, useSelector} from "react-redux";
@@ -9,7 +9,7 @@ import {setUser} from "../store/authSlice";
 const theme = createTheme();
 
 const AuthLayout = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.auth)
   const isMounted = useRef(false)
