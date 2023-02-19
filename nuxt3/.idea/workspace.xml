@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/dashboard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TheFooter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TheHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/auth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/default.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/about-us.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/forget-password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/forget-password.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/verifivation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/verification.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blogs/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/courses/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/e-books/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/notices/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/pages/auth/ForgetPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/pages/auth/ResetPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/pages/auth/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/pages/auth/VerifyEmail.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +56,7 @@
       <updated>1676742884985</updated>
       <workItem from="1676742888035" duration="27000" />
       <workItem from="1676823166237" duration="142000" />
-      <workItem from="1676823347778" duration="1297000" />
+      <workItem from="1676823347778" duration="1600000" />
     </task>
     <servers />
   </component>

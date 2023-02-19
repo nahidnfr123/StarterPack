@@ -13,7 +13,7 @@ class AuthenticationController extends Controller
     /**
      * @throws ValidationException
      */
-    public function register(Request $request)
+    public function register(Request $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
         $attr = $request->validate([
             'name' => 'required|string|max:255',
@@ -35,7 +35,7 @@ class AuthenticationController extends Controller
     /**
      * @throws ValidationException
      */
-    public function login(Request $request)
+    public function login(Request $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
         $attr = $request->validate([
             'email' => 'required|string|exists:users|email|',
