@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../laravel-10-passport-api/app/Http/Controllers/AuthenticationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../laravel-10-passport-api/app/Http/Controllers/AuthenticationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/components/global/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/components/global/AppBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/_Typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/_Typography.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +63,22 @@
       <updated>1676742884985</updated>
       <workItem from="1676742888035" duration="27000" />
       <workItem from="1676823166237" duration="142000" />
-      <workItem from="1676823347778" duration="1600000" />
+      <workItem from="1676823347778" duration="8469000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

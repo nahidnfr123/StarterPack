@@ -50,7 +50,7 @@ class AuthenticationController extends Controller
             ]);
         }
 
-        $user = auth('api')->user();
+        $user = auth()->user();
         if ($user) {
             $token = $user->createToken($user->name)->accessToken;
             return response(['token' => $token, 'user' => $user]);

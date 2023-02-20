@@ -1,8 +1,7 @@
 <template>
   <div class="max-w-xl bg-white rounded-xl p-8 lg:p-12 flex flex-col w-full m-auto relative shadow-[0_15px_30px_#9600FF15]">
     <Logo class-name="h-14 mb-6 w-auto mx-auto"/>
-    <h2 class="text-gray-900 text-xl mb-1 font-medium title-font">Sign Up</h2>
-    <p class="leading-relaxed mb-5 text-base text-gray-600">Create a new account to get started with us.</p>
+    <h2 class="text-gray-900 text-xl mb-1 font-medium title-font">Register</h2>
     <!--        :form-class="isLoading.value ? 'hide' : 'show'"-->
     <ClientOnly>
       <FormKit
@@ -35,7 +34,7 @@
             name="password"
             validation="required|length:6|matches:/[^a-zA-Z]/"
             :validation-messages="{matches: 'Please include at least one symbol'}"
-            placeholder="Your password"
+            placeholder="Password"
             help=""
         />
         <FormKit
@@ -67,7 +66,7 @@
                 class-name="w-full py-4 rounded-lg"
                 :disabled="!valid || isLoading"
                 :isLoading="!!isLoading"
-                text="Next"
+                text="Register"
             />
           </FormKit>
         </div>
@@ -95,7 +94,6 @@ const isLoading = ref(false)
 const submitHandler = async (payload) => {
   if (isLoading.value) return
   isLoading.value = true
-  await new Promise((r) => setTimeout(r, 1000))
 
   // Prepare data for Upload ..
   const formData = new FormData()
