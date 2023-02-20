@@ -80,16 +80,17 @@ const submitHandler = async (payload) => {
 
   const {data, pending, error, refresh} = await authStore.login(formData)
   // this.$formkit.reset('registrationForm')
-
   redirect('/')
 
   isLoading.value = false
 }
 
 const redirect = (path) => {
-  const $next = useRoute.query.next
-  let route = path
-  if ($next) route = $next
-  useRouter.push(route)
+  const route = useRoute()
+  const router = useRouter()
+  const $next = route.query.next
+  let routePath = path
+  if ($next) routePath = $next
+  router.push({path: routePath})
 }
 </script>
