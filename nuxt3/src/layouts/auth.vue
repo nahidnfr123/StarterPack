@@ -9,6 +9,10 @@
   </main>
 </template>
 
+<script setup lang="ts">
+import TheHeader from "~/components/common/TheHeader.vue";
+
+</script>
 
 <style lang="scss">
 .authBG {
@@ -21,6 +25,4 @@
   background-size: cover;
 }
 </style>
-<script setup lang="ts">
-import TheHeader from "~/components/common/TheHeader.vue";
-</script>
+

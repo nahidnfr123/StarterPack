@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../laravel-10-passport-api/app/Http/Controllers/AuthenticationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../laravel-10-passport-api/app/Http/Controllers/AuthenticationController.php" afterDir="false" />
+    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="!">
+      <change afterPath="$PROJECT_DIR$/src/middleware/onlyGuest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middleware/requireAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/_Typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/_Typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/_error.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/auth.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +64,16 @@
       <updated>1676742884985</updated>
       <workItem from="1676742888035" duration="27000" />
       <workItem from="1676823166237" duration="142000" />
-      <workItem from="1676823347778" duration="8469000" />
+      <workItem from="1676823347778" duration="18027000" />
     </task>
+    <task id="LOCAL-00001" summary="!">
+      <created>1676899118847</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676899118847</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,5 +89,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="!" />
+    <option name="LAST_COMMIT_MESSAGE" value="!" />
   </component>
 </project>

@@ -108,8 +108,15 @@ const submitHandler = async (payload) => {
   // Send data to Pinia Store ...
   const {data, pending, error, refresh} = await authStore.register(formData)
   // this.$formkit.reset('registrationForm')
-
+  redirect('/')
 
   isLoading.value = false
+}
+
+const redirect = (path) => {
+  const $next = useRoute.query.next
+  let route = path
+  if ($next) route = $next
+  useRouter.push(route)
 }
 </script>
