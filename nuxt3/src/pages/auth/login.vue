@@ -81,7 +81,6 @@ const submitHandler = async (payload, node) => {
   const {data, pending, error, refresh} = await authStore.login(formData)
   const errorCodes = [422, 419, 500, 403, 401]
   if (error && errorCodes.includes(error?.status)) {
-    // if (error?.status === 422) this.$formkit.setErrors('formkitForm', {})
     if (error?.status === 422) node.setErrors(error?.data?.errors)
   } else {
     redirect('/')
