@@ -103,6 +103,7 @@ const submitHandler = async (payload, node) => {
   const errorCodes = [422, 419, 500, 403, 401]
   if (error && errorCodes.includes(error?.status)) {
     if (error?.status === 422) node.setErrors(error?.data?.errors)
+    else node.setErrors('Server Error: ' + error?.data?.message)
   } else {
     redirect('/')
   }
