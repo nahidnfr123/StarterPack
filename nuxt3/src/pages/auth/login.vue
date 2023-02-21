@@ -6,7 +6,7 @@
     <ClientOnly>
       <FormKit
           type="form"
-          id="registrationForm"
+          id="formkitForm"
           submit-label="Register"
           @submit="submitHandler"
           :actions="false"
@@ -18,8 +18,8 @@
             type="text"
             name="email"
             placeholder="Email Address"
-            help=""
             validation="required|email"
+            help=""
         />
         <FormKit
             type="password"
@@ -69,7 +69,7 @@ const authStore = useAuthStore()
 const isLoading = ref(false)
 
 // Handel Registration Form Submit ...
-const submitHandler = async (payload) => {
+const submitHandler = async (payload, node) => {
   if (isLoading.value) return
   isLoading.value = true
 
@@ -79,19 +79,13 @@ const submitHandler = async (payload) => {
   formData.append('password', payload.password)
 
   const {data, pending, error, refresh} = await authStore.login(formData)
-  // const baseUrl = 'http://127.0.0.1:8000/api/'
-  // const {data, error} = await useFetch(baseUrl + 'login', {
-  //   method: 'POST',
-  //   body: formData
-  // })
-
-  // this.$formkit.reset('registrationForm')
-  console.log(error)
-  console.log(data)
-  if (error) {
-
+  const errorCodes = [422, 419, 500, 403, 401]
+  if (error && errorCodes.includes(error?.status)) {
+    // if (error?.status === 422) this.$formkit.setErrors('formkitForm', {})
+    if (error?.status === 422) node.setErrors(error?.data?.errors)
+  } else {
+    redirect('/')
   }
-  // redirect('/')
 
   isLoading.value = false
 }

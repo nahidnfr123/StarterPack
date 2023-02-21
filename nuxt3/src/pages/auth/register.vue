@@ -6,7 +6,7 @@
     <ClientOnly>
       <FormKit
           type="form"
-          id="registrationForm"
+          id="formkitForm"
           submit-label="Register"
           @submit="submitHandler"
           :actions="false"
@@ -79,7 +79,8 @@ import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 
 definePageMeta({
-  layout: 'auth'
+  layout: 'auth',
+  middleware: ["only-guest"]
 })
 
 const authStore = useAuthStore()
@@ -101,10 +102,9 @@ const submitHandler = async (payload, node) => {
   const {data, pending, error, refresh} = await authStore.register(formData)
   const errorCodes = [422, 419, 500, 403, 401]
   if (error && errorCodes.includes(error?.status)) {
-    // if (error?.status === 422) this.$formkit.setErrors('registrationForm', {})
+    // if (error?.status === 422) this.$formkit.setErrors('formkitForm', {})
     if (error?.status === 422) node.setErrors(error?.data?.errors)
   } else {
-    node.reset('registrationForm')
     redirect('/')
   }
 
