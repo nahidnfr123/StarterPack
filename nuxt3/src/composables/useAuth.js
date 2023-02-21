@@ -3,8 +3,8 @@ import {useCookie} from "#app";
 export function setToken(token = '', user = '') {
     if (process.server) cookieToken(token)
     else {
-        // localStorage.setItem('token', token || '')
-        // localStorage.setItem('user', JSON.stringify(user) || '')
+        localStorage.setItem('token', token || '')
+        localStorage.setItem('user', JSON.stringify(user) || '')
         cookieToken(token)
     }
 }

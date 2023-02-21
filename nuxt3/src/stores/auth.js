@@ -6,9 +6,9 @@ import {useAuthState} from "~/composables/states";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    isLoggedIn: false,
+    isLoggedIn: !!(getToken() && getUser()),
     token: getToken() || null,
-    user: process.client ? (getUser() || null) : null
+    user: getUser() || null
   }),
   getters: {},
   actions: {
