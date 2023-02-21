@@ -18,24 +18,27 @@
             type="text"
             name="name"
             placeholder="Full Name"
-            help=""
             validation="required|matches:/[a-zA-Z]/"
             :validation-messages="{ matches: 'Name must not include a number.' }"
+            help="Your full name."
         />
         <FormKit
             type="text"
             name="email"
             placeholder="Email Address"
-            help=""
             validation="required|email"
+            help=""
         />
         <FormKit
             type="password"
             name="password"
-            validation="required|length:6|matches:/[^a-zA-Z]/"
-            :validation-messages="{matches: 'Please include at least one symbol'}"
+            validation="required|?length:6"
+            :validation-messages="{
+              matches: 'Please include at least one symbol',
+              length: 'Try to make your password longer!',
+            }"
             placeholder="Password"
-            help=""
+            help="At-least 6 characters."
         />
         <FormKit
             type="password"
@@ -44,18 +47,8 @@
             validation="required|confirm"
             help=""
         />
-        <!--      <FormKit-->
-        <!--          type="file"-->
-        <!--          label="Drivers license"-->
-        <!--          name="license"-->
-        <!--          help="Please add a scan of your driver’s license"-->
-        <!--          accept=".jpg,.png,.pdf"-->
-        <!--          validation="required"-->
-        <!--      />-->
 
-        <div
-            class="mt-6"
-        >
+        <div class="mt-6">
           <FormKit
               type="submit"
               input-class="$reset w-full"
@@ -85,13 +78,15 @@ import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 
-definePageMeta({layout: 'auth'})
+definePageMeta({
+  layout: 'auth'
+})
 
 const authStore = useAuthStore()
 const isLoading = ref(false)
 
 // Handel Registration Form Submit ...
-const submitHandler = async (payload) => {
+const submitHandler = async (payload, node) => {
   if (isLoading.value) return
   isLoading.value = true
 
@@ -100,15 +95,18 @@ const submitHandler = async (payload) => {
   formData.append('name', payload.name)
   formData.append('email', payload.email)
   formData.append('password', payload.password)
-  formData.append('password_confirm', payload.password_confirm)
-  // payload.license.forEach((fileItem) => {
-  //   formData.append('license', fileItem.file)
-  // })
+  formData.append('password_confirmation', payload.password_confirm)
 
   // Send data to Pinia Store ...
   const {data, pending, error, refresh} = await authStore.register(formData)
-  // this.$formkit.reset('registrationForm')
-  redirect('/')
+  const errorCodes = [422, 419, 500, 403, 401]
+  if (error && errorCodes.includes(error?.status)) {
+    // if (error?.status === 422) this.$formkit.setErrors('registrationForm', {})
+    if (error?.status === 422) node.setErrors(error?.data?.errors)
+  } else {
+    node.reset('registrationForm')
+    redirect('/')
+  }
 
   isLoading.value = false
 }

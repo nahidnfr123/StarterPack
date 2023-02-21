@@ -37,8 +37,8 @@ const $api = {
         options.method = 'POST'
         options.headers = options.headers || {}
         if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
-        // options.headers.contentType = 'multipart/form-data'
-        options.headers.contentType = 'application/json'
+        options.headers.contentType = 'multipart/form-data'
+        options.headers.accept = 'application/json'
       },
       onRequestError({request, options, error}) {
         // Handle the request errors

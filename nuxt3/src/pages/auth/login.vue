@@ -75,10 +75,16 @@ const submitHandler = async (payload) => {
 
   // Prepare data for Upload ..
   const formData = new FormData()
-  // formData.append('email', payload.email)
-  // formData.append('password', payload.password)
+  formData.append('email', payload.email)
+  formData.append('password', payload.password)
 
   const {data, pending, error, refresh} = await authStore.login(formData)
+  // const baseUrl = 'http://127.0.0.1:8000/api/'
+  // const {data, error} = await useFetch(baseUrl + 'login', {
+  //   method: 'POST',
+  //   body: formData
+  // })
+
   // this.$formkit.reset('registrationForm')
   console.log(error)
   console.log(data)

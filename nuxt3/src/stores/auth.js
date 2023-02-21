@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
       this.token = data?.value?.token
       this.isLoggedIn = this.token && this.user && this.user.id
       setToken(this.token, this.user)
-      return {data: data?.value, pending, error, refresh}
+      return {data: data?.value, pending, error: error?.value, refresh}
     },
     async login(payload) {
       const {data, pending, error, refresh} = await $api.post('login', payload);
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = data?.value?.user || null
       this.isLoggedIn = this.token && this.user && this.user.id
       setToken(this.token, this.user)
-      return {data: data?.value, pending, error, refresh}
+      return {data: data?.value, pending, error: error?.value, refresh}
     },
     async getUser() {
       const {data, pending, error, refresh} = await $api.get('user')
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', {
         setToken(this.token, this.user)
       }
       // return {data: toRaw(data?.value), pending, error, refresh}
-      return {data: data?.value, pending, error, refresh}
+      return {data: data?.value, pending, error: error?.value, refresh}
     },
     logout() {
       this.token = '';
