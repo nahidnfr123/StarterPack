@@ -14,19 +14,21 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async register(payload) {
       const {data, pending, error, refresh} = await $api.post('register', payload);
-      this.user = data?.value?.user
-      this.token = data?.value?.token
-      this.isLoggedIn = this.token && this.user && this.user.id
-      setToken(this.token, this.user)
+      const value = data?.value || {}
+      this.setTokenUser(value?.token, value?.user)
       return {data: data?.value, pending, error: error?.value, refresh}
     },
     async login(payload) {
       const {data, pending, error, refresh} = await $api.post('login', payload);
-      this.token = data?.value?.token || null
-      this.user = data?.value?.user || null
-      this.isLoggedIn = this.token && this.user && this.user.id
-      setToken(this.token, this.user)
+      const value = data?.value || {}
+      this.setTokenUser(value?.token, value?.user)
       return {data: data?.value, pending, error: error?.value, refresh}
+    },
+    setTokenUser(token = null, user = {}) {
+      this.token = token
+      this.user = user
+      this.isLoggedIn = token && user && user.id
+      setToken(token || '', user)
     },
     async getUser() {
       const {data, pending, error, refresh} = await $api.get('user')

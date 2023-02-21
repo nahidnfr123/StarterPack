@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Adding Middleware">
+    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Login And Register Done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/useAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stores/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +61,7 @@
       <workItem from="1676742888035" duration="27000" />
       <workItem from="1676823166237" duration="142000" />
       <workItem from="1676823347778" duration="20352000" />
-      <workItem from="1676928200321" duration="14337000" />
+      <workItem from="1676928200321" duration="14729000" />
     </task>
     <task id="LOCAL-00001" summary="!">
       <created>1676899118847</created>
@@ -127,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677005092547</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Login And Register Done">
+      <created>1677005495278</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677005495278</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +153,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="!" />
     <MESSAGE value="Adding Middleware" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding Middleware" />
+    <MESSAGE value="Login And Register Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login And Register Done" />
   </component>
 </project>
