@@ -1,16 +1,12 @@
 import {getToken} from "~/composables/useAuth";
 
-const baseUrl = 'http://127.0.0.1:8000/api/'
-
 const $api = {
-  async get(url, pick) {
-    // console.log('--- ' + getToken())
+  async get(url) {
+    const config = useRuntimeConfig()
     const {data, pending, error, refresh} = await useFetch(url, {
-      baseURL: baseUrl,
-      // ...pick,
+      baseURL: config.public.apiBaseUrl,
       onRequest({request, options}) {
         // Set the request headers
-        options.baseUrl = this.baseUrl
         options.headers = options.headers || {}
         if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
       },
@@ -29,8 +25,9 @@ const $api = {
     return {data, pending, error, refresh}
   },
   async post(url, payload) {
-    const fullUrl = baseUrl + url
-    const {data, pending, error, refresh} = await useFetch(fullUrl, {
+    const config = useRuntimeConfig()
+    const {data, pending, error, refresh} = await useFetch(url, {
+      baseURL: config.public.apiBaseUrl,
       onRequest({request, options}) {
         // Set the request headers
         options.body = payload
