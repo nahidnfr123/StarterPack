@@ -29,7 +29,7 @@ const $api = {
       'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
-      'Authorization': `Bearer ${getTokenFromLocalStorage()}`,
+      'Authorization': getTokenFromLocalStorage() ? `Bearer ${getTokenFromLocalStorage()}` : '',
     }
   },
   async get(url, notify = notifyPayload) {

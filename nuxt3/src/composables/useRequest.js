@@ -12,7 +12,7 @@ const $api = {
         // Set the request headers
         options.baseUrl = this.baseUrl
         options.headers = options.headers || {}
-        options.headers.Authorization = getToken() ? `Bearer ${getToken()}` : ''
+        if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
       },
       onRequestError({request, options, error}) {
         // Handle the request errors
@@ -33,12 +33,12 @@ const $api = {
     const {data, pending, error, refresh} = await useFetch(fullUrl, {
       onRequest({request, options}) {
         // Set the request headers
-        options.baseURL = baseUrl
         options.body = payload
         options.method = 'POST'
         options.headers = options.headers || {}
-        options.headers.Authorization = getToken() ? `Bearer ${getToken()}` : ''
-        options.headers.contentType = 'multipart/form-data'
+        if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
+        // options.headers.contentType = 'multipart/form-data'
+        options.headers.contentType = 'application/json'
       },
       onRequestError({request, options, error}) {
         // Handle the request errors

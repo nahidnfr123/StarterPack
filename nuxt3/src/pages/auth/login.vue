@@ -75,12 +75,17 @@ const submitHandler = async (payload) => {
 
   // Prepare data for Upload ..
   const formData = new FormData()
-  formData.append('email', payload.email)
-  formData.append('password', payload.password)
+  // formData.append('email', payload.email)
+  // formData.append('password', payload.password)
 
   const {data, pending, error, refresh} = await authStore.login(formData)
   // this.$formkit.reset('registrationForm')
-  redirect('/')
+  console.log(error)
+  console.log(data)
+  if (error) {
+
+  }
+  // redirect('/')
 
   isLoading.value = false
 }
