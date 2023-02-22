@@ -1,12 +1,11 @@
 import {defineStore} from "pinia";
 import $api from "~/composables/useRequest";
-import {getUser, setToken, getToken} from "~/composables/useAuth";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    isLoggedIn: !!(getToken() && getUser()),
-    token: getToken() || null,
-    user: getUser() || null
+    isLoggedIn: false,
+    token: useCookie('token').value || null,
+    user: null
   }),
   getters: {},
   actions: {
@@ -26,24 +25,28 @@ export const useAuthStore = defineStore('auth', {
       this.token = token
       this.user = user
       this.isLoggedIn = token && user && user.id
-      setToken(token || '', user)
+
+      const savedToken = useCookie('token')
+      savedToken.value = token
     },
     async getUser() {
-      const {data, pending, error, refresh} = await $api.get('user')
+      const {data, pending, refresh, error} = await $api.get('user')
+      console.log(data.value)
       if (error?.value && error?.value?.status == 403) {
       } else {
         this.user = data?.value || {}
         this.isLoggedIn = this.token && this.user && this.user.id
-        setToken(this.token, this.user)
+        // setToken(this.token, this.user)
       }
-      // return {data: toRaw(data?.value), pending, error, refresh}
       return {data: data?.value, pending, error: error?.value, refresh}
     },
     logout() {
       this.token = '';
       this.user = '';
       this.isLoggedIn = false
-      removeToken()
+
+      const savedToken = useCookie('token')
+      savedToken.value = null
     },
   }
 })

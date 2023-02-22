@@ -1,14 +1,14 @@
-import {getToken} from "~/composables/useAuth";
-
 const $api = {
+
   async get(url) {
     const config = useRuntimeConfig()
+    // const savedToken = useCookie('token')
     const {data, pending, error, refresh} = await useFetch(url, {
       baseURL: config.public.apiBaseUrl,
       onRequest({request, options}) {
         // Set the request headers
         options.headers = options.headers || {}
-        if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
+        if (accessToken()) options.headers.Authorization = `Bearer ${accessToken()}`
         options.headers.accept = 'application/json'
       },
       onRequestError({request, options, error}) {
@@ -16,16 +16,16 @@ const $api = {
       },
       onResponse({request, response, options}) {
         // Process the response data
-        if (response.status === 200) dispatchSuccess('Success')
+        // if (response.status === 200) dispatchSuccess('Success')
         return response._data
       },
       onResponseError({request, response, options}) {
         // console.log(response)
         // Handle the response errors
-        dispatchError(response)
+        // dispatchError(response)
       }
     })
-    return {data, pending, error, refresh}
+    return {data, pending, refresh, error}
   },
   async post(url, payload) {
     const config = useRuntimeConfig()
@@ -36,7 +36,7 @@ const $api = {
         options.body = payload
         options.method = 'POST'
         options.headers = options.headers || {}
-        if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
+        if (accessToken()) options.headers.Authorization = `Bearer ${accessToken()}`
         options.headers.contentType = 'multipart/form-data'
         options.headers.accept = 'application/json'
       },
@@ -58,6 +58,12 @@ const $api = {
     return {data, pending, error, refresh}
   },
 }
+
+export function accessToken() {
+  const savedToken = useCookie('token')
+  return savedToken.value || null
+}
+
 const dispatchSuccess = (message) => {
   const {$awn} = useNuxtApp()
   $awn.success(message)
@@ -76,5 +82,6 @@ const dispatchError = (err) => {
   const {$awn} = useNuxtApp()
   $awn.alert(message)
 }
+
 
 export default $api
