@@ -5,61 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Forms Update">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/nuxt3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nuxt.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/_error.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/_Animate.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/_Typography.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/main.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthFormContainer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Error/Error404.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Alert.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Buttons/AuthButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Buttons/PrimaryButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Container.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Logo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/TheFooter.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/TheHeader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/UserMenuDropdown.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/composables/useAuth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/composables/useCommon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/composables/useLocale.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/formKitTheme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/formkit.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/auth.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/default.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/middleware/onlyGuest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/middleware/requireAuth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/auth/reset-password.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/auth/verify-email.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/dashboard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/user/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/plugins/directive.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/images/Logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/images/authBg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/images/image 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stores/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Notification.vue" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/plugins/awesome-notifications.client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +75,7 @@
       <workItem from="1677009094404" duration="2413000" />
       <workItem from="1677012253143" duration="23000" />
       <workItem from="1677012285844" duration="21068000" />
-      <workItem from="1677089212822" duration="2288000" />
+      <workItem from="1677089212822" duration="5691000" />
     </task>
     <task id="LOCAL-00001" summary="!">
       <created>1676899118847</created>
@@ -290,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677090856798</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Forms Update">
+      <created>1677093552913</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1677093552913</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

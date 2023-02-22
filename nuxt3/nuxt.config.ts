@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   css: [
     // '~/assets/css/main.css',
     '~/assets/scss/main.scss',
+    'awesome-notifications/dist/style.css',
   ],
   formkit: {
     defaultConfig: true,

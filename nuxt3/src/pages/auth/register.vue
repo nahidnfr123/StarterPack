@@ -105,13 +105,4 @@ const submitHandler = async (payload, node) => {
 
   isLoading.value = false
 }
-
-const redirect = (path) => {
-  const route = useRoute()
-  const router = useRouter()
-  const $next = route.query.next
-  let routePath = path
-  if ($next) routePath = $next
-  router.push({path: routePath})
-}
 </script>

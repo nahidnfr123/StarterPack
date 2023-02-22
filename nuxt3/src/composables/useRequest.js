@@ -16,11 +16,13 @@ const $api = {
       },
       onResponse({request, response, options}) {
         // Process the response data
+        if (response.status === 200) dispatchSuccess('Success')
         return response._data
       },
       onResponseError({request, response, options}) {
         // console.log(response)
         // Handle the response errors
+        dispatchError(response)
       }
     })
     return {data, pending, error, refresh}
@@ -44,19 +46,21 @@ const $api = {
       },
       onResponse({request, response, options}) {
         // Process the response data
+        if (response.status === 200) dispatchSuccess('Success')
         return response._data
       },
       onResponseError({request, response, options}) {
-        dispatchError(response)
         // console.log(response)
         // Handle the response errors
+        dispatchError(response)
       }
     })
     return {data, pending, error, refresh}
   },
-  dispatchSuccess(message) {
-
-  },
+}
+const dispatchSuccess = (message) => {
+  const {$awn} = useNuxtApp()
+  $awn.success(message)
 }
 
 const dispatchError = (err) => {
@@ -69,6 +73,8 @@ const dispatchError = (err) => {
     message = 'CORES Error! ' + error.data.message
   else message = 'Some Error Occurred!'
 
+  const {$awn} = useNuxtApp()
+  $awn.alert(message)
 }
 
 export default $api
