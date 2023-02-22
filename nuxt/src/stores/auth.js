@@ -39,7 +39,9 @@ export const useAuthStore = defineStore('auth', {
       }
       return {data: data?.value, pending, error: error?.value, refresh}
     },
-    logout() {
+    async logout() {
+      const options = {showSuccess: true, showError: true, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
+      await $api.post('logout', {}, options)
       this.token = '';
       this.user = '';
       this.isLoggedIn = false
