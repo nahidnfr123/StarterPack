@@ -3,9 +3,10 @@
     <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton
-            class="inline-flex w-full justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white duration-200 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white duration-200 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           {{ authStore.user.name }}
+          <Icon name="mdi-light:chevron-down" size="22" class="ml-2"/>
         </MenuButton>
       </div>
 

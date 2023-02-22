@@ -1,64 +1,60 @@
 <template>
-  <div class="max-w-xl bg-white rounded-xl p-8 lg:p-12 flex flex-col w-full m-auto relative shadow-[0_15px_30px_#9600FF15]">
-    <Logo class-name="h-14 mb-6 w-auto mx-auto"/>
-    <h2 class="text-gray-900 text-xl mb-1 font-medium title-font">Login</h2>
-    <!--        :form-class="isLoading.value ? 'hide' : 'show'"-->
-    <ClientOnly>
+  <AuthFormContainer title="Login">
+    <FormKit
+        type="form"
+        id="formkitForm"
+        submit-label="Register"
+        @submit="submitHandler"
+        :actions="false"
+        #default="{ value, state: { valid } }"
+        #error="{error}"
+        incomplete-message="Please fill in the form correctly."
+    >
       <FormKit
-          type="form"
-          id="formkitForm"
-          submit-label="Register"
-          @submit="submitHandler"
-          :actions="false"
-          #default="{ value, state: { valid } }"
-          #error="{error}"
-          incomplete-message="Please fill in the form correctly."
-      >
-        <FormKit
-            type="text"
-            name="email"
-            placeholder="Email Address"
-            validation="required|email"
-            help=""
-        />
-        <FormKit
-            type="password"
-            name="password"
-            validation="required|length:6|matches:/[^a-zA-Z]/"
-            :validation-messages="{matches: 'Please include at least one symbol'}"
-            placeholder="Password"
-            help=""
-        />
+          type="text"
+          name="email"
+          placeholder="Email Address"
+          validation="required|email"
+          help=""
+      />
+      <FormKit
+          type="password"
+          name="password"
+          validation="required|length:6|matches:/[^a-zA-Z]/"
+          :validation-messages="{matches: 'Please include at least one symbol'}"
+          placeholder="Password"
+          help=""
+      />
 
-        <div class="mt-6">
-          <FormKit
-              type="submit"
-              input-class="$reset w-full"
+      <div class="mt-6">
+        <FormKit
+            type="submit"
+            input-class="$reset w-full"
+            :disabled="!valid || isLoading"
+        >
+          <!-- Custom Auth Button -->
+          <AuthButton
+              class-name="w-full py-4 rounded-lg"
               :disabled="!valid || isLoading"
-          >
-            <!-- Custom Auth Button -->
-            <AuthButton
-                class-name="w-full py-4 rounded-lg"
-                :disabled="!valid || isLoading"
-                :isLoading="!!isLoading"
-                text="Login"
-            />
-          </FormKit>
-        </div>
-        <!--      <pre wrap>{{ value }}</pre>-->
-      </FormKit>
-    </ClientOnly>
-    <p class="mt-4 text-center">Don't have a account?</p>
-    <div class="mx-auto">
-      <NuxtLink to="/auth/register" class="text-center text-primary-color">Register</NuxtLink>
-    </div>
-  </div>
+              :isLoading="!!isLoading"
+              text="Login"
+          />
+        </FormKit>
+      </div>
+      <!--      <pre wrap>{{ value }}</pre>-->
+    </FormKit>
+    <NuxtLink to="/auth/forget-password" class="text-right underline text-primary-color">Forget Password</NuxtLink>
+    <p class="mt-4 text-center">Don't have a account?
+      <NuxtLink to="/auth/register" class="text-center underline text-primary-color">Register</NuxtLink>
+    </p>
+  </AuthFormContainer>
 </template>
 
 <script setup>
 import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
+import AuthFormContainer from "~/components/AuthFormContainer.vue";
 
 definePageMeta({
   layout: 'auth',
