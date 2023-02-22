@@ -73,7 +73,7 @@ if (!_email || !_token) useRouter().push('/auth/verify-email')
 // Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
-  node.clearErrors()
+  node.clearErrors() // clear Previous form errors ...
   isLoading.value = true
 
   // Prepare data for Upload ..
@@ -84,13 +84,13 @@ const submitHandler = async (payload, node) => {
   formData.append('password', payload.password)
   formData.append('password_confirmation', payload.password_confirm)
 
-  const {data, pending, error, refresh} = await $api.post('reset-password', formData)
+  const {data, pending, error, refresh} = await $api.post('reset-password', formData) // Post request to the reset-password api end point ...
 
   if (error.value) {
-    throwFormError(error.value, node)
+    throwFormError(error.value, node) // Show Server side errors in form ...
   } else {
     node.reset()
-    redirectTo('/auth/login')
+    redirectTo('/auth/login') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false

@@ -62,7 +62,7 @@ const isLoading = ref(false)
 // Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
-  node.clearErrors()
+  node.clearErrors() // clear Previous form errors ...
   isLoading.value = true
 
   // Prepare data for Upload ..
@@ -73,7 +73,7 @@ const submitHandler = async (payload, node) => {
   const {data, pending, error, refresh} = await $api.post('send-password-reset-link', formData)
 
   if (error.value) {
-    throwFormError(error.value, node)
+    throwFormError(error.value, node) // Show Server side errors in form ...
   } else {
     successMessage.value = data.value?.status || data.value?.email || ''
   }

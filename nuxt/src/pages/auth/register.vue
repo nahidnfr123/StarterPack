@@ -83,7 +83,7 @@ const isLoading = ref(false)
 // Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
-  node.clearErrors()
+  node.clearErrors() // clear Previous form errors ...
   isLoading.value = true
 
   // Prepare data for Upload ..
@@ -94,13 +94,13 @@ const submitHandler = async (payload, node) => {
   formData.append('password_confirmation', payload.password_confirm)
 
   // Send data to Pinia Store ...
-  const {data, pending, error, refresh} = await authStore.register(formData)
+  const {data, pending, error, refresh} = await authStore.register(formData) // call to register action in the auth store ...
 
   if (error.value) {
-    throwFormError(error.value, node)
+    throwFormError(error.value, node) // Show Server side errors in form ...
   } else {
     node.reset()
-    redirectTo('/')
+    redirectTo('/') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false
