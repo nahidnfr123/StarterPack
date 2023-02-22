@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Forms Update">
-      <change afterPath="$PROJECT_DIR$/src/plugins/awesome-notifications.client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/useAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useAuth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Forms Update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +64,7 @@
       <workItem from="1677009094404" duration="2413000" />
       <workItem from="1677012253143" duration="23000" />
       <workItem from="1677012285844" duration="21068000" />
-      <workItem from="1677089212822" duration="5691000" />
+      <workItem from="1677089212822" duration="5886000" />
     </task>
     <task id="LOCAL-00001" summary="!">
       <created>1676899118847</created>
@@ -252,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677093552913</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Forms Update">
+      <created>1677096984441</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1677096984441</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
