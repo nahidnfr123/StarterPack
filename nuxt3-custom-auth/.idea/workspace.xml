@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Forms Update">
-      <change afterPath="$PROJECT_DIR$/src/composables/useCommon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laravel-10-passport-api/app/Http/Notifications/PasswordResetNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/../laravel-10-passport-api/app/Notifications/PasswordResetNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../laravel-10-passport-api/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../laravel-10-passport-api/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/states.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/reset-password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/reset-password.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/verification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/verification.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useCommon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useCommon.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +66,7 @@
       <workItem from="1677006757924" duration="2240000" />
       <workItem from="1677009094404" duration="2413000" />
       <workItem from="1677012253143" duration="23000" />
-      <workItem from="1677012285844" duration="12223000" />
+      <workItem from="1677012285844" duration="12303000" />
     </task>
     <task id="LOCAL-00001" summary="!">
       <created>1676899118847</created>
@@ -210,7 +201,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677058833035</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Forms Update">
+      <created>1677061489489</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1677061489489</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Forms Update">
+      <created>1677061500960</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1677061500960</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
