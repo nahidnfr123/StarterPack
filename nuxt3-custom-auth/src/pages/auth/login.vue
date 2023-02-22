@@ -43,7 +43,7 @@
       </div>
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
-    <NuxtLink to="/auth/forget-password" class="text-right underline text-primary-color">Forget Password</NuxtLink>
+    <NuxtLink to="/auth/verification" class="text-right underline text-primary-color">Forget Password</NuxtLink>
     <p class="mt-4 text-center">Don't have a account?
       <NuxtLink to="/auth/register" class="text-center underline text-primary-color">Register</NuxtLink>
     </p>

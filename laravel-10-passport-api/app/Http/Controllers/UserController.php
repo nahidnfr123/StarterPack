@@ -89,7 +89,7 @@ class UserController extends Controller
 
     }
 
-    public function sendOtp(Request $request)
+    public function sendPasswordResetLink(Request $request): JsonResponse
     {
         $request->validate(
             ['email' => 'required|email|exists:users,email'],

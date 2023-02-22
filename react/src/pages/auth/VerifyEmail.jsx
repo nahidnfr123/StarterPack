@@ -33,7 +33,7 @@ function ForgetPassword() {
       if (values[key].trim()) formData.append(key, values[key].trim())
     }
 
-    const request = await $api.post('send-otp', formData)
+    const request = await $api.post('send-password-reset-link', formData)
     if (request.message === 'success') {
       setSuccessMessage(request.data.status || request.data.email)
     } else {

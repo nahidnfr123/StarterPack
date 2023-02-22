@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Login And Register Done">
-      <change afterPath="$PROJECT_DIR$/src/components/AuthFormContainer.vue" afterDir="false" />
+    <list default="true" id="1b7f5b34-8877-40b8-8220-3321ee5f616b" name="Changes" comment="Forms Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/userMenuDropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/userMenuDropdown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/forget-password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/forget-password.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composables/useRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/composables/useRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/forget-password.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/reset-password.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/auth/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/auth/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/verification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/verification.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/pages/auth/VerifyEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/pages/auth/VerifyEmail.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +70,7 @@
       <workItem from="1677006757924" duration="2240000" />
       <workItem from="1677009094404" duration="2413000" />
       <workItem from="1677012253143" duration="23000" />
-      <workItem from="1677012285844" duration="9563000" />
+      <workItem from="1677012285844" duration="10475000" />
     </task>
     <task id="LOCAL-00001" summary="!">
       <created>1676899118847</created>
@@ -198,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677047081497</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Forms Update">
+      <created>1677058833035</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1677058833035</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +226,7 @@
     <MESSAGE value="!" />
     <MESSAGE value="Adding Middleware" />
     <MESSAGE value="Login And Register Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login And Register Done" />
+    <MESSAGE value="Forms Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Forms Update" />
   </component>
 </project>
