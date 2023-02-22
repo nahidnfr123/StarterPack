@@ -51,7 +51,6 @@
 </template>
 
 <script setup>
-import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 import AuthFormContainer from "~/components/AuthFormContainer.vue";

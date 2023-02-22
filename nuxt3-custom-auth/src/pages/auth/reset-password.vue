@@ -11,10 +11,21 @@
         incomplete-message="Please fill in the form correctly."
     >
       <FormKit
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          validation="required|email"
+          type="password"
+          name="password"
+          validation="required|?length:6"
+          :validation-messages="{
+              matches: 'Please include at least one symbol',
+              length: 'Try to make your password longer!',
+            }"
+          placeholder="Password"
+          help="At-least 6 characters."
+      />
+      <FormKit
+          type="password"
+          name="password_confirm"
+          placeholder="Confirm password"
+          validation="required|confirm"
           help=""
       />
       <div class="mt-6">
@@ -41,10 +52,10 @@
 </template>
 
 <script setup>
-import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 import {redirectTo, throwFormError} from "~/composables/useCommon";
+import $api from "~/composables/useRequest";
 
 definePageMeta({
   layout: 'auth',
@@ -53,6 +64,7 @@ definePageMeta({
 
 const authStore = useAuthStore()
 const isLoading = ref(false)
+const route = useRoute()
 
 
 // Handel Registration Form Submit ...
@@ -63,9 +75,13 @@ const submitHandler = async (payload, node) => {
 
   // Prepare data for Upload ..
   const formData = new FormData()
-  formData.append('email', payload.email)
+  formData.append('_method', 'PUT')
+  formData.append('email', route.query.email)
+  formData.append('token', route.query.token)
+  formData.append('password', payload.password)
+  formData.append('password_confirmation', payload.password_confirm)
 
-  const {data, pending, error, refresh} = await authStore.login(formData)
+  const {data, pending, error, refresh} = await $api.post('reset-password', formData)
 
   if (error.value) {
     throwFormError(error.value, node)

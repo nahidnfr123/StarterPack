@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 import $api from "~/composables/useRequest";
