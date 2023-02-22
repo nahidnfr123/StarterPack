@@ -32,9 +32,14 @@
                           Login
                         </NuxtLink>-->
 
-            <NuxtLink to="/auth/login">
-              <PrimaryButton text="Login" class-name="rounded-full"/>
-            </NuxtLink>
+            <div v-if="authStore.isLoggedIn">
+              <UserMenuDropdown/>
+            </div>
+            <div v-else>
+              <NuxtLink to="/auth/login">
+                <PrimaryButton text="Login" class-name="rounded-full"/>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </Container>
@@ -69,7 +74,10 @@
             </div>
           </div>
           <div class="space-y-6 py-6 px-5">
-            <div>
+            <div v-if="authStore.isLoggedIn">
+              <UserMenuDropdown/>
+            </div>
+            <div v-else>
               <NuxtLink to="/auth/login">
                 <PrimaryButton text="Login" class-name="w-full rounded-lg"/>
               </NuxtLink>
@@ -86,7 +94,10 @@ import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from '@headlessui/vu
 import Logo from "~/components/common/Logo.vue";
 import Container from "~/components/common/Container.vue";
 import PrimaryButton from "~/components/common/Buttons/PrimaryButton.vue";
+import {useAuthStore} from "~/stores/auth";
+import UserMenuDropdown from "~/components/common/userMenuDropdown.vue";
 
+const authStore = useAuthStore()
 const navigationLinks = [
   {title: 'Home', link: '/', icon: "fa6-solid:house-chimney"},
   {title: 'Dashboard', link: '/dashboard'},

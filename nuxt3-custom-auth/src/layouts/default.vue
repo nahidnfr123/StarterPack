@@ -4,7 +4,6 @@
     <main class="min-h-[70vh] mb-10">
       <slot></slot>
     </main>
-    {{ authStore.user }}
     <TheFooter/>
   </main>
 </template>

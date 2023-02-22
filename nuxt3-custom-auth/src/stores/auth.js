@@ -16,13 +16,13 @@ export const useAuthStore = defineStore('auth', {
       const {data, pending, error, refresh} = await $api.post('register', payload);
       const value = data?.value || {}
       this.setTokenUser(value?.token, value?.user)
-      return {data: data?.value, pending, error: error?.value, refresh}
+      return {data, pending, error, refresh}
     },
     async login(payload) {
       const {data, pending, error, refresh} = await $api.post('login', payload);
       const value = data?.value || {}
       this.setTokenUser(value?.token, value?.user)
-      return {data: data?.value, pending, error: error?.value, refresh}
+      return {data, pending, error, refresh}
     },
     setTokenUser(token = null, user = {}) {
       this.token = token

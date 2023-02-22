@@ -99,11 +99,13 @@ const submitHandler = async (payload, node) => {
   formData.append('password_confirmation', payload.password_confirm)
 
   // Send data to Pinia Store ...
-  const {data, pending, error, refresh} = await authStore.register(formData)
-  const errorCodes = [422, 419, 500, 403, 401]
-  if (error && errorCodes.includes(error?.status)) {
-    if (error?.status === 422) node.setErrors(error?.data?.errors)
-    else node.setErrors('Server Error: ' + error?.data?.message)
+  const {data, pending, error: _error, refresh} = await authStore.register(formData)
+  const error = _error?.value
+
+  if (error) {
+    if (error?.status === 422) node.setErrors(error?.data?.errors) // Validation Error ...
+    else if (error?.status) node.setErrors('Server Error: ' + error?.data?.message || '') // General Error Message from Server.
+    else node.setErrors('Error Connecting to Server! ' + error.name) // Error occurred, but server did not send any error status ... (Could Not Connect to server)
   } else {
     redirect('/')
   }
