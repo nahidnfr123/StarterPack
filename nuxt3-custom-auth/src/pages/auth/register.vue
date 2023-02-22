@@ -68,9 +68,9 @@
 </template>
 
 <script setup>
-import Logo from "~/components/common/Logo.vue";
 import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
+import {redirectTo, throwFormError} from "~/composables/useCommon";
 
 definePageMeta({
   layout: 'auth',
@@ -83,6 +83,7 @@ const isLoading = ref(false)
 // Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
+  node.clearErrors()
   isLoading.value = true
 
   // Prepare data for Upload ..
@@ -93,15 +94,13 @@ const submitHandler = async (payload, node) => {
   formData.append('password_confirmation', payload.password_confirm)
 
   // Send data to Pinia Store ...
-  const {data, pending, error: _error, refresh} = await authStore.register(formData)
-  const error = _error?.value
+  const {data, pending, error, refresh} = await authStore.register(formData)
 
-  if (error) {
-    if (error?.status === 422) node.setErrors(error?.data?.errors) // Validation Error ...
-    else if (error?.status) node.setErrors('Server Error: ' + error?.data?.message || '') // General Error Message from Server.
-    else node.setErrors('Error Connecting to Server! ' + error.name) // Error occurred, but server did not send any error status ... (Could Not Connect to server)
+  if (error.value) {
+    throwFormError(error.value, node)
   } else {
-    redirect('/')
+    node.reset()
+    redirectTo('/')
   }
 
   isLoading.value = false

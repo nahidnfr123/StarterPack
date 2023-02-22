@@ -9,6 +9,7 @@ const $api = {
         // Set the request headers
         options.headers = options.headers || {}
         if (getToken()) options.headers.Authorization = `Bearer ${getToken()}`
+        options.headers.accept = 'application/json'
       },
       onRequestError({request, options, error}) {
         // Handle the request errors

@@ -52,6 +52,6 @@ class User extends Authenticatable
      */
     public function sendPasswordResetNotification($data): void
     {
-        $this->notify(new PasswordResetNotification($data));
+        $this->notify(new PasswordResetNotification($data))
     }
 }

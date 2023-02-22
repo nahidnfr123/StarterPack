@@ -1,8 +1,6 @@
 import {defineStore} from "pinia";
 import $api from "~/composables/useRequest";
 import {getUser, setToken, getToken} from "~/composables/useAuth";
-import {useAuthState} from "~/composables/states";
-
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
