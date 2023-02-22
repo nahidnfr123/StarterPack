@@ -1,10 +1,9 @@
 <template>
-  Index Page
+  <Container>
+    Home
+  </Container>
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth";
-
-const authStore = useAuthStore()
-authStore.getUser()
+import Container from "~/components/common/Container.vue"
 </script>

@@ -1,5 +1,6 @@
-const $api = {
+import accessToken from "~/composables/useToken";
 
+const $api = {
   async get(url) {
     const config = useRuntimeConfig()
     // const savedToken = useCookie('token')
@@ -57,11 +58,6 @@ const $api = {
     })
     return {data, pending, error, refresh}
   },
-}
-
-export function accessToken() {
-  const savedToken = useCookie('token')
-  return savedToken.value || null
 }
 
 const dispatchSuccess = (message) => {
