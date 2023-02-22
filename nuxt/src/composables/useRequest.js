@@ -1,7 +1,8 @@
 import accessToken from "~/composables/useToken";
 
+
 const $api = {
-  async get(url) { /// Performs GET request ...
+  async get(url, __ = {showSuccess: false, showError: true, successMessage: 'Success', errorMessage: ''}) { /// Performs GET request ...
     const config = useRuntimeConfig()
     const {data, pending, error, refresh} = await useFetch(url, {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
@@ -16,17 +17,17 @@ const $api = {
       },
       onResponse({request, response, options}) {
         // Process the response data
-        if (response.status === 200) dispatchSuccess('Success') // Success Message ...
+        if (response.status === 200 && __.showSuccess) dispatchSuccess(__.successMessage || 'Success!') // Success Message ...
         return response._data
       },
       onResponseError({request, response, options}) {
         // Handle the response errors
-        dispatchError(response) // Show Error Toast ...
+        if (__.showError) dispatchError(response, __.errorMessage) // Show Error Toast ...
       }
     })
     return {data, pending, refresh, error}
   },
-  async post(url, payload) { /// Performs POST and PUT request ...
+  async post(url, payload, __ = {showSuccess: true, showError: true, successMessage: 'Success', errorMessage: ''}) { /// Performs POST and PUT request ...
     const config = useRuntimeConfig()
     const {data, pending, error, refresh} = await useFetch(url, {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
@@ -45,13 +46,12 @@ const $api = {
       },
       onResponse({request, response, options}) {
         // Process the response data
-        if (response.status === 200) dispatchSuccess('Success')
+        if (response.status === 200 && __.showSuccess) dispatchSuccess(__.successMessage || 'Success!') // Success Message ...
         return response._data
       },
       onResponseError({request, response, options}) {
-        // console.log(response)
         // Handle the response errors
-        dispatchError(response)
+        if (__.showError) dispatchError(response, __.errorMessage) // Show Error Toast ...
       }
     })
     return {data, pending, error, refresh}
@@ -64,16 +64,18 @@ const dispatchSuccess = (message) => {
   $awn.success(message) // Toast ...
 }
 
-const dispatchError = (err) => {
+const dispatchError = (err, errorMessage) => {
   if (process.server) return
   let error = err._data
   let message = ''
 
-  if (error.status === 401 || error.status === 403 || error.status === 422 || error.status === 500)
-    message = error.statusText + '! ' + error.data.message
-  else if (error.status === 419)
-    message = 'CORES Error! ' + error.data.message
-  else message = 'Some Error Occurred!'
+  if ([401, 403, 422, 500].includes(err.status)) {
+    message = err?.statusText + '! ' + error?.message
+  } else if (err.status === 419) {
+    message = 'CORES Error! ' + error?.message
+  } else {
+    message = errorMessage || 'Some Error Occurred!'
+  }
 
   const {$awn} = useNuxtApp()
   $awn.alert(message) /// Toast ...

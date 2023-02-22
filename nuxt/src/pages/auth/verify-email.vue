@@ -70,7 +70,8 @@ const submitHandler = async (payload, node) => {
   formData.append('email', payload.email)
   formData.append('password_reset_link', window.location.host + '/auth/reset-password')
 
-  const {data, pending, error, refresh} = await $api.post('send-password-reset-link', formData)
+  const options = {showSuccess: true, successMessage: 'An Email is sent to your accoutn'}
+  const {data, pending, error, refresh} = await $api.post('send-password-reset-link', formData, options)
 
   if (error.value) {
     throwFormError(error.value, node) // Show Server side errors in form ...
