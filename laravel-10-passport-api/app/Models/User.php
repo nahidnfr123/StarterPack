@@ -47,11 +47,11 @@ class User extends Authenticatable
     /**
      * Send the password reset notification.
      *
-     * @param  string  $data
+     * @param string $data
      * @return void
      */
     public function sendPasswordResetNotification($data): void
     {
-        $this->notify(new PasswordResetNotification($data))
+        $this->notify(new PasswordResetNotification($data));
     }
 }
