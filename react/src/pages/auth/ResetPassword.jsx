@@ -63,7 +63,7 @@ function ResetPassword() {
     const formData = new FormData();
     formData.append('_method', 'PUT')
     for (let key in values) {
-      if (values[key].trim()) formData.append(key, values[key].trim())
+      if (values[key] && values[key].trim()) formData.append(key, values[key].trim())
     }
 
     const request = await $api.post('reset-password', formData)

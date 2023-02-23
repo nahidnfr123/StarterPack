@@ -47,7 +47,7 @@ export default function SignIn() {
     // event.preventDefault();
     const formData = new FormData();
     for (let key in values) {
-      if (values[key].trim()) formData.append(key, values[key].trim())
+      if (values[key] && values[key].trim()) formData.append(key, values[key].trim())
     }
 
     const request = await auth.register(formData)

@@ -88,10 +88,9 @@ const submitHandler = async (payload, node) => {
 
   // Prepare data for Upload ..
   const formData = new FormData()
-  formData.append('name', payload.name)
-  formData.append('email', payload.email)
-  formData.append('password', payload.password)
-  formData.append('password_confirmation', payload.password_confirm)
+  for (let key in payload) {
+    if (payload[key] && payload[key].trim()) formData.append(key, payload[key].trim())
+  }
 
   // Send data to Pinia Store ...
   const {data, pending, error, refresh} = await authStore.register(formData) // call to register action in the auth store ...

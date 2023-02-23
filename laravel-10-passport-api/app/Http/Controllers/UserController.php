@@ -58,13 +58,13 @@ class UserController extends Controller
                 if ((bool)Hash::check($currentPassword, $user->password)) {
                     $user->password = Hash::make($data['password']);
                 } else {
-                    throw ValidationException::withMessages([
-                        'current_password' => ['Incorrect credentials.'],
-                    ]);
+                    throw ValidationException::withMessages(['current_password' => ['Incorrect credentials.'],]);
                 }
             }
             $user->name = $data['name'];
             $user->email = $data['email'];
+            $user->phone = $data['phone'];
+            $user->photo = $this->uploadPhoto($data['avatar']);
             $user->save();
             return (new UserResource($user))->response();
         }
