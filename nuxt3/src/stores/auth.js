@@ -6,7 +6,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     isLoggedIn: !!accessToken(), // If token present loggedIn true ... Else Middleware doesnt work on page reload
     token: accessToken() || null, // Get Token Form Cookie or set it to null
-    user: null
+    user: {}
   }),
   getters: {},
   actions: {
@@ -47,7 +47,7 @@ export const useAuthStore = defineStore('auth', {
     clearAuth() {
       if (process.server) return
       this.token = null;
-      this.user = null;
+      this.user = {};
       this.isLoggedIn = false
 
       accessToken('') // Clearing the Cookie ...

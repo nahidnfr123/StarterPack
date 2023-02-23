@@ -10,10 +10,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function uploadPhoto($request, $paremente): ?string
+    public function uploadPhoto($request, $parameter): ?string
     {
-        if ($request->hasFile($paremente)) {
-            $file = $request->file($paremente);
+        if ($request->hasFile($parameter)) {
+            $file = $request->file($parameter);
             $file_name = 'Profile-' . time() . '.' . $file->getClientOriginalExtension();
             $path = '/images/user/';
             $file->move(public_path($path), $file_name);

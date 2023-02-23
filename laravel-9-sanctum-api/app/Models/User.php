@@ -46,13 +46,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getAvatarAttribute($photo): ?string
+    {
+        return $photo ? url($photo) : null;
+    }
+
     /**
      * Send the password reset notification.
      *
-     * @param  string  $data
+     * @param string $data
      * @return void
      */
-    public function sendPasswordResetNotification($data)
+    public function sendPasswordResetNotification($data): void
     {
         $this->notify(new PasswordResetNotification($data));
     }

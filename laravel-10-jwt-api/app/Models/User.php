@@ -66,7 +66,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function sendPasswordResetNotification($data)
+
+    public function getAvatarAttribute($photo): ?string
+    {
+        return $photo ? url($photo) : null;
+    }
+
+    public function sendPasswordResetNotification($data): void
     {
         $this->notify(new PasswordResetNotification($data));
     }
