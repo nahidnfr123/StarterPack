@@ -1,6 +1,7 @@
 <template>
   <NuxtLayout>
-    <NuxtPage/>
+    <!-- Show Page once User fetch request is complete -->
+    <NuxtPage v-if="!isLoading"/>
   </NuxtLayout>
 </template>
 
@@ -8,5 +9,11 @@
 import {useAuthStore} from "~/stores/auth";
 
 const authStore = useAuthStore()
-authStore.getUser()
+const isLoading = ref(true)
+const init = async () => {
+  await authStore.getUser()
+  isLoading.value = false
+}
+
+init()
 </script>
