@@ -139,17 +139,21 @@ function Profile() {
                       helperText={<ErrorMessage name='phone'/>}
                   />
 
-                  <input
-                      id="file"
-                      name="avatar"
-                      type="file"
-                      onChange={(event) => {
-                        const files = event.target.files;
-                        let myFiles = Array.from(files);
-                        setFieldValue("avatar", myFiles);
-                      }}
-                  />
-                  <ErrorMessage name='avatar'/>
+                  <div>
+                    <div>
+                      <input
+                          id="file"
+                          name="avatar"
+                          type="file"
+                          onChange={(event) => {
+                            const files = event.target.files;
+                            let myFiles = Array.from(files);
+                            setFieldValue("avatar", myFiles);
+                          }}
+                      />
+                    </div>
+                    <ErrorMessage name='avatar'/>
+                  </div>
                   {/*<Field*/}
                   {/*    error={!!errors.avatar && touched.avatar}*/}
                   {/*    margin="normal"*/}
