@@ -31,11 +31,11 @@ export const useAuthStore = defineStore('auth', {
     async getUser() {
       if (!accessToken()) return {}
       const {data, pending, refresh, error} = await $api.get('user') // Get the user data form api ...
-      if (!error?.value) {
+      if (error?.value) {
+        this.clearAuth() // Clear Auth Data if there is error fetching User data
+      } else {
         this.user = data?.value || {} // set the user data to store ...
         this.isLoggedIn = !!(this.token && this.user && this.user.id) // set the isLoggedIn State to true if user and token is available ...
-      } else {
-        this.clearAuth()
       }
       // if (accessToken()) console.log(accessToken())
       return {data: data?.value, pending, error: error?.value, refresh}
