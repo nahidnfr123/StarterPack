@@ -62,7 +62,7 @@ import {useAuthStore} from "~/stores/auth";
 const authStore = useAuthStore()
 
 const links = [
-  {to: '/user', label: 'Profile', icon: 'mdi-light:account'},
+  {to: '/profile', label: 'Profile', icon: 'mdi-light:account'},
 ]
 
 </script>
