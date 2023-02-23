@@ -15,15 +15,17 @@
         >
           <FormKit
               type="text"
+              label="Full Name"
               name="name"
               placeholder="Full Name"
               validation="required|matches:/[a-zA-Z]/"
               :validation-messages="{ matches: 'Name must not include a number.' }"
-              help="Your full name."
+              help=""
               :model-value="user.name"
           />
           <FormKit
               type="text"
+              label="Email"
               name="email"
               placeholder="Email Address"
               validation="required|email"
@@ -32,10 +34,18 @@
           />
           <FormKit
               type="text"
+              label="Phone"
               name="phone"
               placeholder="Phone"
               validation="length:8,15|matches:/[0-9]/"
               :model-value="user.phone"
+              help=""
+          />
+          <FormKit
+              type="file"
+              label="Avatar"
+              name="avatar"
+              accept=".jpg,.png,.jpeg,.gif"
               help=""
           />
 
@@ -114,7 +124,9 @@ import $api from "~/composables/useRequest";
 definePageMeta({
   middleware: ["require-auth"]
 })
-const {user} = useAuthStore()
+
+const authStore = useAuthStore()
+const {user} = authStore
 const isLoading = ref(false)
 
 // Handel Registration Form Submit ...
@@ -126,9 +138,18 @@ const submitHandler = async (payload, node) => {
   // Prepare data for Upload ..
   const formData = new FormData()
   formData.append('_method', 'PUT')
-  for (let key in payload) {
-    if (payload[key] && payload[key].trim()) formData.append(key, payload[key].trim())
-  }
+  // for (let key in payload) {
+  //   if (payload[key] && payload[key].trim()) formData.append(key, payload[key].trim())
+  //   formData.append('avatar', payload.avatar.file)
+  // }
+  // console.log(payload.avatar)
+  formData.append('name', payload.name || '')
+  formData.append('email', payload.email || '')
+  formData.append('phone', payload.phone || '')
+  formData.append('avatar', payload.avatar[0]?.file || '')
+  formData.append('current_password', payload.current_password || '')
+  formData.append('password', payload.password || '')
+  formData.append('password_confirmation', payload.password_confirm || '')
 
   // Send data to Pinia Store ...
   const {data, pending, error, refresh} = await $api.post('user', formData) // call to register action in the auth store ...
@@ -136,6 +157,7 @@ const submitHandler = async (payload, node) => {
   if (error.value) {
     throwFormError(error.value, node) // Show Server side errors in form ...
   } else {
+    if (data?.value?.data) authStore.user = data?.value?.data // Update the User in state ...
     node.reset()
     redirectTo('/profile') /// Redirect to ?next or to given path ...
   }

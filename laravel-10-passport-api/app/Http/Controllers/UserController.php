@@ -61,10 +61,13 @@ class UserController extends Controller
                     throw ValidationException::withMessages(['current_password' => ['Incorrect credentials.'],]);
                 }
             }
+            $avatar = $this->uploadPhoto($request, 'avatar');
+            if ($avatar) {
+                $user->avatar = $avatar;
+            }
             $user->name = $data['name'];
             $user->email = $data['email'];
             $user->phone = $data['phone'];
-            $user->photo = $this->uploadPhoto($data['avatar']);
             $user->save();
             return (new UserResource($user))->response();
         }

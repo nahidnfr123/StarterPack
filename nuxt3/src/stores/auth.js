@@ -52,6 +52,9 @@ export const useAuthStore = defineStore('auth', {
       this.isLoggedIn = false
 
       accessToken('') // Clearing the Cookie ...
+
+      const router = useRouter()
+      router.push('/')
     }
   }
 })
