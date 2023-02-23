@@ -37,7 +37,7 @@
               label="Phone"
               name="phone"
               placeholder="Phone"
-              validation="length:8,15|matches:/[0-9]/"
+              validation="starts_with:0|length:8,15|matches:/[0-9]/|"
               :model-value="user.phone"
               help=""
           />
@@ -59,7 +59,7 @@
           <FormKit
               type="password"
               name="current_password"
-              validation="notrequired|?length:6"
+              validation="?length:6"
               :validation-messages="{
               matches: 'Please include at least one symbol',
               length: 'Try to make your password longer!',
@@ -67,29 +67,25 @@
               placeholder="Current Password"
               help=""
           />
-          <div class="flex gap-2">
-            <div class="grow">
-              <FormKit
-                  type="password"
-                  name="password"
-                  validation="notrequired|?length:6"
-                  :validation-messages="{
+          <div class="grid grid-cols-2 gap-4">
+            <FormKit
+                type="password"
+                name="password"
+                :validation="value.current_password ? 'required|?length:6':''"
+                :validation-messages="{
               matches: 'Please include at least one symbol',
               length: 'Try to make your password longer!',
             }"
-                  placeholder="Password"
-                  help="At-least 6 characters."
-              />
-            </div>
-            <div class="grow">
-              <FormKit
-                  type="password"
-                  name="password_confirm"
-                  placeholder="Confirm password"
-                  validation="notrequired|confirm"
-                  help=""
-              />
-            </div>
+                placeholder="Password"
+                help="At-least 6 characters."
+            />
+            <FormKit
+                type="password"
+                name="password_confirm"
+                placeholder="Confirm password"
+                :validation="value.current_password ? 'required|?confirm':''"
+                help=""
+            />
           </div>
 
           <div class="mt-6">
