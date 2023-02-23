@@ -47,6 +47,9 @@ export const useAuthStore = defineStore('auth', {
       const options = {showSuccess: true, showError: false, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
       await $api.post('logout', {}, options)
       this.clearAuth()
+
+      const router = useRouter()
+      router.push('/')
     },
     clearAuth() {
       this.token = null
@@ -55,9 +58,6 @@ export const useAuthStore = defineStore('auth', {
 
       if (process.server) return
       accessToken('') // Clearing the Cookie ...
-
-      const router = useRouter()
-      router.push('/')
     }
   }
 })
