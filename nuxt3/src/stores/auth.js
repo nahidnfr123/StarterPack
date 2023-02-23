@@ -29,24 +29,29 @@ export const useAuthStore = defineStore('auth', {
       accessToken(token) // Set The Token ...
     },
     async getUser() {
+      if (!accessToken()) return {}
       const {data, pending, refresh, error} = await $api.get('user') // Get the user data form api ...
-      if (error?.value && error?.value?.status == 403) {
-        // If Un authenticated ... which means token not matching ... do nothing ...
-        await this.logout()
-      } else {
+      if (!error?.value) {
         this.user = data?.value || {} // set the user data to store ...
         this.isLoggedIn = !!(this.token && this.user && this.user.id) // set the isLoggedIn State to true if user and token is available ...
+      } else {
+        this.clearAuth()
       }
+      // if (accessToken()) console.log(accessToken())
       return {data: data?.value, pending, error: error?.value, refresh}
     },
     async logout() {
-      const options = {showSuccess: true, showError: true, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
+      const options = {showSuccess: true, showError: false, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
       await $api.post('logout', {}, options)
-      this.token = '';
-      this.user = '';
+      this.clearAuth()
+    },
+    clearAuth() {
+      if (process.server) return
+      this.token = null;
+      this.user = null;
       this.isLoggedIn = false
 
-      accessToken('', true) // Clearing the Cookie ...
-    },
+      accessToken('') // Clearing the Cookie ...
+    }
   }
 })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Menu as="div" class="relative inline-block text-left">
-      <div>
+      <div v-if="authStore.user">
         <MenuButton
             class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white duration-200 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
