@@ -25,7 +25,7 @@
 
           <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
             <div v-if="authStore.isLoggedIn">
-              <UserMenuDropdown/>
+              <CommonUserMenuDropdown/>
             </div>
             <div v-else>
               <NuxtLink v-if="!hideLoginButton" to="/auth/login" class="text-sm font-semibold leading-6 text-gray-900 px-4 py-3 rounded-xl hover:bg-gray-100 duration-500">
@@ -68,7 +68,7 @@
           </div>
           <div class="space-y-6 py-6 px-5">
             <div v-if="authStore.isLoggedIn">
-              <UserMenuDropdown/>
+              <CommonUserMenuDropdown/>
             </div>
             <div v-else>
               <NuxtLink v-if="!hideLoginButton" to="/auth/login">
@@ -88,7 +88,6 @@ import Logo from "~/components/common/Logo.vue";
 import Container from "~/components/common/Container.vue";
 import PrimaryButton from "~/components/common/Buttons/PrimaryButton.vue";
 import {useAuthStore} from "~/stores/auth";
-import UserMenuDropdown from "~/components/common/UserMenuDropdown.vue";
 
 defineProps({
   hideLoginButton: {type: Boolean, default: false}
