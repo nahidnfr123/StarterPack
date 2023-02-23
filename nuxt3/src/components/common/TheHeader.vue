@@ -1,5 +1,5 @@
 <template>
-  <Popover class="relative bg-white z-50">
+  <Popover class="relative bg-white bg-opacity-80 z-50">
     <!-- Web View Navigation Bar -->
     <div class="shadow-[0_5px_10px_#6500AC15] px-6">
       <Container>
@@ -7,7 +7,7 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <NuxtLink to="/">
               <Logo class-name="h-8 w-auto sm:h-10"/>
-              <span class="sr-only">P2A</span>
+              <span class="sr-only">Nuxt</span>
             </NuxtLink>
           </div>
           <div class="-my-2 -mr-2 md:hidden">
@@ -28,8 +28,9 @@
               <UserMenuDropdown/>
             </div>
             <div v-else>
-              <NuxtLink to="/auth/login">
-                <PrimaryButton text="Login" class-name="rounded-full"/>
+              <NuxtLink v-if="!hideLoginButton" to="/auth/login" class="text-sm font-semibold leading-6 text-gray-900 px-4 py-3 rounded-xl hover:bg-gray-100 duration-500">
+                Login <span aria-hidden="true">→</span>
+                <!--                <PrimaryButton text="Login" class-name="rounded-full"/>-->
               </NuxtLink>
             </div>
           </div>
@@ -70,7 +71,7 @@
               <UserMenuDropdown/>
             </div>
             <div v-else>
-              <NuxtLink to="/auth/login">
+              <NuxtLink v-if="!hideLoginButton" to="/auth/login">
                 <PrimaryButton text="Login" class-name="w-full rounded-lg"/>
               </NuxtLink>
             </div>
@@ -88,6 +89,10 @@ import Container from "~/components/common/Container.vue";
 import PrimaryButton from "~/components/common/Buttons/PrimaryButton.vue";
 import {useAuthStore} from "~/stores/auth";
 import UserMenuDropdown from "~/components/common/UserMenuDropdown.vue";
+
+defineProps({
+  hideLoginButton: {type: Boolean, default: false}
+})
 
 const authStore = useAuthStore()
 const navigationLinks = [
