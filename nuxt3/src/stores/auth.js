@@ -6,9 +6,13 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     isLoggedIn: !!accessToken(), // If token present loggedIn true ... Else Middleware doesnt work on page reload
     token: accessToken() || null, // Get Token Form Cookie or set it to null
-    user: {}
+    user: null
   }),
-  getters: {},
+  getters: {
+    isAuthenticated: (state) => {
+      return !!(state.token && (state.user && state.user.id))
+    },
+  },
   actions: {
     async register(payload) {
       const options = {showSuccess: true, showError: true, successMessage: 'Registered Successfully!'}
@@ -34,7 +38,7 @@ export const useAuthStore = defineStore('auth', {
       if (error?.value) {
         this.clearAuth() // Clear Auth Data if there is error fetching User data
       } else {
-        this.user = data?.value || {} // set the user data to store ...
+        this.user = data?.value || null // set the user data to store ...
         this.isLoggedIn = !!(this.token && this.user && this.user.id) // set the isLoggedIn State to true if user and token is available ...
       }
       return {data: data?.value, pending, error: error?.value, refresh}
@@ -45,11 +49,11 @@ export const useAuthStore = defineStore('auth', {
       this.clearAuth()
     },
     clearAuth() {
-      if (process.server) return
-      this.token = null;
-      this.user = {};
+      this.token = null
+      this.user = null
       this.isLoggedIn = false
 
+      if (process.server) return
       accessToken('') // Clearing the Cookie ...
 
       const router = useRouter()

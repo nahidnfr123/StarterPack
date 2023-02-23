@@ -26,7 +26,7 @@
           </div>
           <div class="text-center">
             <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Nuxt3 Starter Project</h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Nuxt3 + FormKit + Pinia + Laravel9+10 starter project with user authentication, email verification, password reset.</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Nuxt3 + FormKit + Pinia + Laravel9+10 starter project with user authentication, email verification, password reset and profile update.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a
                   href="https://github.com/nahidnfr123/StarterPack"

@@ -70,7 +70,7 @@ const _email = route.query.email
 const _token = route.query.token
 
 if (!_email || !_token) useRouter().push('/auth/verify-email')
-// Handel Registration Form Submit ...
+
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
   node.clearErrors() // clear Previous form errors ...

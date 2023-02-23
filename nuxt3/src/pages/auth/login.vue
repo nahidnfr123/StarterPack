@@ -64,8 +64,6 @@ definePageMeta({
 const authStore = useAuthStore()
 const isLoading = ref(false)
 
-
-// Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
   node.clearErrors() // clear Previous form errors ...
