@@ -26,6 +26,7 @@ export function ResponsiveAppBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const auth = useSelector((state) => state.auth)
+  const user = auth.user
   if (auth.isLoggedIn) settings[0].title = auth?.user?.name || ''
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,13 +40,13 @@ export function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = (link) => {
-    if (link) navigate(link)
     setAnchorElNav(null);
+    if (link) navigate(link)
   };
 
   const handleCloseUserMenu = (link) => {
-    if (link) navigate(link)
     setAnchorElUser(null);
+    if (link) navigate(link)
   };
 
   const LogOut = () => {
@@ -148,7 +149,9 @@ export function ResponsiveAppBar() {
                   <>
                     <Tooltip title="Open settings">
                       <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                        {user?.avatar ?
+                            <Avatar alt="Remy Sharp" src={user?.avatar}/> :
+                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>}
                       </IconButton>
                     </Tooltip>
                     <Menu

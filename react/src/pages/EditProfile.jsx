@@ -40,21 +40,30 @@ function Profile() {
   });
 
   const initialValues = {
-    name: user?.name,
-    email: user?.email,
+    name: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    avatar: '',
     current_password: '',
     password: '',
     password_confirmation: '',
   }
 
   const handleSubmit = async (values, props) => {
-    // console.log(props)
     // event.preventDefault();
+    console.log(values.avatar[0])
     const formData = new FormData();
     formData.append('_method', 'PUT')
-    for (let key in values) {
-      if (values[key] && values[key].trim()) formData.append(key, values[key].trim())
-    }
+    // for (let key in values) {
+    //   if (values[key] && values[key].trim()) formData.append(key, values[key].trim())
+    // }
+    formData.append('name', values.name || '')
+    formData.append('email', values.email || '')
+    formData.append('phone', values.phone || '')
+    formData.append('avatar', values.avatar[0] || '')
+    formData.append('current_password', values.current_password || '')
+    formData.append('password', values.password || '')
+    formData.append('password_confirmation', values.password_confirm || '')
 
     const request = await $api.post('user', formData)
     if (request.message === 'success') {
@@ -90,6 +99,7 @@ function Profile() {
                 handleBlur,
                 handleSubmit,
                 isSubmitting,
+                setFieldValue
                 /* and other goodies */
               }) => (
                 <Form>
@@ -116,6 +126,40 @@ function Profile() {
                       type="email"
                       helperText={<ErrorMessage name='email'/>}
                   />
+                  <Field
+                      as={TextField}
+                      error={!!errors.phone && touched.phone}
+                      margin="normal"
+                      fullWidth
+                      id="phone"
+                      label="Phone"
+                      name="phone"
+                      autoComplete="phone"
+                      type="number"
+                      helperText={<ErrorMessage name='phone'/>}
+                  />
+
+                  <input
+                      id="file"
+                      name="avatar"
+                      type="file"
+                      onChange={(event) => {
+                        const files = event.target.files;
+                        let myFiles = Array.from(files);
+                        setFieldValue("avatar", myFiles);
+                      }}
+                  />
+                  <ErrorMessage name='avatar'/>
+                  {/*<Field*/}
+                  {/*    error={!!errors.avatar && touched.avatar}*/}
+                  {/*    margin="normal"*/}
+                  {/*    fullWidth*/}
+                  {/*    id="avatar"*/}
+                  {/*    label="Avatar"*/}
+                  {/*    name="avatar"*/}
+                  {/*    type="file"*/}
+                  {/*    helperText={<ErrorMessage name='avatar'/>}*/}
+                  {/*/>*/}
 
                   <Divider>
                     <small>Credential</small>
