@@ -37,7 +37,6 @@ export const useAuthStore = defineStore('auth', {
         this.user = data?.value || {} // set the user data to store ...
         this.isLoggedIn = !!(this.token && this.user && this.user.id) // set the isLoggedIn State to true if user and token is available ...
       }
-      // if (accessToken()) console.log(accessToken())
       return {data: data?.value, pending, error: error?.value, refresh}
     },
     async logout() {
