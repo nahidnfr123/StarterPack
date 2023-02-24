@@ -32,7 +32,7 @@ const DefaultLayout = () => {
       <>
         <ThemeProvider theme={theme}>
           <AppBar/>
-          <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="lg">
             {/*{Object.entries(auth).map(([key, value], i) => (
             <div className="item" key={key}>
               {key}: {value}

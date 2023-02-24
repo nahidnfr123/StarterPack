@@ -30,7 +30,7 @@ const AuthLayout = () => {
   return (
       <>
         <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
+          <Container component="main" maxWidth="lg">
             <Outlet/>
           </Container>
         </ThemeProvider>
