@@ -19,7 +19,7 @@
 
           <PopoverGroup as="nav" class="hidden space-x-10 md:flex">
             <template v-for="(nv, n) in navigationLinks" :key="n">
-              <NuxtLink :to="nv.link" class="text-base text-lg font-medium text-black hover:text-gray-900">{{ nv.title }}</NuxtLink>
+              <NuxtLink :to="nv.link" exact-active-class="text-indigo-600" class="text-base text-lg font-medium text-black hover:text-gray-900 duration-300">{{ nv.title }}</NuxtLink>
             </template>
           </PopoverGroup>
 
