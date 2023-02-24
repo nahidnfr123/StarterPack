@@ -50,6 +50,8 @@ function ForgetPassword() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              maxWidth: 400,
+              margin: 'auto'
             }}
         >
           <Typography component="h1" variant="h5">Verify Email</Typography>

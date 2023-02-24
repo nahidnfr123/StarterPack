@@ -84,6 +84,8 @@ function ResetPassword() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              maxWidth: 400,
+              margin: 'auto'
             }}
         >
           <Typography component="h1" variant="h5">Reset Password</Typography>
