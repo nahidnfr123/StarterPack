@@ -1,6 +1,6 @@
 const config = {
   appName: '',
-  apiBaseUrl: process.env.API_BASE_URL
+  apiBaseUrl: ''
 }
 
 export default config

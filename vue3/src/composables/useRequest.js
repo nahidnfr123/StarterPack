@@ -1,5 +1,5 @@
 import accessToken from "@/composables/useToken";
-import config from "@/config/app";
+import config from "@/config/appConfig";
 
 
 const $api = {
