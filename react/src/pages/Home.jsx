@@ -26,9 +26,7 @@ export default function Home() {
             React + Redux + Laravel Starter
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" paragraph>
-            Something short and leading about the collection below—its contents,
-            the creator, etc. Make it short and sweet, but not too short so folks
-            don&apos;t simply skip over it entirely.
+            React + Formik + MUI + Redux + Laravel9+10 starter project with user authentication, email verification, password reset and profile update.
           </Typography>
           <Stack
               sx={{pt: 4}}
@@ -36,8 +34,6 @@ export default function Home() {
               spacing={2}
               justifyContent="center"
           >
-            <Button variant="contained">Main call to action</Button>
-            <Button variant="outlined">Secondary action</Button>
           </Stack>
         </Box>
       </main>
