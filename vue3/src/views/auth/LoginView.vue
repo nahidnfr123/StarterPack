@@ -43,22 +43,19 @@
       </div>
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
-    <NuxtLink to="/auth/verify-email" class="text-right underline text-primary-color">Forget Password</NuxtLink>
+    <RouterLink to="/auth/verify-email" class="text-right underline text-primary-color">Forget Password</RouterLink>
     <p class="mt-4 text-center">Don't have a account?
-      <NuxtLink to="/auth/register" class="text-center underline text-primary-color">Register</NuxtLink>
+      <RouterLink to="/auth/register" class="text-center underline text-primary-color">Register</RouterLink>
     </p>
   </AuthFormContainer>
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth";
-import AuthButton from "~/components/common/Buttons/AuthButton.vue";
-import {redirectTo, throwFormError} from "~/composables/useCommon";
-
-definePageMeta({
-  layout: 'auth',
-  middleware: ["only-guest"]
-})
+import {useAuthStore} from "@/stores/auth";
+import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import {redirectTo, throwFormError} from "@/composables/useCommon";
+import {ref} from "vue";
+import AuthFormContainer from "@/components/AuthFormContainer.vue";
 
 const authStore = useAuthStore()
 const isLoading = ref(false)

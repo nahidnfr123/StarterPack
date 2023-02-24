@@ -1,5 +1,5 @@
 <template>
-  <AuthFormContainer title="Login">
+  <AuthFormContainer title="Verify Email">
     <FormKit
         type="form"
         id="formkitForm"
@@ -17,15 +17,6 @@
           validation="required|email"
           help=""
       />
-      <FormKit
-          type="password"
-          name="password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
-          :validation-messages="{matches: 'Please include at least one symbol'}"
-          placeholder="Password"
-          help=""
-      />
-
       <div class="mt-6">
         <FormKit
             type="submit"
@@ -37,30 +28,32 @@
               class-name="w-full py-4 rounded-lg"
               :disabled="!valid || isLoading"
               :isLoading="!!isLoading"
-              text="Login"
+              text="Send Password Reset Link"
           />
         </FormKit>
       </div>
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
-    <NuxtLink to="/auth/verify-email" class="text-right underline text-primary-color">Forget Password</NuxtLink>
-    <p class="mt-4 text-center">Don't have a account?
-      <NuxtLink to="/auth/register" class="text-center underline text-primary-color">Register</NuxtLink>
+
+    <Alert v-if="successMessage" type="success">
+      {{ successMessage }}
+    </Alert>
+
+    <p class="mt-4 text-center">Go Back to
+      <RouterLink to="/auth/login" class="text-center underline text-primary-color">Login</RouterLink>
     </p>
   </AuthFormContainer>
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth";
-import AuthButton from "~/components/common/Buttons/AuthButton.vue";
-import {redirectTo, throwFormError} from "~/composables/useCommon";
+import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import $api from "@/composables/useRequest";
+import {throwFormError} from "@/composables/useCommon";
+import Alert from "@/components/common/Alert.vue";
+import {ref} from "vue";
+import AuthFormContainer from "@/components/AuthFormContainer.vue";
 
-definePageMeta({
-  layout: 'auth',
-  middleware: ["only-guest"]
-})
-
-const authStore = useAuthStore()
+const successMessage = ref('')
 const isLoading = ref(false)
 
 const submitHandler = async (payload, node) => {
@@ -71,15 +64,15 @@ const submitHandler = async (payload, node) => {
   // Prepare data for Upload ..
   const formData = new FormData()
   formData.append('email', payload.email)
-  formData.append('password', payload.password)
+  formData.append('password_reset_link', window.location.host + '/auth/reset-password')
 
-  const {data, pending, error, refresh} = await authStore.login(formData) // call to login action in the auth store ...
+  const options = {showSuccess: true, showError: true, successMessage: 'An Email with password reset link has been sent to your email address!'}
+  const {data, pending, error, refresh} = await $api.post('send-password-reset-link', formData, options)
 
   if (error.value) {
     throwFormError(error.value, node) // Show Server side errors in form ...
   } else {
-    node.reset()
-    redirectTo('/profile') /// Redirect to ?next or to given path ...
+    successMessage.value = data.value?.status || data.value?.email || ''
   }
 
   isLoading.value = false

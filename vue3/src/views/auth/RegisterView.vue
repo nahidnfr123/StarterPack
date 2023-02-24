@@ -1,5 +1,5 @@
 <template>
-  <AuthFormContainer title="Login">
+  <AuthFormContainer title="Register">
     <FormKit
         type="form"
         id="formkitForm"
@@ -12,6 +12,14 @@
     >
       <FormKit
           type="text"
+          name="name"
+          placeholder="Full Name"
+          validation="required|matches:/[a-zA-Z]/"
+          :validation-messages="{ matches: 'Name must not include a number.' }"
+          help="Your full name."
+      />
+      <FormKit
+          type="text"
           name="email"
           placeholder="Email Address"
           validation="required|email"
@@ -20,9 +28,19 @@
       <FormKit
           type="password"
           name="password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
-          :validation-messages="{matches: 'Please include at least one symbol'}"
+          validation="required|?length:6"
+          :validation-messages="{
+              matches: 'Please include at least one symbol',
+              length: 'Try to make your password longer!',
+            }"
           placeholder="Password"
+          help="At-least 6 characters."
+      />
+      <FormKit
+          type="password"
+          name="password_confirm"
+          placeholder="Confirm password"
+          validation="required|confirm"
           help=""
       />
 
@@ -37,32 +55,29 @@
               class-name="w-full py-4 rounded-lg"
               :disabled="!valid || isLoading"
               :isLoading="!!isLoading"
-              text="Login"
+              text="Register"
           />
         </FormKit>
       </div>
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
-    <NuxtLink to="/auth/verify-email" class="text-right underline text-primary-color">Forget Password</NuxtLink>
-    <p class="mt-4 text-center">Don't have a account?
-      <NuxtLink to="/auth/register" class="text-center underline text-primary-color">Register</NuxtLink>
+    <p class="mt-4 text-center">Already have a account?
+      <RouterLink to="/auth/login" class="text-center underline text-primary-color">Login</RouterLink>
     </p>
   </AuthFormContainer>
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth";
-import AuthButton from "~/components/common/Buttons/AuthButton.vue";
-import {redirectTo, throwFormError} from "~/composables/useCommon";
-
-definePageMeta({
-  layout: 'auth',
-  middleware: ["only-guest"]
-})
+import {useAuthStore} from "@/stores/auth";
+import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import {redirectTo, throwFormError} from "@/composables/useCommon";
+import {ref} from "vue";
+import AuthFormContainer from "@/components/AuthFormContainer.vue";
 
 const authStore = useAuthStore()
 const isLoading = ref(false)
 
+// Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
   if (isLoading.value) return
   node.clearErrors() // clear Previous form errors ...
@@ -70,10 +85,13 @@ const submitHandler = async (payload, node) => {
 
   // Prepare data for Upload ..
   const formData = new FormData()
+  formData.append('name', payload.name)
   formData.append('email', payload.email)
   formData.append('password', payload.password)
+  formData.append('password_confirmation', payload.password_confirm)
 
-  const {data, pending, error, refresh} = await authStore.login(formData) // call to login action in the auth store ...
+  // Send data to Pinia Store ...
+  const {data, pending, error, refresh} = await authStore.register(formData) // call to register action in the auth store ...
 
   if (error.value) {
     throwFormError(error.value, node) // Show Server side errors in form ...
