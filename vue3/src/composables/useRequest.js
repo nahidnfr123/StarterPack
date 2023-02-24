@@ -49,13 +49,13 @@ const $api = {
 }
 
 const dispatchSuccess = (message) => {
-  if (process.server) return //
+  if (import.meta.server) return //
   // const {$awn} = useNuxtApp()
   // $awn.success(message) // Toast ...
 }
 
 const dispatchError = (err, errorMessage) => {
-  if (process.server) return
+  if (import.meta.server) return
   let error = err._data
   let message = ''
 

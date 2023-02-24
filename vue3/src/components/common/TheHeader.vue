@@ -7,7 +7,7 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <RouterLink to="/">
               <Logo class-name="h-8 w-auto sm:h-10"/>
-              <span class="sr-only">Nuxt</span>
+              <span class="sr-only">Vue</span>
             </RouterLink>
           </div>
           <div class="-my-2 -mr-2 md:hidden">

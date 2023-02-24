@@ -16,7 +16,8 @@ const layout = computed(() => {
 </script>
 
 <template>
+  <DefaultLayout/>
   <component :is="layout">
-    <RouterView/>
+    <RouterView :layout.sync="layout"/>
   </component>
 </template>

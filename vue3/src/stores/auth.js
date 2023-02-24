@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = null
       this.isLoggedIn = false
 
-      if (process.server) return
+      if (import.meta.server) return
       accessToken('') // Clearing the Cookie ...
     }
   }

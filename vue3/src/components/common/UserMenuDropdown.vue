@@ -23,7 +23,7 @@
         >
           <div class="px-1 py-1">
             <MenuItem v-for="link in links" v-slot="{ active }">
-              <NuxtLink
+              <RouterLink
                   :to="link.to"
                   :class="[
                   active ? 'bg-violet-500 text-white' : 'text-gray-900',
@@ -32,7 +32,7 @@
               >
                 <Icon v-if="link.icon" :name="link.icon" size="26" class="mr-2"/>
                 {{ link.label }}
-              </NuxtLink>
+              </RouterLink>
             </MenuItem>
           </div>
           <div class="px-1 py-1">
