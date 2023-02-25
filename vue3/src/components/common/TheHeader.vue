@@ -13,7 +13,7 @@
           <div class="-my-2 -mr-2 md:hidden">
             <PopoverButton class="inline-flex items-center justify-center rounded-md bg-white p-2 text-primary-color bg-gray-100 hover:bg-gray-200 focus:outline-none">
               <span class="sr-only">Open menu</span>
-              <Icon name="radix-icons:dashboard" class="h-8 w-8"></Icon>
+              <Icon icon="radix-icons:dashboard" class="h-8 w-8"></Icon>
             </PopoverButton>
           </div>
 
@@ -24,7 +24,7 @@
           </PopoverGroup>
 
           <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <div v-if="authStore.isLoggedIn">
+            <div v-if="authStore.isAuthenticated">
               <UserMenuDropdown/>
             </div>
             <div v-else>
@@ -51,7 +51,7 @@
                 <!-- Navigation Close menu -->
                 <PopoverButton class="inline-flex items-center justify-center rounded-md bg-white p-2 text-red-600 bg-gray-100 hover:bg-gray-200 focus:outline-none">
                   <span class="sr-only">Close menu</span>
-                  <Icon name="ion:close-round" class="h-6 w-6"/>
+                  <Icon icon="ion:close-round" class="h-6 w-6"/>
                 </PopoverButton>
               </div>
             </div>
@@ -59,7 +59,7 @@
               <!-- Mobile Navigation links -->
               <nav class="grid gap-y-8">
                 <RouterLink v-for="(nv, v) in navigationLinks" :key="v" :to="nv.link" class="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                  <Icon v-if="nv.icon" :name="nv.icon" class="h-6 w-6 flex-shrink-0 text-indigo-600"></Icon>
+                  <Icon v-if="nv.icon" :icon="nv.icon" class="h-6 w-6 flex-shrink-0 text-indigo-600"></Icon>
                   <!--                  <component v-if="nv.icon" :is="nv.icon" class="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true"/>-->
                   <span class="ml-3 text-base font-medium text-black">{{ nv.title }}</span>
                 </RouterLink>

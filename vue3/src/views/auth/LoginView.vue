@@ -43,7 +43,9 @@
       </div>
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
-    <RouterLink to="/auth/verify-email" class="text-right underline text-primary-color">Forget Password</RouterLink>
+    <div class="flex justify-end">
+      <RouterLink to="/auth/verify-email" class="underline text-primary-color">Forget Password</RouterLink>
+    </div>
     <p class="mt-4 text-center">Don't have a account?
       <RouterLink to="/auth/register" class="text-center underline text-primary-color">Register</RouterLink>
     </p>

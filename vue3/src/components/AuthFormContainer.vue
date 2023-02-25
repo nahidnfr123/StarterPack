@@ -4,9 +4,7 @@
       <Logo class-name="h-14 mb-6 w-auto mx-auto"/>
       <h2 class="text-gray-900 text-xl mb-2 font-medium title-font">{{ title }}</h2>
       <!--        :form-class="isLoading.value ? 'hide' : 'show'"-->
-      <ClientOnly>
-        <slot/>
-      </ClientOnly>
+      <slot/>
     </div>
   </Container>
 </template>

@@ -9,11 +9,11 @@
           <h1 class="text-3xl font-bold pt-8 lg:pt-0">{{ user.name }}</h1>
           <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
           <p v-if="user.email" class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-            <Icon name="carbon:email" class="mt-1 mr-2 text-sky-500"/>
+            <Icon icon="carbon:email" class="mt-1 mr-2 text-sky-500"/>
             {{ user.email }}
           </p>
           <p v-if="user.phone" class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-            <Icon name="carbon:phone" class="mt-1 mr-2 text-sky-500"/>
+            <Icon icon="carbon:phone" class="mt-1 mr-2 text-sky-500"/>
             {{ user.phone }}
           </p>
 

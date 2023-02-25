@@ -7,12 +7,11 @@ const router = createRouter({
       path: '',
       name: 'home',
       component: () => import(/* webpackChunkName: "HomeView" */ '@/views/HomeView.vue'),
-      meta: {layout: 'Default',},
     },
     {
       path: '/auth',
       name: 'Auth',
-      meta: {layout: 'Auth',},
+      meta: {layout: 'auth',},
       children: [
         {
           path: 'login',
@@ -35,7 +34,6 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      meta: {layout: 'Default',},
       children: [
         {
           name: 'Index',
@@ -51,7 +49,6 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'Dashboard',
-      meta: {layout: 'Default',},
       component: () => import(/* webpackChunkName: "DashboardView" */ '../views/DashboardView.vue')
     },
     {
@@ -61,7 +58,6 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/404View.vue'),
-      meta: {layout: 'default',},
     }
   ],
 })

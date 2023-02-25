@@ -8,7 +8,7 @@
       ${className}`"
   >
     <template v-if="loading">
-      <Icon name="svg-spinners:gooey-balls-2" class="mt-1 mr-2"/>
+      <Icon icon="svg-spinners:gooey-balls-2" class="mt-1 mr-2"/>
     </template>
     <template v-else>
       <slot name="icon-start"></slot>

@@ -141,6 +141,13 @@
     "@formkit/utils" "1.0.0-beta.15"
     "@formkit/validation" "1.0.0-beta.15"
 
+"@formkit/icons@^1.0.0-beta.15":
+  version "1.0.0-beta.15"
+  resolved "https://registry.npmjs.org/@formkit/icons/-/icons-1.0.0-beta.15.tgz"
+  integrity sha512-BhnNS8PuGmivmZejisWW0ys9yZVgzspE4edKjb1zNuOoDOxfpZh/rpHgaZH0p5ZY/UMEc2EFtPQf53WtN1/WFg==
+  dependencies:
+    "@formkit/core" "1.0.0-beta.15"
+
 "@formkit/inputs@1.0.0-beta.15":
   version "1.0.0-beta.15"
   resolved "https://registry.npmjs.org/@formkit/inputs/-/inputs-1.0.0-beta.15.tgz"
@@ -204,6 +211,18 @@
   version "1.7.11"
   resolved "https://registry.npmjs.org/@headlessui/vue/-/vue-1.7.11.tgz"
   integrity sha512-VsNqx9Lc1ftOyIazBF9EX5BS4WYwwaFX+1jBWXQakeH1o4xnoZKlBSlvEgmAnFLO9GDVmn7kKVOWfFgQn2aRZA==
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
+
+"@iconify/vue@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@iconify/vue/-/vue-4.1.0.tgz#ce3dc1b34b08fe2a1e34ef9e0c860796a18e76ea"
+  integrity sha512-rBQVxNoSDooqgWkQg2MqkIHkH/huNuvXGqui5wijc1zLnU7TKzbBHW9VGmbnV4asNTmIHmqV4Nvt0M2rZ/9nHA==
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -580,7 +599,7 @@ available-typed-arrays@^1.0.5:
 
 awesome-notifications@^3.1.3:
   version "3.1.3"
-  resolved "https://registry.yarnpkg.com/awesome-notifications/-/awesome-notifications-3.1.3.tgz#d81897ea08cade5266f53e6eb0a749a4a9438d2d"
+  resolved "https://registry.npmjs.org/awesome-notifications/-/awesome-notifications-3.1.3.tgz"
   integrity sha512-bEm+52ePN9IQipu77YN/7Ia7hkSlZjLTra8/Y+vTfZUt+oB5jPA601akBi7uxJ8VghvpmuhwARUBQ2Iae3J8Sg==
 
 balanced-match@^1.0.0:
@@ -1703,7 +1722,7 @@ object.assign@^4.1.4:
 
 oh-vue-icons@^1.0.0-rc3:
   version "1.0.0-rc3"
-  resolved "https://registry.yarnpkg.com/oh-vue-icons/-/oh-vue-icons-1.0.0-rc3.tgz#63be64dd0da11a1b278d612a4f2a25ba692628f6"
+  resolved "https://registry.npmjs.org/oh-vue-icons/-/oh-vue-icons-1.0.0-rc3.tgz"
   integrity sha512-+k2YC6piK7sEZnwbkQF3UokFPMmgqpiLP6f/H0ovQFLl20QA5V4U8EcI6EclD2Lt5NMQ3k6ilLGo8XyXqdVSvg==
   dependencies:
     vue-demi "^0.12.5"
@@ -2397,7 +2416,7 @@ vue-demi@*:
 
 vue-demi@^0.12.5:
   version "0.12.5"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
+  resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.5.tgz"
   integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
 
 vue-router@^4.1.6:

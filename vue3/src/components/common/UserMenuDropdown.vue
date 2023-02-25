@@ -6,7 +6,7 @@
             class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white duration-200 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           {{ authStore.user.name }}
-          <Icon name="mdi-light:chevron-down" size="22" class="ml-2"/>
+          <IoAppsOutline/>
         </MenuButton>
       </div>
 
@@ -30,7 +30,7 @@
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <Icon v-if="link.icon" :name="link.icon" size="26" class="mr-2"/>
+                <Icon v-if="link.icon" :icon="link.icon" size="26" class="mr-2"/>
                 {{ link.label }}
               </RouterLink>
             </MenuItem>
@@ -44,7 +44,7 @@
                 ]"
                   @click="authStore.logout()"
               >
-                <Icon name="mdi-light:logout" size="26" class="mr-2"/>
+                <Icon icon="mdi-light:logout" size="26" class="mr-2"/>
                 Logout
               </button>
             </MenuItem>
@@ -56,6 +56,7 @@
 </template>
 
 <script setup>
+import { IoAppsOutline } from "oh-vue-icons/icons";
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {useAuthStore} from "@/stores/auth";
 

@@ -8,16 +8,12 @@ const route = useRoute();
 
 const layout = computed(() => {
   const layout = route?.meta?.layout;
-  if (layout) {
-    return `${layout}Layout`;
-  }
-  return 'div';
+  return layout ? `${layout}-layout` : 'default-layout';
 });
 </script>
 
 <template>
   <component :is="layout">
-    <RouterView/>
-    <!--    <RouterView :layout.sync="layout"/>-->
+    <RouterView :layout.sync="layout"/>
   </component>
 </template>

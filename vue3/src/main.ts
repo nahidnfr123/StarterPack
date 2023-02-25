@@ -3,18 +3,23 @@ import {createPinia} from 'pinia'
 import {plugin, defaultConfig} from '@formkit/vue'
 import './style.css'
 import './assets/main.css'
+import formKitConfig from './config/formkit.config.js'
 
-import {OhVueIcon, addIcons} from "oh-vue-icons";
-// import { FaFlag, RiZhihuFill } from "oh-vue-icons/icons";
-// addIcons(FaFlag, RiZhihuFill);
+import { Icon } from '@iconify/vue';
 
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+// *** Layouts ...
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 
+
+const app = createApp(App)
 app.use(createPinia())
 app.use(router)
-app.use(plugin, defaultConfig)
-app.component("Icon", OhVueIcon);
+app.use(plugin, defaultConfig(formKitConfig))
+app.component("Icon", Icon);
+app.component("default-layout", DefaultLayout);
+app.component("auth-layout", AuthLayout);
 app.mount('#app')
