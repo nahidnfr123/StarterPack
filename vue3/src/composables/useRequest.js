@@ -6,11 +6,10 @@ const $api = {
   async get(url, __ = {showSuccess: false, showError: false, successMessage: 'Success', errorMessage: ''}) { /// Performs GET request ...
     let data, error = null
 
-    await fetch(url, {
-      baseURL: config.apiBaseUrl, // Set the api base url from .env ...
+    await fetch(config.apiBaseUrl + url, {
       headers: {
-        'authorization': `Bearer ${accessToken()}`,
         'accept': 'application/json',
+        'authorization': `Bearer ${accessToken()}`,
       },
     }).then((response) => response.json())
         .then(response => {
@@ -26,15 +25,14 @@ const $api = {
   async post(url, payload, __ = {showSuccess: true, showError: true, successMessage: 'Success', errorMessage: ''}) { /// Performs POST and PUT request ...
     let data, error = null
 
-    await fetch(url, {
-      baseURL: config.apiBaseUrl, // Set the api base url from .env ...
-      body: payload,
-      method: 'POST',
+    await fetch(config.apiBaseUrl + url, {
+      method: 'post',
       headers: {
-        'authorization': `Bearer ${accessToken()}`,
-        'content-type': 'multipart/form-data',
-        'accept': 'application/json',
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${accessToken()}`,
       },
+      body: payload,
     }).then((response) => response.json())
         .then(response => {
           if (response.status === 200 && __.showSuccess) dispatchSuccess(__.successMessage || 'Success!') // Success Message ...
