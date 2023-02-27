@@ -59,7 +59,7 @@ const $api = {
       if (!err) return
 
       if (notify.showError) this.dispatchError(err)
-      return {message: 'error', data: err?.response?.data}
+      return {message: 'error', data: err?.response}
     })
   },
   async delete(url, notify = notifyPayload) {
