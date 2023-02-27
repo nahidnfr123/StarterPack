@@ -47,7 +47,7 @@
       <RouterLink to="/auth/verify-email" class="underline text-primary-color">Forget Password</RouterLink>
     </div>
     <p class="mt-4 text-center">Don't have a account?
-      <RouterLink to @click="redirectTo('/auth/register')" class="text-center underline text-primary-color">Register</RouterLink>
+      <RouterLink to="/auth/register" class="text-center underline text-primary-color">Register</RouterLink>
     </p>
   </AuthFormContainer>
 </template>
@@ -55,11 +55,14 @@
 <script setup>
 import {useAuthStore} from "@/stores/auth";
 import AuthButton from "@/components/common/Buttons/AuthButton.vue";
-import {throwFormError} from "@/composables/useCommon";
+import {redirectTo, throwFormError} from "@/composables/useCommon";
 import {ref} from "vue";
 import AuthFormContainer from "@/components/AuthFormContainer.vue";
 import {useRoute, useRouter} from "vue-router";
 
+
+const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 const isLoading = ref(false)
 
@@ -79,18 +82,9 @@ const submitHandler = async (payload, node) => {
     throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
     node.reset()
-    redirectTo('/profile') /// Redirect to ?next or to given path ...
+    redirectTo(router, route, '/profile') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false
-}
-
-const redirectTo = (path) => {
-  const router = useRouter()
-  const route = useRoute()
-  const $next = route.query.next
-  let routePath = path
-  if ($next) routePath = $next
-  router.push({path: routePath})
 }
 </script>

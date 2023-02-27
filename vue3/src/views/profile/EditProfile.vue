@@ -115,7 +115,10 @@ import {redirectTo, throwFormError} from "@/composables/useCommon";
 import Container from "@/components/common/Container.vue";
 import $api from "@/composables/useRequest";
 import {ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
 
+const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 const {user} = authStore
 const isLoading = ref(false)
@@ -146,7 +149,7 @@ const submitHandler = async (payload, node) => {
   } else {
     if (response?.data) authStore.user = response?.data // Update the User in state ...
     node.reset()
-    redirectTo('/profile') /// Redirect to ?next or to given path ...
+    redirectTo(router, route, '/profile') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false

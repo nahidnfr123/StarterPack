@@ -52,17 +52,17 @@
 </template>
 
 <script setup>
-import {useAuthStore} from "@/stores/auth";
 import AuthButton from "@/components/common/Buttons/AuthButton.vue";
-import {throwFormError} from "@/composables/useCommon";
+import {redirectTo, throwFormError} from "@/composables/useCommon";
 import $api from "@/composables/useRequest";
 import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
 import AuthFormContainer from "@/components/AuthFormContainer.vue";
 
-const authStore = useAuthStore()
-const isLoading = ref(false)
+
+const router = useRouter()
 const route = useRoute()
+const isLoading = ref(false)
 
 const _email = route.query.email
 const _token = route.query.token
@@ -88,18 +88,9 @@ const submitHandler = async (payload, node) => {
     throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
     node.reset()
-    redirectTo('/auth/login') /// Redirect to ?next or to given path ...
+    redirectTo(router, route, '/auth/login') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false
-}
-
-const redirectTo = (path) => {
-  const router = useRouter()
-  const route = useRoute()
-  const $next = route.query.next
-  let routePath = path
-  if ($next) routePath = $next
-  router.push({path: routePath})
 }
 </script>

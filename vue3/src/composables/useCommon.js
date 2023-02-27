@@ -1,8 +1,4 @@
-import {useRoute, useRouter} from "vue-router";
-
-export const redirectTo = (path) => {
-  const router = useRouter()
-  const route = useRoute()
+export const redirectTo = (router, route, path) => {
   const $next = route.query.next
   let routePath = path
   if ($next) routePath = $next

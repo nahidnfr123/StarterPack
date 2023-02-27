@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-import {useAuthStore} from "~/stores/auth";
 import AuthButton from "~/components/common/Buttons/AuthButton.vue";
 import {redirectTo, throwFormError} from "~/composables/useCommon";
 import $api from "~/composables/useRequest";
@@ -62,7 +61,6 @@ definePageMeta({
   middleware: ["only-guest"]
 })
 
-const authStore = useAuthStore()
 const isLoading = ref(false)
 const route = useRoute()
 

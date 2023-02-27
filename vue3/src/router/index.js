@@ -39,7 +39,7 @@ const router = createRouter({
       children: [
         {
           name: 'Index',
-          path: '/',
+          path: '',
           component: () => import(/* webpackChunkName: "ProfileView" */ '@/views/profile/ProfileView.vue'),
         },
         {
@@ -67,11 +67,11 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const authStore = useAuthStore()
-  if (to.meta.onlyGuest && authStore.isAuthenticated) { // Guest only ...
+  if (to.meta.onlyGuest && authStore.isLoggedIn) { // Guest only ...
     if (from) return {path: from.path}
     return {path: '/'}
   }
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) { // Require Authenticated ...
+  if (to.meta.requiresAuth && !authStore.isLoggedIn) { // Require Authenticated ...
     return {
       path: '/auth/login',
       // save the location we were at to come back later

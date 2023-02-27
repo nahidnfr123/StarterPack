@@ -50,7 +50,7 @@ export const useAuthStore = defineStore('auth', {
 
       const response = await $api.get('/user', notifyPayload);
       if (response.message === 'success')
-        this.setTokenUser({token: accessToken(), user: response.data})
+        this.setTokenUser(accessToken(), response.data)
       else
         this.clearAuth()
       return response
@@ -59,9 +59,6 @@ export const useAuthStore = defineStore('auth', {
       const options = {showSuccess: true, showError: false, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
       await $api.post('logout', {}, options)
       this.clearAuth()
-
-      const router = useRouter()
-      await router.push('/')
     },
     clearAuth() {
       this.token = null
@@ -69,7 +66,7 @@ export const useAuthStore = defineStore('auth', {
       this.isLoggedIn = false
 
       if (import.meta.server) return
-      accessToken('') // Clearing the Cookie ...
+      accessToken('', true) // Clearing the Cookie ...
     }
   }
 })

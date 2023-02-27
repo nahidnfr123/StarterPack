@@ -6,6 +6,7 @@
             class="inline-flex w-full justify-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white duration-200 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           {{ authStore.user.name }}
+          <Icon icon="fa6-solid:angle-down" class="ml-2 h-5 w-4"></Icon>
         </MenuButton>
       </div>
 
@@ -41,7 +42,7 @@
                   active ? 'bg-violet-500 text-white' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
-                  @click="authStore.logout()"
+                  @click="logout()"
               >
                 <Icon icon="mdi-light:logout" size="26" class="mr-2"/>
                 Logout
@@ -57,6 +58,8 @@
 <script setup>
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {useAuthStore} from "@/stores/auth";
+import {useRouter} from "vue-router";
+import {Icon} from "@iconify/vue";
 
 const authStore = useAuthStore()
 
@@ -64,4 +67,11 @@ const links = [
   {to: '/profile', label: 'Profile', icon: 'mdi-light:account'},
 ]
 
+
+const router = useRouter()
+
+async function logout() {
+  await authStore.logout()
+  await router.push('/')
+}
 </script>
