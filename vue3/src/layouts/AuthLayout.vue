@@ -40,11 +40,15 @@
 }
 </style>
 
-<script setup lang="ts">
+<script setup>
 import TheHeader from "@/components/common/TheHeader.vue";
 import {defineComponent} from "vue";
+import {useAuthStore} from "@/stores/auth";
 
 defineComponent({
   name: 'AuthLayout'
 })
+
+const authStore = useAuthStore()
+authStore.getUser()
 </script>

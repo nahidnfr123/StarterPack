@@ -4,7 +4,6 @@ import {plugin, defaultConfig} from '@formkit/vue'
 import './style.css'
 import './assets/main.css'
 import formKitConfig from './config/formkit.config.js'
-import __api from './plugins/api.js'
 
 import {Icon} from '@iconify/vue';
 
