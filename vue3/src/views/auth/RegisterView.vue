@@ -62,7 +62,7 @@
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
     <p class="mt-4 text-center">Already have a account?
-      <RouterLink to="/auth/login" class="text-center underline text-primary-color">Login</RouterLink>
+      <RouterLink to @click="redirectTo('/auth/register')" class="text-center underline text-primary-color">Login</RouterLink>
     </p>
   </AuthFormContainer>
 </template>
@@ -70,9 +70,10 @@
 <script setup>
 import {useAuthStore} from "@/stores/auth";
 import AuthButton from "@/components/common/Buttons/AuthButton.vue";
-import {redirectTo, throwFormError} from "@/composables/useCommon";
+import {throwFormError} from "@/composables/useCommon";
 import {ref} from "vue";
 import AuthFormContainer from "@/components/AuthFormContainer.vue";
+import {useRoute, useRouter} from "vue-router";
 
 const authStore = useAuthStore()
 const isLoading = ref(false)
@@ -97,9 +98,18 @@ const submitHandler = async (payload, node) => {
     throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
     node.reset()
-    // redirectTo('/profile') /// Redirect to ?next or to given path ...
+    redirectTo('/profile') /// Redirect to ?next or to given path ...
   }
 
   isLoading.value = false
+}
+
+const redirectTo = (path) => {
+  const router = useRouter()
+  const route = useRoute()
+  const $next = route.query.next
+  let routePath = path
+  if ($next) routePath = $next
+  router.push({path: routePath})
 }
 </script>

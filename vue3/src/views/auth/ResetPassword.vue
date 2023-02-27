@@ -54,7 +54,7 @@
 <script setup>
 import {useAuthStore} from "@/stores/auth";
 import AuthButton from "@/components/common/Buttons/AuthButton.vue";
-import {redirectTo, throwFormError} from "@/composables/useCommon";
+import {throwFormError} from "@/composables/useCommon";
 import $api from "@/composables/useRequest";
 import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
@@ -92,5 +92,14 @@ const submitHandler = async (payload, node) => {
   }
 
   isLoading.value = false
+}
+
+const redirectTo = (path) => {
+  const router = useRouter()
+  const route = useRoute()
+  const $next = route.query.next
+  let routePath = path
+  if ($next) routePath = $next
+  router.push({path: routePath})
 }
 </script>

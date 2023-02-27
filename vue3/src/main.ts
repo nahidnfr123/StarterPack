@@ -3,7 +3,7 @@ import {createPinia} from 'pinia'
 import {plugin, defaultConfig} from '@formkit/vue'
 import './style.css'
 import './assets/main.css'
-import formKitConfig from './config/formkit.config.js'
+import formKitConfig from './config/formkit.config'
 
 import {Icon} from '@iconify/vue';
 
