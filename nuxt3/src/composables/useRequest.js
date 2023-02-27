@@ -4,7 +4,6 @@ import accessToken from "~/composables/useToken";
 const $api = {
   async get(url, __ = {showSuccess: false, showError: false, successMessage: 'Success', errorMessage: ''}) { /// Performs GET request ...
     const config = useRuntimeConfig()
-    console.log(config.public.apiBaseUrl)
     const {data, pending, error, refresh} = await useFetch(url, {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
       onRequest({request, options}) {
@@ -30,7 +29,6 @@ const $api = {
   },
   async post(url, payload, __ = {showSuccess: true, showError: true, successMessage: 'Success', errorMessage: ''}) { /// Performs POST and PUT request ...
     const config = useRuntimeConfig()
-    console.log(config.public.apiBaseUrl)
     const {data, pending, error, refresh} = await useFetch(url, {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
       onRequest({request, options}) {
