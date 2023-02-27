@@ -1,6 +1,6 @@
 export default function accessToken(token = localStorage.getItem('token') || null) {
-  if (token) localStorage.setItem('token', token)
-  else localStorage.removeItem('token')
+  if (token === '') localStorage.removeItem('token')
+  else localStorage.setItem('token', token)
   const savedToken = localStorage.getItem('token')
   return savedToken || null
 }

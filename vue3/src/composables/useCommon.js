@@ -3,7 +3,7 @@ import {useRoute, useRouter} from "vue-router";
 export const redirectTo = (path) => {
   const route = useRoute()
   const router = useRouter()
-  const $next = route?.query?.next
+  const $next = route.query.next
   let routePath = path
   if ($next) routePath = $next
   router.push({path: routePath}).then(r => {
@@ -11,7 +11,6 @@ export const redirectTo = (path) => {
 }
 
 export const throwFormError = (error, formNode) => {
-  console.log(error)
   if (!error || !formNode) return
   if (error?.status === 422) formNode.setErrors(error?.data?.errors) // Validation Error ...
   else if (error?.status) formNode.setErrors('Server Error: ' + error?.data?.message || '') // General Error Message from Server.

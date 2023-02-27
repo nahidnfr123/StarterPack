@@ -43,7 +43,7 @@ const $api = {
     }).catch((err) => {
       if (!err) return
       if (notify.showError) this.dispatchError(err)
-      return {message: 'error', data: err?.response?.data}
+      return {message: 'error', data: err?.response}
     })
   },
   async post(url, data, notify = notifyPayload) {
@@ -75,7 +75,7 @@ const $api = {
       if (!err) return
 
       if (notify.showError) this.dispatchError(err)
-      return {message: 'error', data: err?.response?.data}
+      return {message: 'error', data: err?.response}
     })
   },
   dispatchSuccess(message) {

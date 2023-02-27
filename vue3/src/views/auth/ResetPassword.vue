@@ -82,10 +82,10 @@ const submitHandler = async (payload, node) => {
   formData.append('password', payload.password)
   formData.append('password_confirmation', payload.password_confirm)
 
-  const {data, pending, error, refresh} = await $api.post('reset-password', formData) // Post request to the reset-password api end point ...
+  const response = await $api.post('reset-password', formData)
 
-  if (error.value) {
-    throwFormError(error.value, node) // Show Server side errors in form ...
+  if (response.message === 'error') {
+    throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
     node.reset()
     redirectTo('/auth/login') /// Redirect to ?next or to given path ...

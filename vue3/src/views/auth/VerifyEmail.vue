@@ -66,13 +66,14 @@ const submitHandler = async (payload, node) => {
   formData.append('email', payload.email)
   formData.append('password_reset_link', window.location.host + '/auth/reset-password')
 
-  const options = {showSuccess: true, showError: true, successMessage: 'An Email with password reset link has been sent to your email address!'}
-  const {data, pending, error, refresh} = await $api.post('send-password-reset-link', formData, options)
+  const notifyOption = {showSuccess: true, showError: true, successMessage: 'An Email with password reset link has been sent to your email address!'}
+  const response = await $api.post('send-password-reset-link', formData, notifyOption)
 
-  if (error.value) {
-    throwFormError(error.value, node) // Show Server side errors in form ...
+
+  if (response.message === 'error') {
+    throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
-    successMessage.value = data.value?.status || data.value?.email || ''
+    successMessage.value = response.data?.status || response.data?.email || ''
   }
 
   isLoading.value = false
