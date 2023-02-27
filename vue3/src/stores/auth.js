@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import $api from "@/composables/useRequest";
 import accessToken from "@/composables/useToken";
+import {useRouter} from "vue-router";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -15,16 +16,22 @@ export const useAuthStore = defineStore('auth', {
   },
   actions: {
     async register(payload) {
-      const options = {showSuccess: true, showError: true, successMessage: 'Registered Successfully!'}
-      const {data, error} = await $api.post('register', payload, options) // Register Request to api ...
-      this.setTokenUser(data?.value?.token, data?.value?.user) // Set the User and the Token ,...
-      return {data, error}
+      const notifyPayload = {showSuccess: true, showError: true, successMessage: 'Registered Successfully!'}
+      const response = await $api.post('/register', payload, options);
+      if (response.message === 'success') {
+        this.setTokenUser(response.data?.token, response.data?.user) // Set the User and the Token ,...
+        $api.setAuthorization()
+      }
+      return response
     },
     async login(payload) {
-      const options = {showSuccess: true, showError: true, successMessage: 'Logged In Successfully!'}
-      const {data, error} = await $api.post('login', payload, options) // login Request to api ...
-      this.setTokenUser(data?.value?.token, data?.value?.user) // Set the User and the Token ,...
-      return {data, error}
+      const notifyPayload = {showSuccess: true, showError: true, successMessage: 'Logged In Successfully!'}
+      const response = await $api.post('/login', payload, options);
+      if (response.message === 'success') {
+        this.setTokenUser(response.data?.token, response.data?.user) // Set the User and the Token ,...
+        $api.setAuthorization()
+      }
+      return response
     },
     setTokenUser(token = null, user = {}) {
       this.token = token // set token in store ...
@@ -34,14 +41,20 @@ export const useAuthStore = defineStore('auth', {
     },
     async getUser() {
       if (!accessToken()) return {}
-      const {data, pending, refresh, error} = await $api.get('user') // Get the user data form api ...
-      if (error?.value) {
-        this.clearAuth() // Clear Auth Data if there is error fetching User data
-      } else {
-        this.user = data?.value || null // set the user data to store ...
-        this.isLoggedIn = !!(this.token && this.user && this.user.id) // set the isLoggedIn State to true if user and token is available ...
+      const notifyPayload = {
+        showSuccess: false,
+        showError: false,
+        successMessage: 'Success!',
+        errorMessage: 'Some Error Occurred!'
       }
-      return {data: data?.value, pending, error: error?.value, refresh}
+
+      const response = await $api.get('/user', notifyPayload);
+      if (response.message === 'success') {
+        this.setTokenUser({token: accessToken(), user: response.data})
+      } else {
+        this.clearAuth()
+      }
+      return response
     },
     async logout() {
       const options = {showSuccess: true, showError: false, successMessage: 'Logout Successful!', errorMessage: 'Error logging out!'}
@@ -49,7 +62,7 @@ export const useAuthStore = defineStore('auth', {
       this.clearAuth()
 
       const router = useRouter()
-      router.push('/')
+      await router.push('/')
     },
     clearAuth() {
       this.token = null

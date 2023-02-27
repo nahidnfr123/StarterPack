@@ -26,10 +26,6 @@ app.component("Icon", Icon); // Icon ...
 // Layouts ...
 app.component("default-layout", DefaultLayout);
 app.component("auth-layout", AuthLayout);
-app.use(__api, {
-
-})
-
 // app.config.globalProperties.$api = $api
 
 app.mount('#app')

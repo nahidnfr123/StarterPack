@@ -97,7 +97,7 @@ const $api = {
     let error = err.response
     let message = ''
 
-    if (error.status === 401 || error.status === 403 || error.status === 422 || error.status === 500)
+    if ([401, 403, 422, 500].includes(err.status))
       message = error.statusText + '! ' + error.data.message
     else if (error.status === 419)
       message = 'CORES Error! ' + error.data.message

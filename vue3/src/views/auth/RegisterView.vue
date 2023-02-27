@@ -74,14 +74,11 @@ import {redirectTo, throwFormError} from "@/composables/useCommon";
 import {ref} from "vue";
 import AuthFormContainer from "@/components/AuthFormContainer.vue";
 
-
 const authStore = useAuthStore()
 const isLoading = ref(false)
 
-__api.get('users')
 // Handel Registration Form Submit ...
 const submitHandler = async (payload, node) => {
-  console.log(payload)
   if (isLoading.value) return
   node.clearErrors() // clear Previous form errors ...
   isLoading.value = true
