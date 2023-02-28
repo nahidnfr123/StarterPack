@@ -69,7 +69,7 @@
 
 <script setup>
 import {useAuthStore} from "@/stores/auth";
-import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import AuthButton from "@/components/common/buttons/AuthButton.vue";
 import {redirectTo, throwFormError} from "@/composables/useCommon";
 import {ref} from "vue";
 import AuthFormContainer from "@/components/AuthFormContainer.vue";

@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import AuthButton from "@/components/common/buttons/AuthButton.vue";
 import {redirectTo, throwFormError} from "@/composables/useCommon";
 import $api from "@/composables/useRequest";
 import {useRoute, useRouter} from "vue-router";

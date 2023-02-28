@@ -86,7 +86,7 @@
 import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from '@headlessui/vue'
 import Logo from "@/components/common/Logo.vue";
 import Container from "@/components/common/Container.vue";
-import PrimaryButton from "@/components/common/Buttons/PrimaryButton.vue";
+import PrimaryButton from "@/components/common/buttons/PrimaryButton.vue";
 import {useAuthStore} from "@/stores/auth";
 import UserMenuDropdown from "@/components/common/UserMenuDropdown.vue";
 

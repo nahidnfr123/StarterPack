@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import AuthButton from "@/components/common/Buttons/AuthButton.vue";
+import AuthButton from "@/components/common/buttons/AuthButton.vue";
 import $api from "@/composables/useRequest";
 import {throwFormError} from "@/composables/useCommon";
 import Alert from "@/components/common/Alert.vue";
