@@ -73,6 +73,7 @@ const submitHandler = async (payload, node) => {
   if (response.message === 'error') {
     throwFormError(response.data, node) // Show Server side errors in form ...
   } else {
+    console.log(response.data)
     successMessage.value = response.data?.status || response.data?.email || ''
   }
 
