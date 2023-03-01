@@ -118,7 +118,7 @@ export default defineComponent({
   min-height: 74px;
   width: 100vw;
   max-width: 400px;
-  border-radius: 4px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
