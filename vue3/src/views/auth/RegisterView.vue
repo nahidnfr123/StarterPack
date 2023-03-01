@@ -62,7 +62,7 @@
       <!--      <pre wrap>{{ value }}</pre>-->
     </FormKit>
     <p class="mt-4 text-center">Already have a account?
-      <RouterLink to @click="redirectTo('/auth/register')" class="text-center underline text-primary-color">Login</RouterLink>
+      <RouterLink to="/auth/login" class="text-center underline text-primary-color">Login</RouterLink>
     </p>
   </AuthFormContainer>
 </template>

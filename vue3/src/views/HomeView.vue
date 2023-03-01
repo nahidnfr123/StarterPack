@@ -6,7 +6,7 @@ const {setNotification} = useNotificationStore()
 
 function trigger() {
   setNotification({
-    "type": "Info",
+    "type": "info",
     "message": 'Hello',
     "showIcon": true,
     "dismiss": {
@@ -27,7 +27,6 @@ function trigger() {
     <div class="text-center">
       <button class="bg-pink-400 text-white rounded-lg p-3 px-5" @click="trigger">Toast</button>
     </div>
-    <notification-list/>
   </main>
 </template>
 

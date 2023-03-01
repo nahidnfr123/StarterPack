@@ -1,7 +1,4 @@
-import {
-  computed,
-  reactive,
-} from 'vue'
+import {computed, reactive,} from 'vue'
 import type {Notification} from '@/components/notification/notification.interface'
 import {defaultNotification} from '@/components/notification/notification.factory'
 

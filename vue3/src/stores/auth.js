@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', {
   },
   actions: {
     async register(payload) {
-      const notifyPayload = {showSuccess: true, showError: true, successMessage: 'Registered Successfully!'}
+      const notifyPayload = {successMessage: 'Registered Successfully!'}
       const response = await $api.post('/register', payload, notifyPayload);
       if (response.message === 'success') {
         this.setTokenUser(response.data?.token, response.data?.user) // Set the User and the Token ,...
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('auth', {
       return response
     },
     async login(payload) {
-      const notifyPayload = {showSuccess: true, showError: true, successMessage: 'Logged In Successfully!'}
+      const notifyPayload = {successMessage: 'Logged In Successfully!'}
       const response = await $api.post('/login', payload, notifyPayload);
       if (response.message === 'success') {
         this.setTokenUser(response.data?.token, response.data?.user) // Set the User and the Token ,...

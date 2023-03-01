@@ -5,6 +5,8 @@
       <slot/>
     </main>
     <TheFooter/>
+
+    <notification-list/>
   </main>
 </template>
 
