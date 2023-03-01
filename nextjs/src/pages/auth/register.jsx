@@ -17,9 +17,10 @@ export default function Register() {
         <Box bg="white" p={6} rounded="md" w={640}>
           <Formik
               initialValues={{
+                name: "",
                 email: "",
                 password: "",
-                rememberMe: false
+                password_confirmation: ""
               }}
               onSubmit={(values) => {
                 alert(JSON.stringify(values, null, 2));
@@ -28,6 +29,16 @@ export default function Register() {
             {({handleSubmit, errors, touched}) => (
                 <form onSubmit={handleSubmit}>
                   <VStack spacing={4} align="flex-start">
+                    <FormControl>
+                      <FormLabel htmlFor="name">Name</FormLabel>
+                      <Field
+                          as={Input}
+                          id="name"
+                          name="name"
+                          type="text"
+                          variant="filled"
+                      />
+                    </FormControl>
                     <FormControl>
                       <FormLabel htmlFor="email">Email Address</FormLabel>
                       <Field
@@ -58,16 +69,28 @@ export default function Register() {
                       />
                       <FormErrorMessage>{errors.password}</FormErrorMessage>
                     </FormControl>
-                    <Field
-                        as={Checkbox}
-                        id="rememberMe"
-                        name="rememberMe"
-                        colorScheme="purple"
-                    >
-                      Remember me?
-                    </Field>
+                    <FormControl isInvalid={!!errors.password_confirmation && touched.password_confirmation}>
+                      <FormLabel htmlFor="password_confirmation">Password Confirmation</FormLabel>
+                      <Field
+                          as={Input}
+                          id="password_confirmation"
+                          name="password_confirmation"
+                          type="password"
+                          variant="filled"
+                          validate={(value) => {
+                            let error;
+
+                            if (value.length < 6) {
+                              error = "Password must contain at least 6 characters";
+                            }
+
+                            return error;
+                          }}
+                      />
+                      <FormErrorMessage>{errors.password_confirmation}</FormErrorMessage>
+                    </FormControl>
                     <Button type="submit" colorScheme="purple" width="full">
-                      Login
+                      Register
                     </Button>
                   </VStack>
                 </form>
