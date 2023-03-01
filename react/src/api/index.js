@@ -94,7 +94,8 @@ const $api = {
     });
   },
   dispatchError(err) {
-    let error = err.response
+    let error = err.response ? err.response : err
+
     let message = ''
 
     if ([401, 403, 422, 500, 429].includes(error.status))

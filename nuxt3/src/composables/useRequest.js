@@ -66,7 +66,7 @@ const dispatchSuccess = (message) => {
 
 const dispatchError = (err, errorMessage) => {
   if (process.server) return
-  let error = err._data
+  let error = err._data ? err._data : err
   let message = ''
 
   if ([401, 403, 422, 500, 429].includes(err.status)) {
