@@ -46,6 +46,7 @@ export async function getUser() {
   const response = await $api.get('/user', notifyPayload);
 
   if (response.message === 'success') setUserToLocalStorage({token: getTokenFromLocalStorage(), user: response.data})
+  else removeUserFromLocalStorage()
   return response
 }
 

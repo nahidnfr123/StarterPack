@@ -4,7 +4,7 @@ import {getTokenFromLocalStorage, getUserFromLocalStorage, logout, removeUserFro
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isLoggedIn: !!(getTokenFromLocalStorage() && Object.keys(getTokenFromLocalStorage()).length),
+    isLoggedIn: !!(getTokenFromLocalStorage()),
     token: getTokenFromLocalStorage(),
     user: getUserFromLocalStorage(),
   },
