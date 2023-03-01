@@ -61,9 +61,17 @@ export function setUserToLocalStorage(data) {
 }
 
 export function getTokenFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('token')) || null
+  try {
+    return JSON.parse(localStorage.getItem('token')) || null
+  } catch (err) {
+    return localStorage.getItem('token') || null
+  }
 }
 
 export function getUserFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('user')) || {}
+  try {
+    return JSON.parse(localStorage.getItem('user')) || null
+  } catch (err) {
+    return localStorage.getItem('user') || null
+  }
 }
