@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import $api from "@/composables/useRequest";
 import accessToken from "@/composables/useToken";
-import {useRouter} from "vue-router";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({

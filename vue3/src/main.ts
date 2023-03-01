@@ -14,7 +14,8 @@ import router from './router'
 // *** Layouts ...
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
-
+import NotificationList from "@/components/notification/NotificationList.vue";
+import NotificationListItem from "@/components/notification/NotificationListItem.vue";
 
 const app = createApp(App)
 app.use(createPinia())
@@ -25,6 +26,6 @@ app.component("Icon", Icon); // Icon ...
 // Layouts ...
 app.component("default-layout", DefaultLayout);
 app.component("auth-layout", AuthLayout);
-// app.config.globalProperties.$api = $api
-
+app.component('notification-list', NotificationList)
+app.component('notification-list-item', NotificationListItem)
 app.mount('#app')
