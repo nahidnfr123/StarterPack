@@ -69,7 +69,7 @@ const dispatchError = (err, errorMessage) => {
   let error = err._data
   let message = ''
 
-  if ([401, 403, 422, 500].includes(err.status)) {
+  if ([401, 403, 422, 500, 429].includes(err.status)) {
     message = err?.statusText + '! ' + error?.message
   } else if (err.status === 419) {
     message = 'CORES Error! ' + error?.message

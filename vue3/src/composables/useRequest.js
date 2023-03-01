@@ -101,12 +101,13 @@ const $api = {
   dispatchError(err) {
     let error = err.response
     let message = ''
-
-    if ([401, 403, 422, 500].includes(err.status))
+    if ([401, 403, 422, 500, 429].includes(error.status)) {
       message = error.statusText + '! ' + error.data.message
-    else if (error.status === 419)
+    } else if (error.status === 419) {
       message = 'CORES Error! ' + error.data.message
-    else message = 'Some Error Occurred!'
+    } else {
+      message = 'Some Error Occurred!'
+    }
 
     const {setNotification} = useNotificationStore()
 
