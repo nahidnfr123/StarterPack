@@ -1,5 +1,5 @@
 export default function accessToken(token = useCookie('token').value || null) {
-  const savedToken = useCookie('token')
+  const savedToken = useCookie('token', {maxAge: 60 * 60 * 24 * 7, priority: 'high'})
   savedToken.value = token // Set Token to the cookie ...
   return savedToken.value || null // Return the current cookie value ...
 }
