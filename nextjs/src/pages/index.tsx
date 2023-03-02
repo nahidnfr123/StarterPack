@@ -10,11 +10,12 @@ const Home = () => {
   return (
       <>
         <TheHead title='Starter Home'/>
-        <Flex bg="gray.100"
-              align="center"
-              justify="center"
-              h="540px"
-              py='10'
+        <Flex
+            bg="gray.100"
+            align="center"
+            justify="center"
+            h="540px"
+            py='10'
         >
           <Box
               align="center"

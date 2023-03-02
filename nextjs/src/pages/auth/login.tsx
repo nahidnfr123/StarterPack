@@ -14,8 +14,15 @@ import NextLink from 'next/link';
 import TheHead from "@/components/common/TheHead";
 import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
+import {signIn, signOut} from "next-auth/react";
 
 function Login() {
+
+  async function handelGoogleLogin() {
+    await signIn('google', {callbackUrl: 'http://localhost:3000'})
+
+  }
+
   return (
       <>
         <TheHead title='Login'/>
@@ -82,7 +89,7 @@ function Login() {
         </Formik>
 
         <Stack spacing={2} align='center' mt={4}>
-          <Button>Sign In With Google</Button>
+          <Button onClick={handelGoogleLogin}>Sign In With Google</Button>
           <Button>Sign In With Github</Button>
         </Stack>
 

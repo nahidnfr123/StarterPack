@@ -1,8 +1,11 @@
-import {Box, Button, ButtonGroup, Center, Flex, Heading, Spacer, Text} from "@chakra-ui/react";
-import Link from "next/link";
+import {Box, Button, ButtonGroup, Center, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Spacer, Text} from "@chakra-ui/react";
+import NextLink from "next/link";
 import Image from 'next/image'
+import {useSession, signOut} from "next-auth/react"
+import {ChevronDownIcon} from "@chakra-ui/icons";
 
 export default function TheNavBar() {
+  const {data: session} = useSession()
   return (
       <>
         <Flex minWidth='max-content' alignItems='center' gap='2' p='2' maxW='1366' mx='auto'>
@@ -19,18 +22,34 @@ export default function TheNavBar() {
           </Box>
           <Spacer/>
           <Box>
-            <ButtonGroup gap='2'>
-              <Link href='/auth/login'>
-                <Button colorScheme='teal'>
-                  Login
-                </Button>
-              </Link>
-              <Link href='/auth/register'>
-                <Button colorScheme='teal'>
-                  Register
-                </Button>
-              </Link>
-            </ButtonGroup>
+            <Flex minWidth='max-content' alignItems='center' gap='2' p='2' maxW='1366' mx='auto'>
+              <Link href='/' as={NextLink}>Home</Link>
+              <Link href='/dashboard' as={NextLink}>Dashboard</Link>
+              {session ?
+                  <Menu>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
+                      {session.user.email}
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>Profile</MenuItem>
+                      <MenuItem>Logout</MenuItem>
+                    </MenuList>
+                  </Menu>
+                  :
+                  <ButtonGroup gap='2'>
+                    <Link href='/auth/login' as={NextLink}>
+                      <Button colorScheme='teal'>
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href='/auth/register' as={NextLink}>
+                      <Button colorScheme='teal'>
+                        Register
+                      </Button>
+                    </Link>
+                  </ButtonGroup>
+              }
+            </Flex>
           </Box>
         </Flex>
       </>
