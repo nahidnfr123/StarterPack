@@ -34,8 +34,12 @@ function Login() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  function handelSubmit(values: Object) {
-    alert(JSON.stringify(values, null, 2));
+  function handelSubmit(values: []) {
+    // alert(JSON.stringify(values, null, 2));
+    const formData = new FormData()
+    for (let key in values) {
+      if (values[key].trim()) formData.append(key, values[key].trim())
+    }
   }
 
   async function handelGoogleLogin() {
@@ -58,10 +62,12 @@ function Login() {
             onSubmit={handelSubmit}
         >
           {({
+              values,
               handleSubmit,
               errors,
               touched,
               isSubmitting,
+              handleChange
             }) => (
               <Form onSubmit={handleSubmit}>
                 <VStack spacing={4} align="flex-start">
@@ -69,11 +75,12 @@ function Login() {
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Field
                         as={Input}
-                        error={!!errors.email && touched.email}
                         id="email"
                         name="email"
                         type="email"
                         variant="filled"
+                        onChange={handleChange}
+                        value={values.email}
                     />
                     <FormErrorMessage>{errors.email}</FormErrorMessage>
                   </FormControl>
@@ -85,15 +92,8 @@ function Login() {
                         name="password"
                         type="password"
                         variant="filled"
-                        validate={(value: []) => {
-                          let error;
-
-                          if (value.length < 6) {
-                            error = "Password must contain at least 6 characters";
-                          }
-
-                          return error;
-                        }}
+                        onChange={handleChange}
+                        value={values.password}
                     />
                     <FormErrorMessage>{errors.password}</FormErrorMessage>
                   </FormControl>
@@ -102,6 +102,7 @@ function Login() {
                       id="rememberMe"
                       name="rememberMe"
                       colorScheme="purple"
+                      onChange={handleChange}
                   >
                     Remember me?
                   </Field>

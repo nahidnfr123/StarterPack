@@ -1,4 +1,4 @@
-import {Formik, Field} from "formik";
+import {Formik, Field, Form} from "formik";
 import {
   Box,
   Button,
@@ -14,8 +14,42 @@ import TheHead from "../../components/common/TheHead";
 import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
 import NextLink from "next/link";
+import * as Yup from "yup";
 
 function Register() {
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  }
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+        .required('Name field is required.')
+        .min(2, 'Minimum 2 letters.')
+        .max(50, 'Maximum 50 letters'),
+    email: Yup.string()
+        .required('Email field is required.')
+        .email('Invalid email'),
+    password: Yup.string()
+        .required('Password field is required.')
+        .min(6, 'Minimum 6 characters!')
+        .max(60, 'Maximum 60 characters'),
+    password_confirmation: Yup.string()
+        .required('Confirm Password field is required.')
+        .min(6, 'Minimum 6 characters!')
+        .max(60, 'Maximum 60 characters'),
+  });
+
+  function handelSubmit(values: []) {
+    // alert(JSON.stringify(values, null, 2));
+    const formData = new FormData()
+    for (let key in values) {
+      if (values[key].trim()) formData.append(key, values[key].trim())
+    }
+  }
+
   return (
       <>
         <TheHead title='Register'/>
@@ -23,20 +57,21 @@ function Register() {
         <Heading textAlign='center' pb='4' as='h2' size='lg'>Register</Heading>
 
         <Formik
-            initialValues={{
-              name: "",
-              email: "",
-              password: "",
-              password_confirmation: ""
-            }}
-            onSubmit={(values) => {
-              alert(JSON.stringify(values, null, 2));
-            }}
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handelSubmit}
         >
-          {({handleSubmit, errors, touched}) => (
-              <form onSubmit={handleSubmit}>
+          {({
+              values,
+              handleSubmit,
+              errors,
+              touched,
+              isSubmitting,
+              handleChange
+            }) => (
+              <Form onSubmit={handleSubmit}>
                 <VStack spacing={4} align="flex-start">
-                  <FormControl>
+                  <FormControl isInvalid={!!errors.name && touched.name}>
                     <FormLabel htmlFor="name">Name</FormLabel>
                     <Field
                         as={Input}
@@ -44,17 +79,23 @@ function Register() {
                         name="name"
                         type="text"
                         variant="filled"
+                        onChange={handleChange}
+                        value={values.name}
                     />
+                    <FormErrorMessage>{errors.email}</FormErrorMessage>
                   </FormControl>
-                  <FormControl>
-                    <FormLabel htmlFor="email">Email Address</FormLabel>
+                  <FormControl isInvalid={!!errors.email && touched.email}>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Field
                         as={Input}
                         id="email"
                         name="email"
                         type="email"
                         variant="filled"
+                        onChange={handleChange}
+                        value={values.email}
                     />
+                    <FormErrorMessage>{errors.email}</FormErrorMessage>
                   </FormControl>
                   <FormControl isInvalid={!!errors.password && touched.password}>
                     <FormLabel htmlFor="password">Password</FormLabel>
@@ -64,15 +105,8 @@ function Register() {
                         name="password"
                         type="password"
                         variant="filled"
-                        validate={(value: []) => {
-                          let error;
-
-                          if (value.length < 6) {
-                            error = "Password must contain at least 6 characters";
-                          }
-
-                          return error;
-                        }}
+                        onChange={handleChange}
+                        value={values.password}
                     />
                     <FormErrorMessage>{errors.password}</FormErrorMessage>
                   </FormControl>
@@ -84,23 +118,20 @@ function Register() {
                         name="password_confirmation"
                         type="password"
                         variant="filled"
-                        validate={(value: []) => {
-                          let error;
-
-                          if (value.length < 6) {
-                            error = "Password must contain at least 6 characters";
-                          }
-
-                          return error;
-                        }}
+                        onChange={handleChange}
                     />
                     <FormErrorMessage>{errors.password_confirmation}</FormErrorMessage>
                   </FormControl>
-                  <Button type="submit" colorScheme="purple" width="full">
+                  <Button
+                      type="submit"
+                      colorScheme="purple"
+                      width="full"
+                      disabled={isSubmitting}
+                  >
                     Register
                   </Button>
                 </VStack>
-              </form>
+              </Form>
           )}
         </Formik>
 
