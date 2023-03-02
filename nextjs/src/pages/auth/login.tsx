@@ -11,9 +11,11 @@ import {
   VStack
 } from "@chakra-ui/react";
 import Link from 'next/link';
-import TheHead from "../../components/common/TheHead";
+import TheHead from "@/components/common/TheHead";
+import {ReactElement} from "react";
+import AuthLayout from "@/layouts/auth";
 
-export default function Login() {
+function Login() {
   return (
       <>
         <TheHead title='Login'/>
@@ -84,3 +86,11 @@ export default function Login() {
       </>
   );
 }
+
+Login.getLayout = function getLayout(page: ReactElement) {
+  return (
+      <AuthLayout>{page}</AuthLayout>
+  )
+}
+
+export default Login

@@ -19,9 +19,7 @@ const Home = () => {
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
-      <DefaultLayout>
-        {page}
-      </DefaultLayout>
+      <DefaultLayout>{page}</DefaultLayout>
   )
 }
 
