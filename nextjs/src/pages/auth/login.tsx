@@ -20,7 +20,10 @@ function Login() {
 
   async function handelGoogleLogin() {
     await signIn('google', {callbackUrl: 'http://localhost:3000'})
+  }
 
+  async function handelGithubLogin() {
+    await signIn('github', {callbackUrl: 'http://localhost:3000'})
   }
 
   return (
@@ -90,7 +93,7 @@ function Login() {
 
         <Stack spacing={2} align='center' mt={4}>
           <Button onClick={handelGoogleLogin}>Sign In With Google</Button>
-          <Button>Sign In With Github</Button>
+          <Button onClick={handelGithubLogin}>Sign In With Github</Button>
         </Stack>
 
         <Text align='center' my={4}>

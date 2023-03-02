@@ -1,6 +1,25 @@
 import {ReactElement} from "react";
 import DefaultLayout from "../layouts/default";
 import {Heading, Flex} from "@chakra-ui/react";
+import {getSession} from "next-auth/react";
+
+
+
+// Middle Ware ... Required Auth
+export async function getServerSideProps({req}) {
+  const session = await getSession({req})
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {session}
+  }
+}
 
 function Dashboard() {
   return (
@@ -26,3 +45,4 @@ Dashboard.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default Dashboard
+

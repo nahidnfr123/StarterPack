@@ -6,6 +6,11 @@ import {ChevronDownIcon} from "@chakra-ui/icons";
 
 export default function TheNavBar() {
   const {data: session} = useSession()
+
+  async function handelSignOut() {
+    await signOut()
+  }
+
   return (
       <>
         <Flex minWidth='max-content' alignItems='center' gap='2' p='2' maxW='1366' mx='auto'>
@@ -22,7 +27,7 @@ export default function TheNavBar() {
           </Box>
           <Spacer/>
           <Box>
-            <Flex minWidth='max-content' alignItems='center' gap='2' p='2' maxW='1366' mx='auto'>
+            <Flex minWidth='max-content' alignItems='center' gap='4' p='2' maxW='1366' mx='auto'>
               <Link href='/' as={NextLink}>Home</Link>
               <Link href='/dashboard' as={NextLink}>Dashboard</Link>
               {session ?
@@ -32,7 +37,7 @@ export default function TheNavBar() {
                     </MenuButton>
                     <MenuList>
                       <MenuItem>Profile</MenuItem>
-                      <MenuItem>Logout</MenuItem>
+                      <MenuItem onClick={handelSignOut}>Logout</MenuItem>
                     </MenuList>
                   </Menu>
                   :
