@@ -1,9 +1,7 @@
-
-
 export default function TheNavBar() {
   return (
       <>
-        <div></div>
+        <div>Nav Bar</div>
       </>
   )
 }
