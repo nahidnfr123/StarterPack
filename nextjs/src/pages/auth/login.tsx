@@ -19,11 +19,11 @@ import {signIn, signOut} from "next-auth/react";
 function Login() {
 
   async function handelGoogleLogin() {
-    await signIn('google', {callbackUrl: 'http://localhost:3000'})
+    await signIn('google', {callbackUrl: 'http://127.0.0.1:3000'})
   }
 
   async function handelGithubLogin() {
-    await signIn('github', {callbackUrl: 'http://localhost:3000'})
+    await signIn('github', {callbackUrl: 'http://127.0.0.1:3000'})
   }
 
   return (
