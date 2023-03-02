@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 export default function TheHome({title = 'Starter', description = 'Site description'}) {
-  const Title = 'Start Pack | ' + title
+  const Title = title + ' | Start Pack'
   return (
       <>
         <Head>

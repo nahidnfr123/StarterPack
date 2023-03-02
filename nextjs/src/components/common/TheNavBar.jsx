@@ -18,14 +18,18 @@ export default function TheNavBar() {
             </Link>
           </Box>
           <Spacer/>
-          <Box flex='1'>
+          <Box>
             <ButtonGroup gap='2'>
-              <Button colorScheme='teal'>
-                <Link href='/auth/login'>Login</Link>
-              </Button>
-              <Button colorScheme='teal'>
-                <Link href='/auth/register'>Register</Link>
-              </Button>
+              <Link href='/auth/login'>
+                <Button colorScheme='teal'>
+                  Login
+                </Button>
+              </Link>
+              <Link href='/auth/register'>
+                <Button colorScheme='teal'>
+                  Register
+                </Button>
+              </Link>
             </ButtonGroup>
           </Box>
         </Flex>
