@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormErrorMessage,
   Input,
-  VStack, Heading, Text, Stack, Link
+  VStack, Heading, Text, Stack, Link, Image, ButtonGroup
 } from "@chakra-ui/react";
 import NextLink from 'next/link';
 import TheHead from "@/components/common/TheHead";
@@ -34,12 +34,14 @@ function Login() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  function handelSubmit(values: []) {
-    // alert(JSON.stringify(values, null, 2));
-    const formData = new FormData()
-    for (let key in values) {
-      if (values[key].trim()) formData.append(key, values[key].trim())
-    }
+  async function handelSubmit(values: []) {
+    const status = await signIn('credentials', {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+      callbackUrl: '/profile'
+    })
+    console.log(status)
   }
 
   async function handelGoogleLogin() {
@@ -120,8 +122,27 @@ function Login() {
         </Formik>
 
         <Stack spacing={2} align='center' mt={4}>
-          <Button onClick={handelGoogleLogin}>Sign In With Google</Button>
-          <Button onClick={handelGithubLogin}>Sign In With Github</Button>
+          <div>
+            Sign In With:
+          </div>
+          <ButtonGroup>
+            <Button onClick={handelGoogleLogin}>
+              <Image
+                  src="/images/google.svg"
+                  alt="Google"
+                  width={30}
+                  height={30}
+              />
+            </Button>
+            <Button onClick={handelGithubLogin}>
+              <Image
+                  src="/images/.svg"
+                  alt="Google"
+                  width={30}
+                  height={30}
+              />
+            </Button>
+          </ButtonGroup>
         </Stack>
 
         <Text align='center' my={4}>

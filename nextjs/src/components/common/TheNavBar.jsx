@@ -33,7 +33,7 @@ export default function TheNavBar() {
               {session ?
                   <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
-                      {session.user.email}
+                      {session?.user?.name}
                     </MenuButton>
                     <MenuList>
                       <MenuItem>Profile</MenuItem>
