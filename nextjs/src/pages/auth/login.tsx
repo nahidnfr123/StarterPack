@@ -16,8 +16,10 @@ import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
 import {signIn, signOut} from "next-auth/react";
 import * as Yup from "yup";
+import {useRouter} from "next/router";
 
 function Login() {
+  const router = useRouter()
   const initialValues = {
     email: "",
     password: "",
@@ -34,14 +36,18 @@ function Login() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  async function handelSubmit(values: []) {
-    const status = await signIn('credentials', {
+  async function handelSubmit(values: [], props) {
+    const status = await signIn('login', {
       redirect: false,
       email: values.email,
       password: values.password,
       callbackUrl: `${window.location.origin}/profile`,
     })
-    console.log(status)
+    if (status?.ok && status?.url) await router.push(status?.url)
+    if (status?.error) {
+      const errorData = JSON.parse(status?.error)
+      props.setErrors(errorData?.errors)
+    }
   }
 
   async function handelGoogleLogin() {

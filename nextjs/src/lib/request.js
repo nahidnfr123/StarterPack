@@ -1,10 +1,12 @@
 import axios from 'axios';
+import {getSession} from "next-auth/react";
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
 function getTokenFromLocalStorage() {
-  return ''
+  const session = getSession()
+  return session?.accessToken || ''
 }
 
 const http = axios.create({

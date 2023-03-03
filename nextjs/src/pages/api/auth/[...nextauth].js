@@ -11,10 +11,6 @@ import $api from "../../../lib/request";
 
 const providers = [
   // OAuth authentication providers
-  // AppleProvider({
-  //   clientId: process.env.APPLE_ID,
-  //   clientSecret: process.env.APPLE_SECRET,
-  // }),
   // FacebookProvider({
   //   clientId: process.env.FACEBOOK_ID,
   //   clientSecret: process.env.FACEBOOK_SECRET
@@ -29,38 +25,34 @@ const providers = [
   }),
   CredentialsProvider({
     name: 'Credentials',
+    id: "login",
     authorize: async (credentials, req) => {
       const response = await $api.post('login', {email: credentials.email, password: credentials.password})
       if (response.message === 'success') return response?.data?.user
-      else return null
+      else if (response.message === 'error') {
+        // console.log(response?.data)
+        throw new Error(JSON.stringify(response?.data))
+        // return response?.data
+      } else return null
     }
   }),
 ]
-
 const callbacks = {
-  // Getting the JWT token from API response
-  async jwt(token, user) {
-    console.log('Hello This is console.')
-    console.log(user)
-    console.log(token)
-    if (user) {
-      token.accessToken = user.token
-    }
-
-    return token
+  async signIn({user}) {
+    return !!user;
   },
-
-  async session(session, token) {
-    session.accessToken = token?.accessToken
-    console.log(session)
-    return session
-  }
+  async jwt({token, user}) {
+    return token;
+  },
+  async session({session}) {
+    session.user.isLoggedIn = true;
+    return session;
+  },
 }
 
 const options = {
-  secret: process.env.SECRET,
   providers,
   callbacks
 }
 
-export default (req, res) => NextAuth(req, res, options)
+export default NextAuth(options)
