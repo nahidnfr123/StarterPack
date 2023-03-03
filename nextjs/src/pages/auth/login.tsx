@@ -14,7 +14,7 @@ import NextLink from 'next/link';
 import TheHead from "@/components/common/TheHead";
 import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
-import {signIn, signOut} from "next-auth/react";
+import {getSession, signIn, signOut} from "next-auth/react";
 import * as Yup from "yup";
 import {useRouter} from "next/router";
 
@@ -164,3 +164,20 @@ Login.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default Login
+
+
+// Middle Ware ... Required Auth
+export async function getServerSideProps({req}) {
+  const session = await getSession({req})
+  if (session) {
+    return {
+      redirect: {
+        destination: '/profile',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {session}
+  }
+}
