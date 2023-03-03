@@ -65,9 +65,10 @@ const callbacks = {
   },
 }
 
-const options = {
+export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers,
   callbacks
 }
 
-export default NextAuth(options)
+export default NextAuth(authOptions)
