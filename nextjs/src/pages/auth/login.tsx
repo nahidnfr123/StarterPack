@@ -39,7 +39,7 @@ function Login() {
       redirect: false,
       email: values.email,
       password: values.password,
-      callbackUrl: '/profile'
+      callbackUrl: `${window.location.origin}/profile`,
     })
     console.log(status)
   }
@@ -122,9 +122,7 @@ function Login() {
         </Formik>
 
         <Stack spacing={2} align='center' mt={4}>
-          <div>
-            Sign In With:
-          </div>
+          <Text>Sign In With:</Text>
           <ButtonGroup>
             <Button onClick={handelGoogleLogin}>
               <Image
@@ -136,7 +134,7 @@ function Login() {
             </Button>
             <Button onClick={handelGithubLogin}>
               <Image
-                  src="/images/.svg"
+                  src="/images/github.svg"
                   alt="Google"
                   width={30}
                   height={30}

@@ -36,22 +36,20 @@ export default function TheNavBar() {
                       {session?.user?.name}
                     </MenuButton>
                     <MenuList>
-                      <MenuItem>Profile</MenuItem>
+                      <MenuItem href='/profile' as={NextLink}>
+                        Profile
+                      </MenuItem>
                       <MenuItem onClick={handelSignOut}>Logout</MenuItem>
                     </MenuList>
                   </Menu>
                   :
                   <ButtonGroup gap='2'>
-                    <Link href='/auth/login' as={NextLink}>
-                      <Button colorScheme='teal'>
-                        Login
-                      </Button>
-                    </Link>
-                    <Link href='/auth/register' as={NextLink}>
-                      <Button colorScheme='teal'>
-                        Register
-                      </Button>
-                    </Link>
+                    <Button colorScheme='teal' href='/auth/login' as={NextLink}>
+                      Login
+                    </Button>
+                    <Button colorScheme='teal' href='/auth/register' as={NextLink}>
+                      Register
+                    </Button>
                   </ButtonGroup>
               }
             </Flex>
