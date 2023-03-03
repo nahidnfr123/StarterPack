@@ -15,8 +15,11 @@ import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
 import NextLink from "next/link";
 import * as Yup from "yup";
+import {signIn} from "next-auth/react";
+import {useRouter} from "next/router";
 
 function Register() {
+  const router = useRouter()
   const initialValues = {
     name: '',
     email: '',
@@ -42,11 +45,19 @@ function Register() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  function handelSubmit(values: []) {
-    // alert(JSON.stringify(values, null, 2));
-    const formData = new FormData()
-    for (let key in values) {
-      if (values[key].trim()) formData.append(key, values[key].trim())
+  async function handelSubmit(values: [], props: { setErrors: (arg0: any) => void; }) {
+    const status = await signIn('register', {
+      redirect: false,
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.password_confirmation,
+      callbackUrl: `${window.location.origin}/profile`,
+    })
+    if (status?.ok && status?.url) await router.push(status?.url)
+    if (status?.error) {
+      const errorData = JSON.parse(status?.error)
+      props.setErrors(errorData?.errors)
     }
   }
 

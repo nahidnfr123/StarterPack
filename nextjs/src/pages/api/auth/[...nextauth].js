@@ -30,9 +30,24 @@ const providers = [
       const response = await $api.post('login', {email: credentials.email, password: credentials.password})
       if (response.message === 'success') return response?.data?.user
       else if (response.message === 'error') {
-        // console.log(response?.data)
         throw new Error(JSON.stringify(response?.data))
         // return response?.data
+      } else return null
+    }
+  }),
+  CredentialsProvider({
+    name: 'Credentials',
+    id: "register",
+    authorize: async (credentials, req) => {
+      const response = await $api.post('register', {
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+        password_confirmation: credentials.password_confirmation
+      })
+      if (response.message === 'success') return response?.data?.user
+      else if (response.message === 'error') {
+        throw new Error(JSON.stringify(response?.data))
       } else return null
     }
   }),

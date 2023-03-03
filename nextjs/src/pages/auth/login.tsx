@@ -36,7 +36,7 @@ function Login() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  async function handelSubmit(values: [], props) {
+  async function handelSubmit(values: [], props: { setErrors: (arg0: any) => void; }) {
     const status = await signIn('login', {
       redirect: false,
       email: values.email,
