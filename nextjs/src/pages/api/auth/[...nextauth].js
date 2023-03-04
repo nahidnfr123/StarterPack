@@ -5,7 +5,6 @@ import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
 import $api from "../../../lib/request";
-import Cookies from "cookies";
 
 // Credentials Provider with custom banckend Doc:...
 // https://dev.to/twisha/using-credentials-provider-with-a-custom-backend-in-nextauth-js-43k4

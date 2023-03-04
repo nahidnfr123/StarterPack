@@ -1,10 +1,12 @@
 import axios from 'axios';
-
+import {getCookie} from 'cookies-next';
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
 function getTokenFromCookie() {
-  return ''
+  const token = '--'
+  console.log(token)
+  return token
 }
 
 const http = axios.create({
@@ -16,7 +18,7 @@ const http = axios.create({
     'Accept': 'application/json',
     'Authorization': `Bearer ${getTokenFromCookie()}`,
   },
-  withCredentials: true
+  // withCredentials: true
 })
 
 const notifyPayload = {
