@@ -17,17 +17,15 @@ import AuthLayout from "@/layouts/auth";
 import {getSession, signIn, signOut} from "next-auth/react";
 import * as Yup from "yup";
 import {useRouter} from "next/router";
+import {loginValues} from "@/lib/interface";
 
-interface loginValues {
-  email?: string;
-  password?: string;
-}
+
 
 function Login(): JSX.Element {
   const router = useRouter()
   const initialValues = {
-    email: "",
-    password: "",
+    email: "nahid@gmail.com",
+    password: "nahid@gmail.com",
     rememberMe: false
   }
 

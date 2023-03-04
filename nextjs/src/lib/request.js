@@ -6,7 +6,7 @@ import {getSession} from "next-auth/react";
 
 function getTokenFromLocalStorage() {
   const session = getSession()
-  return session?.accessToken || ''
+  return session?.apiToken || ''
 }
 
 const http = axios.create({
@@ -54,6 +54,8 @@ const $api = {
     })
   },
   async post(url, data, notify = notifyPayload) {
+    // const session = getSession()
+    // console.log(session?.user)
     return await http.post(url, data).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data

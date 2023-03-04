@@ -24,7 +24,7 @@ function Profile() {
           <Box
               maxW={'320px'}
               w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg={'white'}
               boxShadow={'2xl'}
               rounded={'lg'}
               p={6}

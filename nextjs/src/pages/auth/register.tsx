@@ -17,14 +17,7 @@ import NextLink from "next/link";
 import * as Yup from "yup";
 import {getSession, signIn} from "next-auth/react";
 import {useRouter} from "next/router";
-
-
-interface registerValues {
-  name?: string;
-  email?: string;
-  password?: string;
-  password_confirmation?: string;
-}
+import {registerValues} from "@/lib/interface";
 
 
 function Register(): JSX.Element {
@@ -102,7 +95,7 @@ function Register(): JSX.Element {
                         onChange={handleChange}
                         value={values.name}
                     />
-                    <FormErrorMessage>{errors.email}</FormErrorMessage>
+                    <FormErrorMessage>{errors.name}</FormErrorMessage>
                   </FormControl>
                   <FormControl isInvalid={!!errors.email && touched.email}>
                     <FormLabel htmlFor="email">Email</FormLabel>

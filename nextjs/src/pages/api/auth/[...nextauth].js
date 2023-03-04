@@ -9,6 +9,7 @@ import $api from "../../../lib/request";
 // Credentials Provider with custom banckend Doc:...
 // https://dev.to/twisha/using-credentials-provider-with-a-custom-backend-in-nextauth-js-43k4
 
+let apiToken = ''
 const providers = [
   // OAuth authentication providers
   // FacebookProvider({
@@ -28,10 +29,11 @@ const providers = [
     id: "login",
     authorize: async (credentials, req) => {
       const response = await $api.post('login', {email: credentials.email, password: credentials.password})
-      if (response.message === 'success') return response?.data?.user
-      else if (response.message === 'error') {
+      if (response.message === 'success') {
+        apiToken = response?.data?.token
+        return response?.data?.user
+      } else if (response.message === 'error') {
         throw new Error(JSON.stringify(response?.data))
-        // return response?.data
       } else return null
     }
   }),
@@ -45,6 +47,7 @@ const providers = [
         password: credentials.password,
         password_confirmation: credentials.password_confirmation
       })
+      console.log(response?.data)
       if (response.message === 'success') return response?.data?.user
       else if (response.message === 'error') {
         throw new Error(JSON.stringify(response?.data))
@@ -56,11 +59,16 @@ const callbacks = {
   async signIn({user}) {
     return !!user;
   },
-  async jwt({token, user}) {
-    return token;
+  async jwt({token, user, account, profile, isNewUser}) {
+    return {...token, ...user};
   },
-  async session({session}) {
+  async session({session, user, token}) {
+    session.user = {...session.user, ...token}
     session.user.isLoggedIn = true;
+    if (apiToken) {
+      session.apiToken = apiToken
+    }
+    console.log(session.apiToken)
     return session;
   },
 }
