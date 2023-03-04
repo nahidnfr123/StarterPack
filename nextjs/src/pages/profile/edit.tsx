@@ -116,7 +116,6 @@ function ProfileEdit(): JSX.Element {
                 handleSubmit,
                 isSubmitting,
                 setFieldValue
-                /* and other goodies */
               }) => (
                 <Form>
                   <FormControl id="userName">

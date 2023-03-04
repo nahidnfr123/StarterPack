@@ -4,12 +4,11 @@ import NextAuth from "next-auth"
 import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
-import $api from "../../../lib/request";
+import $api, {setTokenToCookie} from "../../../lib/request";
 
 // Credentials Provider with custom banckend Doc:...
 // https://dev.to/twisha/using-credentials-provider-with-a-custom-backend-in-nextauth-js-43k4
 
-let apiToken = ''
 const providers = [
   // OAuth authentication providers
   // FacebookProvider({
@@ -30,7 +29,7 @@ const providers = [
     authorize: async (credentials, req) => {
       const response = await $api.post('login', {email: credentials.email, password: credentials.password})
       if (response.message === 'success') {
-        apiToken = response?.data?.token
+        setTokenToCookie(response?.data?.token)
         return response?.data?.user
       } else if (response.message === 'error') {
         throw new Error(JSON.stringify(response?.data))
@@ -48,8 +47,10 @@ const providers = [
         password_confirmation: credentials.password_confirmation
       })
       console.log(response?.data)
-      if (response.message === 'success') return response?.data?.user
-      else if (response.message === 'error') {
+      if (response.message === 'success') {
+        setTokenToCookie(response?.data?.token)
+        return response?.data?.user
+      } else if (response.message === 'error') {
         throw new Error(JSON.stringify(response?.data))
       } else return null
     }
@@ -57,6 +58,8 @@ const providers = [
 ]
 const callbacks = {
   async signIn({user}) {
+    // For social auth ... You may store the user data in your api end point ...
+    // Request code goes here ...
     return !!user;
   },
   async jwt({token, user, account, profile, isNewUser}) {
@@ -65,10 +68,6 @@ const callbacks = {
   async session({session, user, token}) {
     session.user = {...session.user, ...token}
     session.user.isLoggedIn = true;
-    if (apiToken) {
-      session.apiToken = apiToken
-    }
-    console.log(session.apiToken)
     return session;
   },
 }

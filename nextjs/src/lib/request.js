@@ -1,12 +1,20 @@
 import axios from 'axios';
-import {getSession} from "next-auth/react";
+import {cookies} from "next/headers";
+import cookie from "js-cookie";
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
-function getTokenFromLocalStorage() {
-  const session = getSession()
-  return session?.apiToken || ''
+function getTokenFromCookie(req) {
+  req.cookie.get('token')
+  return cookie.get('token')
+}
+
+export function setTokenToCookie(token) {
+  if (token) {
+    cookie.set('token', token, {expires: 3600 * 7})
+    console.log('cook', token)
+  } else cookie.remove('token')
 }
 
 const http = axios.create({
@@ -16,7 +24,7 @@ const http = axios.create({
     // 'Content-type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
-    'Authorization': `Bearer ${getTokenFromLocalStorage()}`,
+    'Authorization': `Bearer ${getTokenFromCookie()}`,
   },
   withCredentials: true
 })
@@ -35,10 +43,11 @@ const $api = {
       // 'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
-      'Authorization': getTokenFromLocalStorage() ? `Bearer ${getTokenFromLocalStorage()}` : '',
+      'Authorization': getTokenFromCookie() ? `Bearer ${getTokenFromCookie()}` : '',
     }
   },
   async get(url, notify = notifyPayload) {
+    this.setAuthorization()
     return await http.get(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
@@ -56,6 +65,7 @@ const $api = {
   async post(url, data, notify = notifyPayload) {
     // const session = getSession()
     // console.log(session?.user)
+    this.setAuthorization()
     return await http.post(url, data).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data

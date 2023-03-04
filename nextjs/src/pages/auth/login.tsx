@@ -19,8 +19,6 @@ import * as Yup from "yup";
 import {useRouter} from "next/router";
 import {loginValues} from "@/lib/interface";
 
-
-
 function Login(): JSX.Element {
   const router = useRouter()
   const initialValues = {
