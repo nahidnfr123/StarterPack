@@ -1,31 +1,10 @@
 import axios from 'axios';
-import {setCookie, getCookie, deleteCookie} from 'cookies-next';
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
 function getTokenFromCookie() {
-  return getCookie('token')
-}
-
-export function setTokenToCookie(token) {
-  if (token) {
-    setCookie('token', token, {
-      maxAge: 3600 * 7,
-      httpOnly: false,// https connection
-      secure: false,
-      sameSite: 'strict',
-      path: '/'
-    })
-  } else {
-    deleteCookie('token', {
-      expires: new Date(0),
-      httpOnly: true,
-      secure: false, // https connection
-      sameSite: 'strict',
-      path: '/'
-    })
-  }
+  return ''
 }
 
 const http = axios.create({
