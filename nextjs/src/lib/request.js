@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {getCookie} from 'cookies-next';
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
