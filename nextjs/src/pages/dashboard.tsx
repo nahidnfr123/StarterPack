@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/default";
 import {Heading, Flex} from "@chakra-ui/react";
 import {getSession} from "next-auth/react";
 
-function Dashboard() {
+function Dashboard(): JSX.Element {
   return (
       <>
         <Flex

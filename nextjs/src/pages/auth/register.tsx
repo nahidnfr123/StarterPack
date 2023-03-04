@@ -15,10 +15,19 @@ import {ReactElement} from "react";
 import AuthLayout from "@/layouts/auth";
 import NextLink from "next/link";
 import * as Yup from "yup";
-import {signIn} from "next-auth/react";
+import {getSession, signIn} from "next-auth/react";
 import {useRouter} from "next/router";
 
-function Register() {
+
+interface registerValues {
+  name?: string;
+  email?: string;
+  password?: string;
+  password_confirmation?: string;
+}
+
+
+function Register(): JSX.Element {
   const router = useRouter()
   const initialValues = {
     name: '',
@@ -45,7 +54,7 @@ function Register() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  async function handelSubmit(values: [], props: { setErrors: (arg0: any) => void; }) {
+  async function handelSubmit(values: registerValues, props: { setErrors: (arg0: any) => void; }) {
     const status = await signIn('register', {
       redirect: false,
       name: values.name,
@@ -162,3 +171,21 @@ Register.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default Register
+
+
+// Middle Ware ... Required Auth
+// @ts-ignore
+export async function getServerSideProps({req}) {
+  const session = await getSession({req})
+  if (session) {
+    return {
+      redirect: {
+        destination: '/profile',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {session}
+  }
+}

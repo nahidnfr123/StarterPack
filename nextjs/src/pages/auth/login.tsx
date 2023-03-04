@@ -18,7 +18,12 @@ import {getSession, signIn, signOut} from "next-auth/react";
 import * as Yup from "yup";
 import {useRouter} from "next/router";
 
-function Login() {
+interface loginValues {
+  email?: string;
+  password?: string;
+}
+
+function Login(): JSX.Element {
   const router = useRouter()
   const initialValues = {
     email: "",
@@ -36,10 +41,10 @@ function Login() {
         .max(60, 'Maximum 60 characters'),
   });
 
-  async function handelSubmit(values: [], props: { setErrors: (arg0: any) => void; }) {
+  async function handelSubmit(values: loginValues, props: { setErrors: (arg0: any) => void; }) {
     const status = await signIn('login', {
       redirect: false,
-      email: values.email,
+      email: values.email || '',
       password: values.password,
       callbackUrl: `${window.location.origin}/profile`,
     })
@@ -150,7 +155,7 @@ function Login() {
         </Stack>
 
         <Text align='center' my={4}>
-          Don't have and account? {' '}
+          {`Don't have and account? `}
           <Link href='/auth/register' as={NextLink} color='blue.400' className='text-right'>Register</Link>
         </Text>
       </>
@@ -167,6 +172,7 @@ export default Login
 
 
 // Middle Ware ... Required Auth
+// @ts-ignore
 export async function getServerSideProps({req}) {
   const session = await getSession({req})
   if (session) {

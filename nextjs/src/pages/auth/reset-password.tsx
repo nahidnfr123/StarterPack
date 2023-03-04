@@ -11,8 +11,9 @@ import {
   VStack
 } from "@chakra-ui/react";
 import TheHead from "../../components/common/TheHead";
+import {getSession} from "next-auth/react";
 
-export default function ResetPassword() {
+export default function ResetPassword(): JSX.Element {
   return (
       <>
         <TheHead title='Reset Password'/>
@@ -76,4 +77,21 @@ export default function ResetPassword() {
         </Formik>
       </>
   );
+}
+
+// Middle Ware ... Required Auth
+// @ts-ignore
+export async function getServerSideProps({req}) {
+  const session = await getSession({req})
+  if (session) {
+    return {
+      redirect: {
+        destination: '/profile',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {session}
+  }
 }

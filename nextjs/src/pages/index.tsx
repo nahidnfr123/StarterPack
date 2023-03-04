@@ -6,7 +6,7 @@ import {Box, Heading, Flex, Text} from "@chakra-ui/react";
 
 const inter = Inter({subsets: ['latin']})
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
       <>
         <TheHead title='Starter Home'/>
@@ -18,8 +18,7 @@ const Home = () => {
             py='10'
         >
           <Box
-              align="center"
-              justify="center"
+              textAlign="center"
               maxW='1366px'
               w='100%'
               mx='auto'
