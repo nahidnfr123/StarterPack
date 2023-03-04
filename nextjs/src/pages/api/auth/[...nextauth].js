@@ -26,11 +26,14 @@ const providers = [
   CredentialsProvider({
     name: 'Credentials',
     id: "login",
+    credentials: {
+      email: {label: "Email", type: "email", placeholder: "name"},
+      password: {label: "Password", type: "password"}
+    },
     authorize: async (credentials, req) => {
       const response = await $api.post('login', {email: credentials.email, password: credentials.password})
       if (response.message === 'success') {
-        setTokenToCookie(response?.data?.token)
-        return response?.data?.user
+        return {...response?.data?.user, token: response?.data?.token || ''}
       } else if (response.message === 'error') {
         throw new Error(JSON.stringify(response?.data))
       } else return null
@@ -39,7 +42,7 @@ const providers = [
   CredentialsProvider({
     name: 'Credentials',
     id: "register",
-    authorize: async (credentials, req) => {
+    authorize: async (credentials, req, res) => {
       const response = await $api.post('register', {
         name: credentials.name,
         email: credentials.email,
@@ -67,6 +70,7 @@ const callbacks = {
   },
   async session({session, user, token}) {
     session.user = {...session.user, ...token}
+    session.accessToken = session?.user?.token
     session.user.isLoggedIn = true;
     return session;
   },
@@ -75,7 +79,7 @@ const callbacks = {
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers,
-  callbacks
+  callbacks,
 }
 
 export default NextAuth(authOptions)

@@ -1,8 +1,8 @@
 import {Box, Button, ButtonGroup, Center, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Spacer, Text} from "@chakra-ui/react";
-import NextLink from "next/link";
+import NextLink from "next/link"
 import Image from 'next/image'
 import {useSession, signOut} from "next-auth/react"
-import {ChevronDownIcon} from "@chakra-ui/icons";
+import {ChevronDownIcon} from "@chakra-ui/icons"
 
 export default function TheNavBar() {
   const {data: session} = useSession()

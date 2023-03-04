@@ -1,20 +1,31 @@
 import axios from 'axios';
-import {cookies} from "next/headers";
-import cookie from "js-cookie";
+import {setCookie, getCookie, deleteCookie} from 'cookies-next';
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
-function getTokenFromCookie(req) {
-  req.cookie.get('token')
-  return cookie.get('token')
+function getTokenFromCookie() {
+  return getCookie('token')
 }
 
 export function setTokenToCookie(token) {
   if (token) {
-    cookie.set('token', token, {expires: 3600 * 7})
-    console.log('cook', token)
-  } else cookie.remove('token')
+    setCookie('token', token, {
+      maxAge: 3600 * 7,
+      httpOnly: false,// https connection
+      secure: false,
+      sameSite: 'strict',
+      path: '/'
+    })
+  } else {
+    deleteCookie('token', {
+      expires: new Date(0),
+      httpOnly: true,
+      secure: false, // https connection
+      sameSite: 'strict',
+      path: '/'
+    })
+  }
 }
 
 const http = axios.create({
