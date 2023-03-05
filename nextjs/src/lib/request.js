@@ -1,9 +1,10 @@
 import axios from 'axios';
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
+import Cookies from 'js-cookie'
 
 function getTokenFromCookie() {
-  const token = '--'
+  const token = Cookies.get('name') || '--'
   console.log(token)
   return token
 }

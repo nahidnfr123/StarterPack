@@ -23,7 +23,7 @@ const providers = (req, res) => {
       name: 'Credentials',
       id: "login",
       credentials: {
-        email: {label: "Email", type: "email", placeholder: "name"},
+        email: {label: "Email", type: "email", placeholder: "email"},
         password: {label: "Password", type: "password"}
       },
       authorize: async (credentials, req) => {
@@ -39,6 +39,12 @@ const providers = (req, res) => {
     CredentialsProvider({
       name: 'Credentials',
       id: "register",
+      credentials: {
+        name: {label: "Name", type: "text", placeholder: "name"},
+        email: {label: "Email", type: "email", placeholder: "email"},
+        password: {label: "Password", type: "password"},
+        password_confirmation: {label: "Password Confirmation", type: "password"}
+      },
       authorize: async (credentials, req) => {
         const response = await $api.post('register', {
           name: credentials.name,
@@ -78,6 +84,11 @@ export const authOptions = (req, res) => {
     secret: process.env.NEXTAUTH_SECRET,
     providers: providers(req, res),
     callbacks,
+    pages: {
+      signIn: '/auth/login',
+      // error: '/',
+      // signOut: '/',
+    }
   }
 }
 
