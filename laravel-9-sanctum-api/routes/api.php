@@ -16,6 +16,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::get('/refresh-token', function (Request $request) {
+        $request->user()->tokens()->delete();
+        return response()->json([
+            'token' => $request->user()->createToken($request->user() . '-' . time()),
+            'user' => $request->user()
+        ]);
+    });
     Route::put('/user', [UserController::class, 'update']);
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
