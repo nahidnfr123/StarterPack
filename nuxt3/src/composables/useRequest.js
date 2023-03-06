@@ -8,6 +8,7 @@ const $api = {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
       onRequest({request, options}) {
         // Set the request headers
+        options.credentials= 'include'
         options.headers = options.headers || {}
         if (accessToken()) options.headers.Authorization = `Bearer ${accessToken()}` // Set the authorization token ...
         options.headers.accept = 'application/json' // header accept application/json is required ... Otherwise backend throws 302 status ...
@@ -33,6 +34,7 @@ const $api = {
       baseURL: config.public.apiBaseUrl, // Set the api base url from .env ...
       onRequest({request, options}) {
         // Set the request headers
+        options.credentials= 'include'
         options.body = payload
         options.method = 'POST'
         options.headers = options.headers || {}
