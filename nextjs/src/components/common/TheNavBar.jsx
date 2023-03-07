@@ -3,11 +3,13 @@ import NextLink from "next/link"
 import Image from 'next/image'
 import {useSession, signOut} from "next-auth/react"
 import {ChevronDownIcon} from "@chakra-ui/icons"
+import Cookies from "js-cookie";
 
 export default function TheNavBar() {
   const {data: session} = useSession()
 
   async function handelSignOut() {
+    Cookies.remove('token')
     await signOut()
   }
 

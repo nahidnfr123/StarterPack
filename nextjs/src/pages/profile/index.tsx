@@ -18,6 +18,7 @@ import {ReactElement} from "react";
 
 function Profile() {
   const {data: session} = useSession()
+
   if (session) {
     return (
         <Center py={6}>

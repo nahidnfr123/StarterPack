@@ -4,12 +4,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie'
 
 function getTokenFromCookie() {
-  const token = Cookies.get('name') || '--'
+  const token = Cookies.get('token') || '--'
   console.log(token)
   return token
 }
 
-const http = axios.create({
+export const http = axios.create({
   baseURL: process.env.API_URL || `http://127.0.0.1:8000/api/`,
   headers: {
     'Content-type': 'multipart/form-data',
@@ -29,17 +29,16 @@ const notifyPayload = {
 }
 
 const $api = {
-  setAuthorization() {
+  setAuthorization(token = getTokenFromCookie()) {
     http.defaults.headers = {
       'Content-type': 'multipart/form-data',
       // 'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
-      'Authorization': getTokenFromCookie() ? `Bearer ${getTokenFromCookie()}` : '',
+      'Authorization': token ? `Bearer ${token}` : '',
     }
   },
   async get(url, notify = notifyPayload) {
-    this.setAuthorization()
     return await http.get(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
@@ -55,10 +54,14 @@ const $api = {
     })
   },
   async post(url, data, notify = notifyPayload) {
+    console.log(http.defaults.headers)
     // const session = getSession()
     // console.log(session?.user)
-    this.setAuthorization()
-    return await http.post(url, data).then((res) => {
+    return await http.post(url, data, {
+      headers: {
+        'Authorization': Cookies.get('token')
+      }
+    }).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data

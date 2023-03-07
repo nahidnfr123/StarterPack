@@ -29,7 +29,7 @@ const providers = (req, res) => {
       authorize: async (credentials, req) => {
         const response = await $api.post('login', {email: credentials.email, password: credentials.password})
         if (response.message === 'success') {
-          res.setHeader('Set-Cookie', ['token=' + response?.data?.token])
+          // res.setHeader('Set-Cookie', ['token=' + response?.data?.token])
           return response?.data?.user
         } else if (response.message === 'error') {
           throw new Error(JSON.stringify(response?.data))
@@ -53,7 +53,8 @@ const providers = (req, res) => {
           password_confirmation: credentials.password_confirmation
         })
         if (response.message === 'success') {
-          res.setHeader('Set-Cookie', ['token=' + response?.data?.token])
+          // $api.setAuthorization(response?.data?.token)
+          // res.setHeader('Set-Cookie', ['token=' + response?.data?.token])
           return response?.data?.user
         } else if (response.message === 'error') {
           throw new Error(JSON.stringify(response?.data))

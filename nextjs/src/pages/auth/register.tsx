@@ -58,8 +58,9 @@ function Register(): JSX.Element {
     })
     if (status?.ok && status?.url) await router.push(status?.url)
     if (status?.error) {
-      const errorData = JSON.parse(status?.error)
-      props.setErrors(errorData?.errors)
+        const errorData = JSON.parse(status?.error)
+        console.log(errorData)
+        if (errorData?.errors) props.setErrors(errorData?.errors)
     }
   }
 
