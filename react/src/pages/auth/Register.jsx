@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import * as auth from "../../api/auth";
+import * as auth from "../../services/auth.service.js";
 import {useNavigate} from "react-router-dom";
 import {removeUser, setTokenUser} from "../../store/authSlice";
 import {useDispatch} from "react-redux";

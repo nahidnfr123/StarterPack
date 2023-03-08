@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useRef} from "react";
-import {getUser} from "../api/auth";
+import {getUser} from "../services/auth.service.js";
 import {setUser} from "../store/authSlice";
 
 const theme = createTheme();

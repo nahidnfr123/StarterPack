@@ -1,4 +1,4 @@
-import $api from "./index";
+import $api from "./api.service";
 
 export async function register(data) {
   const response = await $api.post('/register', {

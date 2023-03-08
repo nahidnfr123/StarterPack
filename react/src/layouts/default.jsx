@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom";
 import AppBar from "../components/global/AppBar";
 import {useEffect, useRef} from "react";
-import {getUser} from "../api/auth";
+import {getUser} from "../services/auth.service.js";
 import {unsetUser, setUser} from "../store/authSlice";
 import {useDispatch} from "react-redux";
 import {createTheme, ThemeProvider} from '@mui/material/styles';

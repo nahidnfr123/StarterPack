@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import {Field, Form, Formik, ErrorMessage} from "formik";
 import * as Yup from 'yup';
 // import {setUser} from "../../store/authSlice";
-import $api from "../../api";
+import $api from "../../services/api.service";
 import Grid from "@mui/material/Grid";
 
 function ForgetPassword() {

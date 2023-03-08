@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Button, Divider} from "@mui/material";
 import React from "react";
 import {setUser} from "../store/authSlice";
-import $api from "../api";
+import $api from "../services/api.service";
 import {useNavigate} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";

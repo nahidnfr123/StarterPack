@@ -1,12 +1,13 @@
 import axios from 'axios';
-import {getTokenFromLocalStorage} from "./auth";
+import {getTokenFromLocalStorage} from "./auth.service";
 import {toast} from "react-toastify";
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
 
-const http = axios.create({
+export const $http = axios.create({
   baseURL: process.env.API_URL || `http://127.0.0.1:8000/api/`,
+  credentials: 'include',
   headers: {
     'Content-type': 'multipart/form-data',
     // 'Content-type': 'application/json',
@@ -26,7 +27,7 @@ const notifyPayload = {
 
 const $api = {
   setAuthorization() {
-    http.defaults.headers = {
+    $http.defaults.headers = {
       'Content-type': 'multipart/form-data',
       // 'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
@@ -35,7 +36,7 @@ const $api = {
     }
   },
   async get(url, notify = notifyPayload) {
-    return await http.get(url).then((res) => {
+    return await $http.get(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
@@ -50,7 +51,7 @@ const $api = {
     })
   },
   async post(url, data, notify = notifyPayload) {
-    return await http.post(url, data).then((res) => {
+    return await $http.post(url, data).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
@@ -66,7 +67,7 @@ const $api = {
     })
   },
   async delete(url, notify = notifyPayload) {
-    return await http.delete(url).then((res) => {
+    return await $http.delete(url).then((res) => {
       let data = null
       if (res?.data?.data) data = res?.data?.data
       else if (res?.data) data = res?.data
