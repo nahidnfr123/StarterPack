@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="space-y-6 py-6 px-5">
-            <div v-if="authStore.hasToken">
+            <div v-if="authStore.isLoggedIn">
               <UserMenuDropdown/>
             </div>
             <div v-else>
