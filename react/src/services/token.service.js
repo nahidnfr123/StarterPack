@@ -6,7 +6,7 @@ export default function accessToken(token = null, clearToken = false) {
       expires: 7,
       path: '',
       sameSite: 'strict',
-      secure: process.env.NODE_ENV === 'production'
+      secure: process.env.APP_ENV === 'production'
     })
   }
   if (clearToken) Cookies.remove('token')
