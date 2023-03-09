@@ -6,7 +6,8 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     isLoggedIn: !!accessToken(), // If token present loggedIn true ... Else Middleware doesnt work on page reload
     token: accessToken() || null, // Get Token Form Cookie or set it to null
-    user: null
+    user: null,
+    isLoading: false
   }),
   getters: {
     isAuthenticated: (state) => {
@@ -39,6 +40,7 @@ export const useAuthStore = defineStore('auth', {
       accessToken(token) // Set The Token ...
     },
     async getUser() {
+      this.isLoading = true
       if (!accessToken()) return {}
       const notifyPayload = {
         showSuccess: false,
@@ -48,10 +50,9 @@ export const useAuthStore = defineStore('auth', {
       }
 
       const response = await $api.get('/user', notifyPayload);
-      if (response.message === 'success')
-        this.setTokenUser(accessToken(), response.data)
-      else
-        this.clearAuth()
+      if (response.message === 'success') this.setTokenUser(accessToken(), response.data)
+      else this.clearAuth()
+      this.isLoading = false
       return response
     },
     async logout() {
@@ -65,7 +66,7 @@ export const useAuthStore = defineStore('auth', {
       this.isLoggedIn = false
 
       if (import.meta.server) return
-      accessToken('', true) // Clearing the Cookie ...
+      accessToken(null, true) // Clearing the Cookie ...
     }
   }
 })
