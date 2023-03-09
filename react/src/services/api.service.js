@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {getTokenFromLocalStorage} from "./auth.service";
 import {toast} from "react-toastify";
+import accessToken from "./token.service";
 
 // axios.defaults.baseURL = process.env.API_URL || `http://127.0.0.1:8000/api/`
 // axios.defaults.withCredentials = true
@@ -13,7 +13,7 @@ export const $http = axios.create({
     // 'Content-type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
-    'Authorization': `Bearer ${getTokenFromLocalStorage()}`,
+    'Authorization': `Bearer ${accessToken()}`,
   },
   withCredentials: true
 })
@@ -32,7 +32,7 @@ const $api = {
       // 'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json',
-      'Authorization': getTokenFromLocalStorage() ? `Bearer ${getTokenFromLocalStorage()}` : '',
+      'Authorization': accessToken() ? `Bearer ${accessToken()}` : '',
     }
   },
   async get(url, notify = notifyPayload) {

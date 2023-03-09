@@ -1,11 +1,7 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import {useEffect} from "react";
-import $api from "../services/api.service";
 
 
 export default function Home() {

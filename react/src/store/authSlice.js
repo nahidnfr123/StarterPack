@@ -1,31 +1,32 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {getTokenFromLocalStorage, getUserFromLocalStorage, logout, removeUserFromLocalStorage, setUserToLocalStorage} from "../services/auth.service.js";
+import {logout} from "../services/auth.service.js";
+import accessToken from "../services/token.service";
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isLoggedIn: !!(getTokenFromLocalStorage()),
-    token: getTokenFromLocalStorage(),
-    user: getUserFromLocalStorage(),
+    isLoggedIn: !!(accessToken()),
+    token: accessToken(),
+    user: {},
   },
   reducers: {
     setTokenUser(state, data) {
       const payload = data.payload
-      state.token = payload.token || getTokenFromLocalStorage() || null
+      state.token = accessToken(payload.token)
       state.user = payload.user || null
       state.isLoggedIn = !!(state.token && state.user && Object.keys(state.user).length)
     },
     setUser(state, data) {
       const payload = data.payload
-      state.token = getTokenFromLocalStorage() || null
+      console.log(data.payload)
+      state.token = accessToken() || null
       state.user = payload || null
-      setUserToLocalStorage({token: state.token, user: state.user})
       state.isLoggedIn = !!(state.token && state.user && Object.keys(state.user).length)
     },
     removeUser: (state) => {
       logout().then(response => {
         if (response.message === 'success') {
-          removeUserFromLocalStorage()
+          accessToken(null, true)
           unsetUser()
         }
       })
