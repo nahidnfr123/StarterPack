@@ -19,7 +19,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/refresh-token', function (Request $request) {
         $request->user()->tokens()->delete();
         return response()->json([
-            'token' => $request->user()->createToken($request->user() . '-' . time()),
+            'token' => $request->user()->createToken($request->user() . '-' . time())
+                ->plainTextToken,
             'user' => $request->user()
         ]);
     });
