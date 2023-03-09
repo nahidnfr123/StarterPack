@@ -16,6 +16,7 @@
     "@formkit/vue": "^1.0.0-beta.15",
     "@headlessui/vue": "^1.7.11",
     "axios": "^1.3.4",
+    "js-cookie": "^3.0.1",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"

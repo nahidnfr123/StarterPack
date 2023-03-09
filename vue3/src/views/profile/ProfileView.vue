@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <div v-if="isAuthenticated" class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+    <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
       <div id="profile" class="w-full lg:w-3/5 rounded-2xl lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
         <div class="p-4 md:p-12 text-center lg:text-left">
           <!-- Image for mobile view-->
@@ -37,5 +37,5 @@
 import Container from "@/components/common/Container.vue";
 import {useAuthStore} from "@/stores/auth";
 
-const {user, isAuthenticated} = useAuthStore()
+const {user} = useAuthStore()
 </script>

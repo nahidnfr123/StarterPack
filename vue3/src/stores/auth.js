@@ -4,7 +4,7 @@ import accessToken from "@/composables/useToken";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    isLoggedIn: !!accessToken(), // If token present loggedIn true ... Else Middleware doesnt work on page reload
+    hasToken: !!accessToken(), // If token present loggedIn true ... Else Middleware doesnt work on page reload
     token: accessToken() || null, // Get Token Form Cookie or set it to null
     user: null
   }),
@@ -35,7 +35,7 @@ export const useAuthStore = defineStore('auth', {
     setTokenUser(token = null, user = {}) {
       this.token = token // set token in store ...
       this.user = user // set the user data to store ...
-      this.isLoggedIn = !!(token && user && user.id) // set the isLoggedIn State to true if user and token is available ...
+      this.hasToken = !!(token && user && user.id) // set the hasToken State to true if user and token is available ...
       accessToken(token) // Set The Token ...
     },
     async getUser() {
@@ -62,7 +62,7 @@ export const useAuthStore = defineStore('auth', {
     clearAuth() {
       this.token = null
       this.user = null
-      this.isLoggedIn = false
+      this.hasToken = false
 
       if (import.meta.server) return
       accessToken('', true) // Clearing the Cookie ...
