@@ -1,0 +1,44 @@
+$y-offset: 40px;
+$delay: 200ms;
+
+.shouldAnimate {
+  will-change: transform, opacity;
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-up,
+.fade-down,
+.fade-left,
+.fade-right {
+  will-change: transform, opacity;
+  transform: translate(0, 0);
+  transition: all 200ms ease-in-out;
+}
+
+.fade-down {
+  transform: translate(0, -40px) rotate(-0deg);
+  animation: originalPosition 600ms $delay ease-in-out forwards;
+}
+
+.fade-up {
+  transform: translate(0, 40px) rotate(0deg);
+  animation: originalPosition 600ms $delay ease-in-out forwards;
+}
+
+.fade-left {
+  transform: translate(40px, 0) rotate(-0deg);
+  animation: originalPosition 600ms $delay ease-in-out forwards;
+}
+
+.fade-right {
+  transform: translate(-40px, 0) rotate(-0deg);
+  animation: originalPosition 600ms $delay ease-in-out forwards;
+}
+
+@keyframes originalPosition {
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
